@@ -1,0 +1,28 @@
+@use './globals/variables' as var;
+
+*,
+*::after,
+*::before {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  font-family: var.$font-primary;
+}
+
+// h1 {
+//   // color: var.$color10;
+//   color: var.$;
+// }
+
+.tests {
+  width: 300px;
+  height: 300px;
+  background: var.$bg-searchBar;
+
+  p {
+    color: var.$active-color;
+  }
+}

@@ -1,0 +1,19 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap');
+
+//fonts
+$font-primary: 'Lato', sans-serif;
+
+//base-color
+$_hue: 255;
+
+//colors
+$primary-color: hsl($_hue 72% 62%);
+$secondary-color: hsl($_hue 100% 100%);
+$muted-color: hsl($_hue 20% 60%);
+$active-color: hsl($_hue 72% 52%);
+$bg-player-color: hsl($_hue 20% 15%);
+$bg-searchBar: hsl($_hue 30% 30%);
+
+$bg-dark-color: hsl($_hue 15% 10%);
+$gradient-sidebar-color: linear-gradient(0deg, rgba(25,11,35,1) 0%, rgba(58,24,82,1) 100%);
+$gradient-menu-color: linear-gradient(180deg, rgba(123,87,228,1) 0%, rgba(57,42,101,1) 100%);
