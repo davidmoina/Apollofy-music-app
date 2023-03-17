@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import  { useEffect } from 'react'
 import styles from './loginPage.module.scss';
 import { useState } from 'react';
 import { motion } from 'framer-motion'
@@ -27,6 +27,8 @@ export const LoginPage = () => {
 
   }, [])
 
+
+
   const variants = {
     default: {
       x: mousePosition.x - 500,
@@ -36,6 +38,7 @@ export const LoginPage = () => {
   
 
   return (
+    <>
     <main className={styles.container}>
       <form action="" className={styles.form}>
         <h3>Welcome Back,</h3>
@@ -44,21 +47,23 @@ export const LoginPage = () => {
         <InputForm id='lastName' placeholder='Last Name' inputType='text'/>
         <InputForm id='password' placeholder='Password' inputType='password'/>
         <div className={styles.rememberContainer}> 
-          <div>
+          <div className={styles.checkContainer}>
             <input type="checkbox" id="cbx2" className={styles.cbx2} style={{display: 'none'}}/>
             <label htmlFor="cbx2" className={styles.check}>
                 <svg width="18px" height="18px" viewBox="0 0 18 18">
                     <path d="M 1 9 L 1 9 c 0 -5 3 -8 8 -8 L 9 1 C 14 1 17 5 17 9 L 17 9 c 0 4 -4 8 -8 8 L 9 17 C 5 17 1 14 1 9 L 1 9 Z"></path>
                     <polyline points="1 9 7 14 15 4"></polyline>
                 </svg>
-                Remember Me
             </label>
+            <span>Remember me</span>
           </div>
           <span>Forgot Password</span>
         </div>
         <ButtonForm />
       </form>
-      <motion.div 
+      <p className={styles.noAccountText}>Don't have an account? Join free today</p>
+    </main>
+    <motion.div 
       className={styles.cursorBackground}
       variants={variants}
       animate="default"
@@ -68,7 +73,8 @@ export const LoginPage = () => {
         y: { duration: 0 },
         default: { ease: "linear" }
       }}/>
-    </main>
+    </>
+    
   )
 }
 
