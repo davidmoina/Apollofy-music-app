@@ -7,13 +7,22 @@ $font-primary: 'Lato', sans-serif;
 $_hue: 255;
 
 //colors
-$primary-color: hsl($_hue 72% 62%);
-$secondary-color: hsl($_hue 100% 100%);
-$muted-color: hsl($_hue 20% 60%);
-$active-color: hsl($_hue 72% 52%);
-$bg-player-color: hsl($_hue 20% 15%);
-$bg-searchBar: hsl($_hue 30% 30%);
+$primary-color: hsl($_hue 72% 62%); // morado corporativo
+$secondary-color: hsl($_hue 100% 100%); // blanco
+$muted-color: hsl($_hue 20% 60%); // gris
+$active-color: hsl($_hue 72% 52%); // morado active
+$bg-player-color: hsl($_hue 20% 15%); // morado oscuro
+$bg-searchBar: hsl($_hue 30% 30%); // morado clarito gradiente searchbar
 
-$bg-dark-color: hsl($_hue 15% 10%);
+$bg-dark-color: hsl($_hue 15% 10%); // main app bg morado oscuro
 $gradient-sidebar-color: linear-gradient(0deg, rgba(25,11,35,1) 0%, rgba(58,24,82,1) 100%);
 $gradient-menu-color: linear-gradient(180deg, rgba(123,87,228,1) 0%, rgba(57,42,101,1) 100%);
+
+// Form Variables
+$size: 5rem;
+$radius: 0.3em;
+$tspeed_fast: 150ms;
+$tspeed_slow: 400ms;
+$ttype_squish: cubic-bezier(0.86, -0.1, 0.27, 1.15);
+$primary-color-70: rgba($primary-color , 0.7);
+$primary-color-30: rgba($primary-color , 0.3);
