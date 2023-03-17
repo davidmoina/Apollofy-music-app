@@ -5,6 +5,7 @@
     display: grid;
     gap: 0.3em;
     margin-block-start: 0.6em;
+    margin-top: 3em;
   }
   
   .formLabel {
@@ -15,11 +16,16 @@
     position: absolute;
     opacity: 0.6;
     top: 50%;
+    background-color: inherit;
     transform: translateY(-50%);
     padding: 0.1em 1.5em;
     color: var.$muted-color;
     transition: transform var.$tspeed_fast var.$ttype_squish,
       background-color var.$tspeed_fast var.$ttype_squish;
+  }
+
+  .formLabel:enabled {
+    opacity: 1;
   }
   
   .formInput {
@@ -45,10 +51,17 @@
   
   .formInput:focus ~ .formLabel,
   .formInput:not(:placeholder-shown) ~ .formLabel {
-    transform: translate3d(0, -3.25em, 0);
+    transform: translate3d(0, -4em, 0);
     background-color: var.$bg-dark-color;
     color: var.$primary-color-70;
   }
+  .formInput:focus ~ .formLabel,
+  .formInput:not(:placeholder-shown) ~ .formLabel {
+    color: var.$primary-color;
+    background-color: inherit;
+    opacity: 1;
+  }
+
   
   .formInput::placeholder {
     opacity: 0;
