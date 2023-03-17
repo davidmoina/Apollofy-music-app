@@ -1,0 +1,33 @@
+@use '../../sass/globals/variables' as var;
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: var.$bg-dark-color;
+
+  .form {
+    width: 400px;
+    height: 500px;
+    padding: 2em;
+    border: 2px solid white;
+
+    h1 {
+      text-align: center;
+      font-weight: 900;
+      color: var.$primary-color;
+    }
+  }
+
+  .cursorBackground {
+    position: fixed;
+    background-image: url(../../assets/images/image20.png);
+    width: 1000px;
+    height: 838.16px;
+    background-size: contain;
+    top: 0;
+    left: 0;
+  }
+
+}
