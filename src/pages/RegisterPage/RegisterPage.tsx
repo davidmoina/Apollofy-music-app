@@ -40,7 +40,7 @@ export const RegisterPage = () => {
       <form action="" className={styles.form}>
         <h3>Welcome!</h3>
         <h1>Create your new account</h1>
-        <div className='flex flex-1 gap-4 mt-0'>
+        <div className={`${styles.inputsContainer}`}>
             <InputForm id='firstName' placeholder='First Name' inputType='text'/>
             <InputForm id='lastName' placeholder='Last Name' inputType='text'/>
         </div>
@@ -48,7 +48,7 @@ export const RegisterPage = () => {
         <InputForm id='password' placeholder='Password' inputType='password'/>
         <InputForm id='repeatPassword' placeholder='Repeat Password' inputType='password'/>
         <InputForm id='birthday' placeholder='Birthday' inputType='date'/>
-        <div className='mt-12'>
+        <div className='flex justify-center'>
             <ButtonForm name='Sign Up'/>
         </div>
       </form>
