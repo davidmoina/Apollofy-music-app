@@ -1,12 +1,12 @@
 import { ChangeEvent } from "react";
 import { TbVolume } from "react-icons/tb";
 
-type VolumeControl = {
+type Props = {
    volume: number,
    onChange: (event: ChangeEvent<HTMLInputElement>) => void
 }
 
-export const Volume: React.FC<VolumeControl> = ({ volume, onChange }) => {
+export const Volume= ({ volume, onChange }:Props) => {
    return (
       <div className="flex">
          <TbVolume size={25} color={'white'}/>
