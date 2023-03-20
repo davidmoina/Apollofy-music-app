@@ -1,19 +1,13 @@
-import React, { FC } from 'react';
-import './sass/index.scss';
-import MobileNavBar from './components/MobileNavBar/MobileNavBar'; // Corrected import statement
+import React, { useState, FC } from 'react'
+import { Routing } from './routes/Routing.routes'
+import './sass/index.scss'
+
 
 const App: FC = () => {
   return (
-    <>
-      <div className="App">
-        <h1>home page</h1>
-      </div>
-      <div className="tests">
-        <p>Text colors</p>
-      </div>
-      <MobileNavBar />
-    </>
-  );
-};
+    <Routing/>
+    
+  )
+}
 
-export default App;
+export default App

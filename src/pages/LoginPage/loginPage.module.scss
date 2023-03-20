@@ -1,0 +1,130 @@
+@use '../../sass/globals/variables' as var;
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100vh;
+  background-color: var.$bg-dark-color;
+
+  ::selection {
+    background-color: var.$muted-color;
+  }
+
+  .form {
+    max-width: 500px;
+    padding: 1em;
+    z-index: 999;
+    margin: auto;
+
+    h1 {
+      text-align: center;
+      font-weight: 900;
+      font-size: calc(var.$size * 0.5);
+      color: var.$primary-color;
+      margin-bottom: 1.5em;
+    }
+
+    h3 {
+      font-weight: 400;
+      color: var.$secondary-color;
+    }
+    
+    .rememberContainer {
+      display: flex;
+      justify-content: space-around;
+      padding: 1em;
+      margin: 1em 0;
+      color: var.$muted-color;
+
+      .checkContainer {
+        display: flex;
+        gap: 0.5em;
+        
+        .check {
+          cursor: pointer;
+          position: relative;
+          width: 18px;
+          height: 18px;
+          -webkit-tap-highlight-color: transparent;
+          transform: translate3d(0, 0, 0);
+
+          &:before {
+            content: "";
+            position: absolute;
+            top: -15px;
+            left: -15px;
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background: rgba(34, 50, 84, 0.03);
+            opacity: 0;
+            transition: opacity 0.2s ease;
+          }
+
+          svg {
+            position: relative;
+            z-index: 1;
+            fill: none;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+            stroke: #c8ccd4;
+            stroke-width: 1.5;
+            transform: translate3d(0, 0, 0);
+            transition: all 0.2s ease;
+
+            path {
+              stroke-dasharray: 60;
+              stroke-dashoffset: 0;
+            }
+
+            polyline {
+              stroke-dasharray: 22;
+              stroke-dashoffset: 66;
+            }
+          }
+
+          &:hover:before {
+            opacity: 1;
+          }
+
+          &:hover svg {
+            stroke: var.$primary-color;
+          }
+
+        }
+
+        .cbx2:checked + .check svg {
+          stroke: var.$primary-color;
+        }
+        
+        .cbx2:checked + .check svg path {
+          stroke-dashoffset: 60;
+          transition: all 0.3s linear;
+        }
+        
+        .cbx2:checked + .check svg polyline {
+          stroke-dashoffset: 42;
+          transition: all 0.2s linear;
+          transition-delay: 0.15s;
+        }
+      }
+    }
+  }
+
+  .noAccountText{
+    color: var.$muted-color;
+    margin-bottom: 2em;
+  }
+
+}
+
+.cursorBackground {
+  position: fixed;
+  background-image: url(../../assets/images/image20.png);
+  width: 1000px;
+  height: 838.16px;
+  background-size: contain;
+  top: 0;
+  left: 0;
+}
