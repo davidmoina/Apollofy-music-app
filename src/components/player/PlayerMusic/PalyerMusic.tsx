@@ -81,10 +81,9 @@ export const PlayerMusic = () => {
       }, 1000);
    }
 
-   const handleVolumeChange = (event: ChangeEvent<HTMLInputElement>) => {
-      setVolume(parseFloat(event.target.value));
-      console.log(event.currentTarget.value)
-      audioRef.current.volume = parseFloat(event.target.value);
+   const handleVolumeChange = (event: ChangeEvent<HTMLInputElement>): void => {
+      setVolume(parseFloat(event.currentTarget.value));
+      audioRef.current.volume = parseFloat(event.currentTarget.value);
    };
 
    const onScrub = (value:string) => {
@@ -144,7 +143,7 @@ export const PlayerMusic = () => {
             </div>
             <div className='w-1/5 hidden md:flex justify-end'>
                <Volume
-                  value={ volume }
+                  volume={ volume }
                   onChange={ handleVolumeChange }
                />
             </div>
