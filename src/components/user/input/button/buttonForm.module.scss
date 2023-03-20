@@ -20,9 +20,7 @@
   }
 
   .buttonForm:where(:active, :hover) {
-    // color: var.$primary-color;
-    background-color: var.$bg-dark-color;
-    box-shadow: rgba(255, 255, 255, 0.25) 0px 14px 28px, rgba(255, 255, 255, 0.22) 0px 10px 10px;
+    box-shadow: rgba(157, 80, 178, 0.25) 0px 14px 28px, rgba(86, 17, 129, 0.22) 0px 10px 10px;
   }
   
   .buttonForm:focus {

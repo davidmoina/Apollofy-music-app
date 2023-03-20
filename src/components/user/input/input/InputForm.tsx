@@ -5,7 +5,7 @@ type InputProps = {inputType: string, id: string, placeholder: string }
 
 export const InputForm = ({ inputType, id, placeholder }:InputProps) => {
   return (
-    <div className={styles.inputWrapper}>
+    <div className={styles.inputWrapper} >
       <input
         type={inputType}
         id={id}

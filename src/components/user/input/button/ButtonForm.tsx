@@ -1,11 +1,15 @@
-import styles from './buttonForm.module.scss'
+import styles from './buttonForm.module.scss';
 
-export const ButtonForm = () => {
+type ButtonProps = {
+  name: string
+}
+
+export const ButtonForm = ({name}:ButtonProps) => {
   return (
     <button
         type="submit"
-        className={`${styles.buttonForm} md:span-2`}
-      >Sign In
+        className={`${styles.buttonForm} hover:bg-violet-400 transition duration-300 mt-6`}
+      >{name}
       </button>
   )
 }
