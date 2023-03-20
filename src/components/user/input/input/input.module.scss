@@ -1,0 +1,69 @@
+@use '../../../../sass/globals/variables' as var;
+
+.inputWrapper {
+    position: relative;
+    display: grid;
+    gap: 0.3em;
+    margin-block-start: 0.6em;
+    margin-top: 3em;
+  }
+  
+  .formLabel {
+    // text-transform: uppercase;
+    font-size: calc(var.$size * 0.2);
+    letter-spacing: 0.05em;
+    margin-inline: 0.45em;
+    position: absolute;
+    opacity: 0.6;
+    top: 50%;
+    background-color: inherit;
+    transform: translateY(-50%);
+    padding: 0.1em 1.5em;
+    color: var.$muted-color;
+    transition: transform var.$tspeed_fast var.$ttype_squish,
+      background-color var.$tspeed_fast var.$ttype_squish;
+  }
+
+  .formLabel:enabled {
+    opacity: 1;
+  }
+  
+  .formInput {
+    border: 1px solid var.$muted-color;
+    border-radius: var.$radius;
+    padding: 1em 2em;
+    width: 100%;
+    font-size: calc(var.$size * 0.2);
+    opacity: 0.8;
+    background-color: inherit;
+    caret-color: var.$primary-color;
+    color: var.$secondary-color;
+    box-shadow: 0 0 0 -0.1em var.$bg-dark-color,
+      0 0 0 -0.2em var.$primary-color-70;
+    transition: box-shadow var.$tspeed_slow var.$ttype_squish;
+  }
+  
+  .formInput:focus {
+    outline: none;
+    box-shadow: 0 0 0 0.2em var.$bg-dark-color,
+      0 0 0 0.4em var.$primary-color;
+  }
+  
+  .formInput:focus ~ .formLabel,
+  .formInput:not(:placeholder-shown) ~ .formLabel {
+    transform: translate3d(0, -4em, 0);
+    background-color: var.$bg-dark-color;
+    color: var.$primary-color-70;
+  }
+  .formInput:focus ~ .formLabel,
+  .formInput:not(:placeholder-shown) ~ .formLabel {
+    color: var.$primary-color;
+    background-color: inherit;
+    opacity: 1;
+  }
+
+  
+  .formInput::placeholder {
+    opacity: 0;
+  }
+  

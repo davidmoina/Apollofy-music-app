@@ -1,12 +1,11 @@
-import { PlayerMusic } from './components/player/PlayerMusic/PalyerMusic'
+import { useState } from 'react'
+import { Routing } from './routes/Routing.routes'
 import './sass/index.scss'
 
 function App() {
 
   return (
-    <div className="App">
-      <PlayerMusic />
-    </div>
+    <Routing/>
   )
 }
 
