@@ -1,0 +1,16 @@
+@use '../../../sass/globals/variables' as var;
+
+.textInfo{
+   color: var.$secondary-color;
+
+   h2{
+      font-weight: 600;
+      line-height: 1em;
+      margin-bottom: 5px;
+   }
+
+   h3{
+      font-size: 0.6em;
+      color: var.$muted-color;
+   }
+}
