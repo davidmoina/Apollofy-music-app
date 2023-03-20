@@ -41,7 +41,7 @@ export const LoginPage = () => {
     <>
     <main className={styles.container}>
       <form action="" className={styles.form}>
-        <h3>Welcome Back,</h3>
+        <h3>Welcome back,</h3>
         <h1>Login to your account</h1>
         <InputForm id='email' placeholder='Email' inputType='email'/>
         <InputForm id='password' placeholder='Password' inputType='password'/>
@@ -58,7 +58,7 @@ export const LoginPage = () => {
           </div>
           <span>Forgot Password</span>
         </div>
-        <ButtonForm />
+        <ButtonForm name='Sign In'/>
       </form>
       <p className={styles.noAccountText}>Don't have an account? Join free today</p>
     </main>
