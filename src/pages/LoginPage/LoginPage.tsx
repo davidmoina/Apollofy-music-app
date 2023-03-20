@@ -43,8 +43,7 @@ export const LoginPage = () => {
       <form action="" className={styles.form}>
         <h3>Welcome Back,</h3>
         <h1>Login to your account</h1>
-        <InputForm id='firstName' placeholder='First Name' inputType='text'/>
-        <InputForm id='lastName' placeholder='Last Name' inputType='text'/>
+        <InputForm id='email' placeholder='Email' inputType='email'/>
         <InputForm id='password' placeholder='Password' inputType='password'/>
         <div className={styles.rememberContainer}> 
           <div className={styles.checkContainer}>
