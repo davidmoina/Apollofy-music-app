@@ -4,6 +4,7 @@ import { BiSearch } from 'react-icons/bi';
 import { BiLibrary } from 'react-icons/bi';
 import { useMediaQuery } from '@react-hook/media-query';
 import { FC } from 'react';
+import styles from './mobileNav.module.scss';
 
 
 interface Props {
@@ -11,7 +12,7 @@ interface Props {
   text: string;
 }
 
-const MobileNavButton = ({ icon, text }: Props) => {
+export const MobileNavButton = ({ icon, text }: Props) => {
   const [isExpanded, setIsExpanded] = useState(false);
 
   const toggleExpanded = () => {
@@ -40,8 +41,8 @@ const MobileNavButton = ({ icon, text }: Props) => {
   );
 };
 
-const MobileNavBar: FC = () => {
-  const mediaQuery = useMediaQuery('(max-width: 767px)');
+export const MobileNavBar: FC = () => {
+  const mediaQuery = useMediaQuery('(max-width: 768px)');
   const [isPhoneScreen, setIsPhoneScreen] = useState<boolean>(mediaQuery);
 
   useEffect(() => {
