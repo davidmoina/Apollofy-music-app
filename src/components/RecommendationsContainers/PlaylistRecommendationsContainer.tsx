@@ -1,6 +1,6 @@
 import React from 'react';
 import PlaylistRecommendation from './PlaylistRecommendation';
-import style from './recommen.module.scss';
+import styles from './recommend.module.scss';
 import { FC } from "react";
 
 
@@ -11,16 +11,14 @@ interface PlaylistRecommendationsContainerProps {
 
 export const PlaylistRecommendationsContainer: React.FC<PlaylistRecommendationsContainerProps> = ({ title, playlists }) => {
   return (
-    <div className="mb-8">
+    <section className="mb-8">
       <h2 className="text-xl mb-2 ml-2">{title}</h2>
-      <div className="flex overflow-x-auto">
-        <div className="flex">
+      <div className="flex overflow-x-auto gap-6"> 
             {playlists.map((playlist, index) => (
               <PlaylistRecommendation key={index} {...playlist} />
             ))}
-        </div>
       </div>  
-    </div>
+    </section>
   );
 };
 
