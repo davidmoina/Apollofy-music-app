@@ -18,7 +18,7 @@ export const InputForm = ({ inputType, id, placeholder, register, errors, requir
       <input
         {...register(id, { required })}
         type={inputType}
-        name={id}
+        id={id}
         className={styles.formInput}
         placeholder={placeholder}
         autoComplete="given-name"
@@ -29,7 +29,7 @@ export const InputForm = ({ inputType, id, placeholder, register, errors, requir
         >
       {placeholder}
       </label>
-      {errors[id] && <span className={styles.errorMsg}>{placeholder} is required</span>}
+      {errors[id] && <span className={styles.errorMsg}>{placeholder} is required*</span>}
     </div>
   )
 }
