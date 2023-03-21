@@ -13,6 +13,7 @@ $muted-color: hsl($_hue 20% 60%); // gris
 $active-color: hsl($_hue 72% 52%); // morado active
 $bg-player-color: hsl($_hue 20% 15%); // morado oscuro
 $bg-searchBar: hsl($_hue 30% 30%); // morado clarito gradiente searchbar
+$error-color: hsl(330 50% 50%);
 
 $bg-dark-color: hsl($_hue 15% 10%); // main app bg morado oscuro
 $gradient-sidebar-color: linear-gradient(0deg, rgba(25,11,35,1) 0%, rgba(58,24,82,1) 100%);

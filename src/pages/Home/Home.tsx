@@ -1,7 +1,7 @@
-
-import { PlayerMusic } from '../../components/player/PlayerMusic/PalyerMusic';
+import { Outlet } from 'react-router-dom'
 import { NavBar } from '../../components/NavBar/NavBar'; 
-import Aside from '../../components/asideMenu/Aside';
+import { PlayerMusic } from '../../components/player/PlayerMusic/PalyerMusic';
+import Aside from '../../components/asideMenu/Aside'
 import styles from './home.module.scss'
 
 export const Home = () => {
@@ -10,10 +10,12 @@ export const Home = () => {
       <aside className={styles.asideContainer}>
         <Aside/>
       </aside>
+
       <main className={styles.mainContainer}>
         <NavBar />
-        <h1>Home page</h1>
+        <Outlet/>
       </main>
+      
       <footer className={styles.playerContainer}>
         <PlayerMusic/>
       </footer>
