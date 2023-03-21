@@ -6,3 +6,12 @@ export interface FormInputs {
   repeatPassword?: string,
   birthday?: string,
 }
+
+export interface Tracks {
+  id?: number,
+  artist: string,
+  title: string,
+  song?: string,
+  thumbnail: string,
+  position: number
+}
