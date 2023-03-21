@@ -1,14 +1,24 @@
+import { UseFormRegister, Path, FieldErrors } from 'react-hook-form';
+import { FormInputs } from '../../../../interfaces';
 import styles from './input.module.scss'
 
-type InputProps = {inputType: string, id: string, placeholder: string }
+type InputProps = {
+  inputType: string;
+  id: Path<FormInputs>;
+  placeholder: string;
+  register: UseFormRegister<FormInputs>;
+  errors: FieldErrors,
+  required?: boolean
+}
 
 
-export const InputForm = ({ inputType, id, placeholder }:InputProps) => {
+export const InputForm = ({ inputType, id, placeholder, register, errors, required }: InputProps) => {
   return (
-    <div className={styles.inputWrapper} >
+    <div className={styles.inputWrapper}>
       <input
+        {...register(id, { required })}
         type={inputType}
-        id={id}
+        name={id}
         className={styles.formInput}
         placeholder={placeholder}
         autoComplete="given-name"
@@ -19,6 +29,7 @@ export const InputForm = ({ inputType, id, placeholder }:InputProps) => {
         >
       {placeholder}
       </label>
+      {errors[id] && <span className={styles.errorMsg}>{placeholder} is required</span>}
     </div>
   )
 }

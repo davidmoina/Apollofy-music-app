@@ -1,50 +1,33 @@
-import  { useEffect } from 'react'
-import styles from './loginPage.module.scss';
-import { useState } from 'react';
-import { motion } from 'framer-motion'
+import styles from './loginPage.module.scss'
 import { InputForm } from '../../components/user/input/input/InputForm';
 import { ButtonForm } from '../../components/user/input/button/ButtonForm';
+import { SubmitHandler, useForm } from 'react-hook-form';
+import { FormInputs } from '../../interfaces';
+import { BackgroundAnimated } from '../../components/BackgroundAnimated/BackgroundAnimated';
+import { useNavigate } from 'react-router-dom';
 
 export const LoginPage = () => {
-  const [mousePosition, setMousePosition] = useState({
-    x: 0,
-    y: 0
-  })
 
-  useEffect(() => {
-    const mouseMoveFunc = (e: MouseEvent) => {
-      setMousePosition({
-        x: e.clientX,
-        y: e.clientY
-      })
-    }
+  const { register, handleSubmit, formState: { errors } } = useForm<FormInputs>();
 
-    window.addEventListener("mousemove", mouseMoveFunc);
+  const navigate = useNavigate();
 
-    return () => {
-      window.removeEventListener("mousemove", mouseMoveFunc)
-    }
-
-  }, [])
-
-
-
-  const variants = {
-    default: {
-      x: mousePosition.x - 500,
-      y : mousePosition.y - 419
+  const onSubmit: SubmitHandler<FormInputs> = (data: FormInputs) => {
+    if(data.email === "user@mail.com" && data.password === "12345") {
+      navigate("/")
+    } else {
+      alert("wrong data");
     }
   }
-  
 
   return (
     <>
     <main className={styles.container}>
-      <form action="" className={styles.form}>
+      <form onSubmit={handleSubmit(onSubmit)} className={styles.form}>
         <h3>Welcome back,</h3>
         <h1>Login to your account</h1>
-        <InputForm id='email' placeholder='Email' inputType='email'/>
-        <InputForm id='password' placeholder='Password' inputType='password'/>
+        <InputForm id='email' placeholder='Email' inputType='email' register={register} errors={errors} required/>
+        <InputForm id='password' placeholder='Password' inputType='password' register={register} errors={errors} required/>
         <div className={styles.rememberContainer}> 
           <div className={styles.checkContainer}>
             <input type="checkbox" id="cbx2" className={styles.cbx2} style={{display: 'none'}}/>
@@ -62,16 +45,7 @@ export const LoginPage = () => {
       </form>
       <p className={styles.noAccountText}>Don't have an account? Join free today</p>
     </main>
-    <motion.div 
-      className={styles.cursorBackground}
-      variants={variants}
-      animate="default"
-      transition={{
-        delay: 0,
-        x: { duration: 0 },
-        y: { duration: 0 },
-        default: { ease: "linear" }
-      }}/>
+    <BackgroundAnimated/>
     </>
     
   )

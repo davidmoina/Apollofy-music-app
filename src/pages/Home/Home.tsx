@@ -1,4 +1,5 @@
 import React from 'react'
+import { Outlet } from 'react-router-dom'
 import Aside from '../../components/asideMenu/Aside'
 import { PlayerMusic } from '../../components/player/PlayerMusic/PalyerMusic'
 import styles from './home.module.scss'
@@ -9,9 +10,11 @@ export const Home = () => {
       <aside className={styles.asideContainer}>
         <Aside/>
       </aside>
+
       <main className={styles.mainContainer}>
-        <h1>Home page</h1>
+        <Outlet/>
       </main>
+      
       <footer className={styles.playerContainer}>
         <PlayerMusic/>
       </footer>
