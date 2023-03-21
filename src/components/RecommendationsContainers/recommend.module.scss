@@ -1,0 +1,18 @@
+@use '../../sass/globals/variables' as var;
+
+.songCover {
+  min-width: 7rem;
+  width: 100%;
+}
+
+.songTitle {
+  font-weight: 600;
+  line-height: 1.2em;
+  margin-top: 0.6em;
+  padding: 0 0.3em;
+}
+
+.songArtist {
+  color: var.$muted-color;
+  padding: 0 0.3em;
+}
