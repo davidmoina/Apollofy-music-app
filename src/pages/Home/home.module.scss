@@ -16,6 +16,10 @@
 .asideContainer { 
   grid-area: asideContainer;
   background: var.$gradient-sidebar-color;
+
+  @media(max-width: 768px) {
+    display: none;
+  }
 }
 
 .playerContainer { 
@@ -25,4 +29,10 @@
 .mainContainer { 
   grid-area: mainContainer;
   background-color: var.$bg-dark-color;
+  overflow: auto;
+
+  // .contentContainer {
+  //   height: auto;
+  //   overflow: auto;
+  // }
 }

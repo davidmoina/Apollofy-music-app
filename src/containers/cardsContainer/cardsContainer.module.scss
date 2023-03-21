@@ -1,0 +1,10 @@
+@use '../../sass/globals/variables' as var;
+
+.cardsContainer {
+  margin: 0 2em;
+}
+
+.containerTitle {
+  color: var.$secondary-color;
+  font-weight: 900;
+}

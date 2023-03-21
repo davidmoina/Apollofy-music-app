@@ -1,4 +1,4 @@
-import styles from './recommend.module.scss';
+import styles from './card.module.scss';
 
 interface PlaylistRecommendationProps {
   image: string;
@@ -6,7 +6,7 @@ interface PlaylistRecommendationProps {
   song: string;
 }
 
-export const PlaylistRecommendation: React.FC<PlaylistRecommendationProps> = ({ image, artist, song }) => {
+export const Card: React.FC<PlaylistRecommendationProps> = ({ image, artist, song }) => {
   
   return (
     <div className="flex flex-col w-28 md:w-32 lg:w-48 transition-all duration-200">
@@ -20,8 +20,6 @@ export const PlaylistRecommendation: React.FC<PlaylistRecommendationProps> = ({ 
     </div>
   );
 };
-
-export default PlaylistRecommendation;
 
 
 
