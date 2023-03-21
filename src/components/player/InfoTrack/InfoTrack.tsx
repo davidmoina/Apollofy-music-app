@@ -6,7 +6,7 @@ type TrackInfo = {
    thumbnail: string
 }
 
-export const InfoTrack = ({artist, title, thumbnail}:TrackInfo) => {
+export const InfoTrack = ({ artist, title, thumbnail }:TrackInfo) => {
    return (
       <div className="flex items-center">
          <div className="w-20 mx-0.5 ">

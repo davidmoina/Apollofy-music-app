@@ -1,0 +1,88 @@
+@use '../../sass/globals/variables' as var;
+
+.containerNav{
+   width: 100%;
+
+   .arrowNav button{
+      background-color: var.$bg-player-color;
+      height: 2.2rem;
+      color: var.$muted-color;
+      padding: 0.6rem;
+      margin-right: 1.5rem;
+      border-radius: 50%;
+      -webkit-border-radius: 50%;
+      -moz-border-radius: 50%;
+      -ms-border-radius: 50%;
+      -o-border-radius: 50%;
+
+      &:hover{
+         background-color: var.$bg-searchBar;
+      }
+   }
+
+   .buttonProfile{
+      background-color: var.$bg-player-color;
+      color: var.$muted-color;
+      font-weight: 900;
+      border-radius: 5rem;
+      -webkit-border-radius: 5rem;
+      -moz-border-radius: 5rem;
+      -ms-border-radius: 5rem;
+      -o-border-radius: 5rem;
+
+      &:hover{
+         background-color: var.$bg-searchBar;
+      }
+
+      img{
+         width: 2.5rem;
+         height: 2.5rem;
+         border-radius: 5rem;
+         -webkit-border-radius: 5rem;
+         -moz-border-radius: 5rem;
+         -ms-border-radius: 5rem;
+         -o-border-radius: 5rem;
+      }
+
+      span{
+         margin-left: 0.5rem;
+      }
+   }
+
+   ul{
+      position: absolute;
+      background-color: var.$bg-searchBar;
+      min-width: 10rem;
+      margin-top: 1rem;
+      padding:0.5rem 1rem 0 1rem;
+      border-radius: 0.5   rem;
+      -webkit-border-radius: 0.5rem;
+      -moz-border-radius: 0.5rem;
+      -ms-border-radius: 0.5rem;
+      -o-border-radius: 0.5rem;
+   
+      li{
+         margin: 0.7rem 0;
+         color: var.$muted-color;
+         cursor:pointer;
+
+         a{
+            font-weight: 400;
+         }
+
+         button{
+            border-top: 1px solid var.$muted-color;
+            padding-top: 0.5rem;
+            margin-bottom: 0.5rem;
+            width: 100%;
+            text-align: inherit;
+         }
+
+         &:hover{
+            color:var.$bg-player-color;
+            width: 100%;
+         }
+      }
+      
+   }
+}

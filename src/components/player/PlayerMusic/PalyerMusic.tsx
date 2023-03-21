@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef, MouseEvent, MouseEventHandler, FormEvent, ChangeEvent } from 'react';
+import { useState, useEffect, useRef, ChangeEvent } from 'react';
 import { Controls } from '../Controls/Controls';
 import { tracks } from '../../../data/traks';
 import { formatTime } from '../../../utils/formatTime';
@@ -16,7 +16,7 @@ export const PlayerMusic = () => {
    const { artist, title, song, thumbnail } = tracks[trackIndex];
    
    const audioRef = useRef(new Audio(song));
-   const intervalRef:{current:number | undefined} = useRef();
+   const intervalRef:{ current:number | undefined } = useRef();
    const isReady = useRef(false);
 
    const { duration } = audioRef.current;
@@ -116,7 +116,7 @@ export const PlayerMusic = () => {
          </div>
          <div className={`${styles.containerPlayer} flex justify-between items-center md:py-3 px-2 lg:px-6`}>
             <div className='flex-1 w-2/5 md:w-1/5'>
-               <InfoTrack title={title} artist={artist} thumbnail={thumbnail}/>
+               <InfoTrack title={ title } artist={ artist } thumbnail={ thumbnail }/>
             </div>
             <div className='flex w-3/5 md:3/5 flex-col justify-end md:justify-center items-end md:items-center'>
                <Controls 
