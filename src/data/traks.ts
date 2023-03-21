@@ -11,7 +11,7 @@ type Tracks = {
    id: number,
    artist: string,
    title: string,
-   song: string,
+   song?: string,
    thumbnail: string
 }
 
