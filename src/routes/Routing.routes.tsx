@@ -10,6 +10,7 @@ import { PlaylistsView } from '../views/PlaylistsView/PlaylistsView';
 import { AlbumsView } from '../views/AlbumsView/AlbumsView';
 import { TracksView } from '../views/TracksView/TracksView';
 import { ArtistsView } from '../views/ArtistsView/ArtistsView';
+import { RecoverPass } from '../pages/RecoverPass/RecoverPass';
 
 export const Routing = () => {
   return (
@@ -27,6 +28,7 @@ export const Routing = () => {
           </Route>
         </Route>
         <Route path='/login' element={<LoginPage/>} />
+        <Route path='/recover-pass' element={<RecoverPass/>} />
         <Route path='/register' element={<RegisterPage />} />
       </Routes>
     </BrowserRouter>
