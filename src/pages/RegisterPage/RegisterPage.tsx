@@ -2,17 +2,22 @@ import { BackgroundAnimated } from '../../components/BackgroundAnimated/Backgrou
 import { ButtonForm } from '../../components/user/input/button/ButtonForm';
 import { InputForm } from '../../components/user/input/input/InputForm';
 import styles from '../LoginPage/loginPage.module.scss';
-import { useForm } from 'react-hook-form';
+import { useForm, SubmitHandler } from 'react-hook-form';
 import { FormInputs } from '../../interfaces';
 
 export const RegisterPage = () => {
 
   const { register, handleSubmit, formState: { errors } } = useForm<FormInputs>();
 
+  const onSubmit: SubmitHandler<FormInputs>= (data) => {
+    console.log(data);
+    
+  }
+
   return (
     <>
     <main className={styles.container}>
-      <form action="" className={styles.form}>
+      <form onSubmit={handleSubmit(onSubmit)} className={styles.form}>
         <h3>Welcome!</h3>
         <h1>Create your new account</h1>
         <div className={`${styles.inputsContainer}`}>
