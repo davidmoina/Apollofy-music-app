@@ -4,7 +4,7 @@ import { MdArrowBackIosNew, MdArrowForwardIos } from "react-icons/md";
 import { users } from '../../data/users';
 import styles from './navBar.module.scss';
 
-export const NavBar = () => {
+export const Navbar = () => {
   const navigate = useNavigate();
   const [showModal, setShowModal] = useState(false);
 
