@@ -7,7 +7,7 @@ import img2 from "../assets/img/la-llegada.png";
 import img3 from "../assets/img/realejo-beach.jpg";
 import img4 from "../assets/img/darck-necessities.png";
 
-type Tracks = {
+export type TracksType = {
    id: number,
    artist: string,
    title: string,
@@ -15,7 +15,7 @@ type Tracks = {
    thumbnail: string
 }
 
-export const tracks:Tracks [] = [
+export const tracks: TracksType[] = [
    {
       id:1,
       artist: 'La Plazuela',
