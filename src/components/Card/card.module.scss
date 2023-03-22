@@ -1,19 +1,28 @@
 @use '../../sass/globals/variables' as var;
 
-.songCover {
-  min-width: 7rem;
-  width: 100%;
+.card{
+  
+    background-color: var.$bg-player-color;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    min-width: 10rem;
+  
+    .songCover {
+      min-width: 7rem;
+      width: 100%;
+    }
+    
+    .songTitle {
+      font-weight: 600;
+      line-height: 1.2em;
+      margin-top: 0.6em;
+      padding: 0 0.3em;
+      color: var.$secondary-color;
+    }
+    
+    .songArtist {
+      color: var.$muted-color;
+      padding: 0 0.3em;
+    }
 }
 
-.songTitle {
-  font-weight: 600;
-  line-height: 1.2em;
-  margin-top: 0.6em;
-  padding: 0 0.3em;
-  color: var.$secondary-color;
-}
-
-.songArtist {
-  color: var.$muted-color;
-  padding: 0 0.3em;
-}

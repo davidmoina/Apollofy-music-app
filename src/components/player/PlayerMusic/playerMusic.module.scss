@@ -1,11 +1,11 @@
 @use '../../../sass/globals/variables' as var;
 
 .progressMvl{
-   background-color: var.$bg-dark-color;
+   background: var.$gardient-footer-color;
 }
 
 .containerPlayer{
-   background-color: var.$bg-player-color;
+   background: var.$gardient-footer-color;
 
    span{
       color: var.$secondary-color;
@@ -32,6 +32,7 @@ input[type='range'] {
       cursor: ew-resize;
       background: #434343;
       box-shadow: -80px 0 0 80px var.$primary-color;
+      box-shadow: -80px 0 0 80px #441f57;
    }
 
    &:hover::-webkit-slider-thumb {

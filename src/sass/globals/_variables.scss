@@ -14,10 +14,14 @@ $active-color: hsl($_hue 72% 52%); // morado active
 $bg-player-color: hsl($_hue 20% 15%); // morado oscuro
 $bg-searchBar: hsl($_hue 30% 30%); // morado clarito gradiente searchbar
 $error-color: hsl(330 50% 50%);
+$light-grey: #a7a3a3;
 
 $bg-dark-color: hsl($_hue 15% 10%); // main app bg morado oscuro
-$gradient-sidebar-color: linear-gradient(0deg, rgba(25,11,35,1) 0%, rgba(58,24,82,1) 100%);
+// $gradient-sidebar-color: linear-gradient(0deg, rgba(25,11,35,1) 0%, rgba(58,24,82,1) 100%);
+$gradient-sidebar-color: linear-gradient(0deg, rgb(4 2 6) 0%, rgb(34 31 46) 100%);
 $gradient-menu-color: linear-gradient(180deg, rgba(123,87,228,1) 0%, rgba(57,42,101,1) 100%);
+$gardient-footer-color: linear-gradient(0deg, rgb(4 2 6) 0%, rgb(34 31 46) 100%);
+
 
 // Form Variables
 $size: 5rem;
