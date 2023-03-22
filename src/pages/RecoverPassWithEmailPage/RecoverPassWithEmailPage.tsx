@@ -6,7 +6,7 @@ import { ButtonForm } from '../../components/user/input/button/ButtonForm';
 import { BackgroundAnimated } from '../../components/BackgroundAnimated/BackgroundAnimated';
 import styles from '../LoginPage/loginPage.module.scss';
 
-export const RecoverPass = () => {
+export const RecoverPassWithEmailPage = () => {
    const { register, handleSubmit, formState: { errors }} = useForm<FormInputs>();
 
    const navigate = useNavigate();
