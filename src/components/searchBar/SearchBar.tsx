@@ -1,20 +1,24 @@
-import { ChangeEvent, FormEvent, useState } from 'react'
-import { Tracks } from '../../interfaces';
+import { FormEvent, useState } from 'react'
 import styles from '../user/input/input/input.module.scss'
-import { tracks } from './../../data/traks'
+import { tracks, TracksType } from './../../data/traks'
 import { MusicRow } from '../musicRow/MusicRow'
 
 export const SearchBar = () => {
     const data = tracks;
     const [inputValue, setInputValue] = useState("");
-    const [filteredSongs, setFilteredSongs] = useState<Tracks[] | []>([]);
+    const [filteredSongs, setFilteredSongs] = useState<TracksType[]>([]);
     const handleSearch = (e: FormEvent<HTMLInputElement>) => {
         setInputValue(e.currentTarget.value);
-        const results = data.filter(song => song.title.toLowerCase().includes(e.currentTarget.value.toLowerCase()));
-        console.log(results);
-        setFilteredSongs(results);
 
+        if(inputValue.length > 2) {
+            const results = data.filter(song => song.title.toLowerCase().includes(inputValue.toLowerCase()));
+            console.log(results);
+            setFilteredSongs(results);
+        } else {
+            setFilteredSongs([])
+        }
     }
+
     return (
         <div className={styles.containerSearch}>
             <div className={styles.inputWrapper}>
@@ -22,7 +26,7 @@ export const SearchBar = () => {
                     type="text"
                     id="searchBar"
                     className={styles.formInput}
-                    placeholder="Search..."
+                    placeholder="Search"
                     onChange={handleSearch}
                 />
                 <label
@@ -34,7 +38,7 @@ export const SearchBar = () => {
             </div>
 
             <div>{
-                filteredSongs?.map((song, index) => (
+                filteredSongs.map((song, index) => (
                     <MusicRow key={song.id} position={index} thumbnail={song.thumbnail} artist={song.artist} title={song.title} />
                 ))
             }</div>
