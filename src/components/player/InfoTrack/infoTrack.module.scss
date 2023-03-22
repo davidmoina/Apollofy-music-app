@@ -1,5 +1,9 @@
 @use '../../../sass/globals/variables' as var;
 
+.imgPlayer{
+   max-width: 4rem;
+}
+
 .textInfo{
    color: var.$secondary-color;
 

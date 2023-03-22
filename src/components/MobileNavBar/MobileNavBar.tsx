@@ -55,7 +55,7 @@ export const MobileNavBar: FC = () => {
 
   
   return (
-    <nav className="fixed bottom-0 left-0 right-0 h-20 bg-black flex justify-around items-center shadow-lg">
+    <nav className={`fixed bottom-0 left-0 right-0 flex justify-around items-center shadow-lg ${styles.navMobil}`}>
       <MobileNavButton
         icon={<MdHomeFilled size="30" style={{ color: 'white' }} />}
         text="Home"

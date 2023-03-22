@@ -12,6 +12,7 @@ export const PlayerMusic = () => {
    const [trackProgress, setTrackProgress] = useState(0);
    const [isPlaying, setIsPlaying] = useState(false);
    const [volume, setVolume] = useState(0.5);
+   const [loop, setLoop] = useState(false);
    
    const { artist, title, song, thumbnail } = tracks[trackIndex];
    
@@ -67,7 +68,18 @@ export const PlayerMusic = () => {
       } else {
          isReady.current = true;
       }
+
+      if(loop) {
+         audioRef.current.loop = true; 
+      } else {
+         audioRef.current.loop = false;
+      }
+
    }, [trackIndex, isPlaying]);
+
+   const onLoopClick = () => {
+      setLoop(!loop);
+   };
 
    const startTimer = () => {
       clearInterval(intervalRef.current);
@@ -114,7 +126,7 @@ export const PlayerMusic = () => {
                onKeyUp={ onScrubEnd }
             />
          </div>
-         <div className={`${styles.containerPlayer} flex justify-between items-center md:py-3 px-2 lg:px-6`}>
+         <div className={`${styles.containerPlayer} flex justify-between items-center mb-16 md:mb-0 md:py-3 px-2 lg:px-6`}>
             <div className='flex-1 w-2/5 md:w-1/5'>
                <InfoTrack title={ title } artist={ artist } thumbnail={ thumbnail }/>
             </div>
@@ -124,6 +136,8 @@ export const PlayerMusic = () => {
                   onPrevClick={ toPrevTrack }
                   onNextClick={ toNextTrack }
                   onPlayPauseClick={ setIsPlaying }
+                  onLoopClick={ onLoopClick }
+                  loop={ loop }
                />
                <div className='hidden md:flex progress-track'>
                   <span>{ formatTime(trackProgress) }</span>

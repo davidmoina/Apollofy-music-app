@@ -34,7 +34,7 @@ export const NavBar = () => {
         <span className="hidden lg:flex">{ name }</span>
       </button>
       {showModal 
-        ? (<ul className="right-4 lg:right-6">
+        ? (<ul className="right-4">
               <li>  
                 <a href="/"> Edit Profile </a> 
               </li>

@@ -9,7 +9,7 @@ interface PlaylistRecommendationProps {
 export const Card: React.FC<PlaylistRecommendationProps> = ({ image, artist, song }) => {
   
   return (
-    <div className="flex flex-col w-28 md:w-32 lg:w-48 transition-all duration-200">
+    <div className= {`flex flex-col w-28 md:w-32 lg:w-48 transition-all duration-200 ${styles.card}`}>
       <img
         src={image}
         alt={song}

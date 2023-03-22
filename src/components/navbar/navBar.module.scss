@@ -30,9 +30,6 @@
       -ms-border-radius: 5rem;
       -o-border-radius: 5rem;
 
-      &:hover{
-         background-color: var.$bg-searchBar;
-      }
 
       img{
          width: 2.5rem;
@@ -46,15 +43,18 @@
 
       span{
          margin-left: 0.5rem;
+         font-size: 0.9em;
       }
    }
 
    ul{
       position: absolute;
-      background-color: var.$bg-searchBar;
+      right: 2.5rem !important;
+      background-color: var.$bg-player-color;
       min-width: 10rem;
       margin-top: 1rem;
       padding:0.5rem 1rem 0 1rem;
+      box-shadow: 0 0px 15px -1px rgb(0 0 0 / 54%), 0 4px 6px -4px rgb(0 0 0) !important;
       border-radius: 0.5   rem;
       -webkit-border-radius: 0.5rem;
       -moz-border-radius: 0.5rem;
@@ -79,7 +79,7 @@
          }
 
          &:hover{
-            color:var.$bg-player-color;
+            color:var.$bg-searchBar;
             width: 100%;
          }
       }
