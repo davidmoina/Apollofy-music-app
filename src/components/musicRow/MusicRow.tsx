@@ -3,7 +3,7 @@ import styles from './musicRow.module.scss'
 import { AiFillHeart, AiOutlineHeart } from 'react-icons/ai'
 import { Tracks } from '../../interfaces'
 
-export const MusicRow = ( {position, thumbnail, artist, title}: Tracks) => {
+export const MusicRow = ({ position, thumbnail, artist, title }: Tracks) => {
   return (
     <div className={styles.rowContainer}>
       <div className={styles.songLeftContainer}>
@@ -16,7 +16,7 @@ export const MusicRow = ( {position, thumbnail, artist, title}: Tracks) => {
       </div>
       <p className={styles.albumTitle}>{title}</p>
       <div className={styles.songRightContainer}>
-        <span><AiFillHeart/></span>
+        <span><AiFillHeart /></span>
         <span>3:00</span>
       </div>
     </div>
