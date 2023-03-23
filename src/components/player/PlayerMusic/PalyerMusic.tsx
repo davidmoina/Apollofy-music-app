@@ -75,10 +75,20 @@ export const PlayerMusic = () => {
          audioRef.current.loop = false;
       }
 
-   }, [trackIndex, isPlaying]);
+      setTrackProgress(audioRef.current.currentTime);
+      startTimer();
+
+   }, [trackIndex]);
 
    const onLoopClick = () => {
-      setLoop(!loop);
+
+      if (loop) {
+         setLoop(false);
+         audioRef.current.loop = false;
+      } else {
+         setLoop(true);
+         audioRef.current.loop = true;
+      }
    };
 
    const startTimer = () => {
@@ -139,7 +149,7 @@ export const PlayerMusic = () => {
                   onLoopClick={ onLoopClick }
                   loop={ loop }
                />
-               <div className='hidden md:flex progress-track'>
+               <div className='hidden md:flex'>
                   <span>{ formatTime(trackProgress) }</span>
                   <input 
                      type="range"
@@ -147,7 +157,7 @@ export const PlayerMusic = () => {
                      step="1"
                      min="0"
                      max={ duration ? duration : `${duration}` }
-                     className="w-60 lg:w-96 mx-2 myRange"
+                     className={`w-60 lg:w-96 mx-2 ${styles.progressBar}`}
                      onChange={ (e) =>{onScrub(e.target.value); console.log(e.target.value)} }
                      onMouseUp={ onScrubEnd }
                      onKeyUp={ onScrubEnd }

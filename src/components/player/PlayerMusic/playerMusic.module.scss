@@ -16,7 +16,7 @@
 input[type='range'] {
    overflow: hidden;
    -webkit-appearance: none;
-   background-color: #343434;
+   background-color: #2d2d2d;
    height: 5px;
    margin-top:10px;
 
@@ -32,7 +32,7 @@ input[type='range'] {
       cursor: ew-resize;
       background: #434343;
       box-shadow: -80px 0 0 80px var.$primary-color;
-      box-shadow: -80px 0 0 80px #441f57;
+      box-shadow: -80px 0 0 80px var.$bg-searchBar;
    }
 
    &:hover::-webkit-slider-thumb {
