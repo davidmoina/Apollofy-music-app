@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "json-server": "json-server --watch ./src/data/seed.json --port 4000"
   },
   "dependencies": {
     "@react-hook/media-query": "^1.1.1",
@@ -15,7 +16,8 @@
     "react-dom": "^18.2.0",
     "react-hook-form": "^7.43.7",
     "react-icons": "^4.8.0",
-    "react-router-dom": "^6.9.0"
+    "react-router-dom": "^6.9.0",
+    "react-toastify": "^9.1.2"
   },
   "devDependencies": {
     "@types/react": "^18.0.27",

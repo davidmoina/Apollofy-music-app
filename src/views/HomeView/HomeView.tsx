@@ -1,5 +1,6 @@
-import React from 'react'
+import { useFetch } from '../../api/useFetch';
 import { CardsContainer } from '../../containers/cardsContainer/CardsContainer'
+import { useEffect } from 'react';
 
 const samplePlaylists = [
   { image: 'src/assets/images/rock.jpeg', artist: 'Rock', song: "In da Club" },
@@ -10,11 +11,21 @@ const samplePlaylists = [
 ];
 
 export const HomeView = () => {
+
+  const { data: playlists } = useFetch("http://localhost:4000/playlists")
+
+  useEffect(() => {
+    console.log('HomeView rendered');
+  }, []);
+  
+  console.log(playlists);
+  
+
   return (
     <>
-      <CardsContainer title='Recently played' playlists={samplePlaylists}/>
-      <CardsContainer title='Mixes for you' playlists={samplePlaylists}/>
-      <CardsContainer title='Radio stations' playlists={samplePlaylists}/>
+      <CardsContainer title='Recently played' playlists={playlists}/>
+      {/* <CardsContainer title='Mixes for you' playlists={samplePlaylists}/> */}
+      {/* <CardsContainer title='Radio stations' playlists={samplePlaylists}/> */}
     </>
     
   )

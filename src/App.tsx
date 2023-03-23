@@ -1,12 +1,21 @@
 import React, { useState, FC } from 'react'
+import { ToastContainer } from 'react-toastify'
+import { AuthProvider } from './context/authContext/AuthProvider'
 import { Routing } from './routes/Routing.routes'
-import './sass/index.scss'
+import 'react-toastify/dist/ReactToastify.css';
+import './sass/index.scss';
 
 
 const App: FC = () => {
   return (
-    <Routing/>
-    
+    <AuthProvider>
+      <ToastContainer
+      theme="dark"
+      position="top-center" 
+      autoClose={2000}
+      hideProgressBar={true} />
+      <Routing/>
+    </AuthProvider>
   )
 }
 

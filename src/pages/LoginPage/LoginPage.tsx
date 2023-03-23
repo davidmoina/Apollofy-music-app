@@ -5,8 +5,12 @@ import { SubmitHandler, useForm } from 'react-hook-form';
 import { FormInputs } from '../../interfaces';
 import { BackgroundAnimated } from '../../components/BackgroundAnimated/BackgroundAnimated';
 import { useNavigate } from 'react-router-dom';
+import { useContext } from 'react';
+import { AuthContext, ContextType } from '../../context/authContext/AuthContext';
 
 export const LoginPage = () => {
+
+  const { loginSuccess, loginError } = useContext(AuthContext) as ContextType;
 
   const { register, handleSubmit, formState: { errors } } = useForm<FormInputs>();
 
@@ -14,9 +18,10 @@ export const LoginPage = () => {
 
   const onSubmit: SubmitHandler<FormInputs> = (data: FormInputs) => {
     if(data.email === "user@mail.com" && data.password === "12345") {
+      loginSuccess(data.email, data.password)
       navigate("/")
     } else {
-      alert("wrong data");
+      loginError("Invalid credentials")
     }
   }
 
