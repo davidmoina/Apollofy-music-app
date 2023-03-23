@@ -5,7 +5,7 @@ import { users } from '../../data/users';
 import styles from './navBar.module.scss';
 import { AuthContext, ContextType } from '../../context/authContext/AuthContext';
 
-export const NavBar = () => {
+export const Navbar = () => {
   const navigate = useNavigate();
   const [showModal, setShowModal] = useState(false);
 

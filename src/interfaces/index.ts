@@ -3,6 +3,8 @@ export interface FormInputs {
   lastName?: string,
   email: string,
   password: string,
+  oldPassword: string,
+  newPassword:string,
   repeatPassword?: string,
   birthday?: string,
 }
