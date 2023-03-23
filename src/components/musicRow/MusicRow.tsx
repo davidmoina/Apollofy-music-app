@@ -1,7 +1,8 @@
 import styles from './musicRow.module.scss'
-import { AiFillHeart, AiOutlineHeart, AiFillPlayCircle, AiOutlinePauseCircle,  } from 'react-icons/ai'
 import { Tracks } from '../../interfaces'
 import { useState } from 'react'
+// icons
+import { AiFillHeart, AiOutlineHeart} from 'react-icons/ai'
 import { MdPlayCircleFilled, MdPauseCircleFilled } from 'react-icons/md'
 
 export const MusicRow = ({ position, thumbnail, artist, title }: Tracks) => {
