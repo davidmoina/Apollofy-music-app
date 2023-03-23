@@ -18,8 +18,6 @@ export const HomeView = () => {
     console.log('HomeView rendered');
   }, []);
   
-  console.log(playlists);
-  
 
   return (
     <>

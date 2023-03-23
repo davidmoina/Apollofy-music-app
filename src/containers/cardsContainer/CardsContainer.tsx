@@ -11,8 +11,6 @@ interface PlaylistRecommendationsContainerProps {
 
 
 export const CardsContainer = ({ title, playlists }: PlaylistRecommendationsContainerProps) => {
-  
-  console.log(playlists);
 
   return (
     <section className={`mb-8 ${styles.cardsContainer}`}>

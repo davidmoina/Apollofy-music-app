@@ -12,7 +12,6 @@ export const SearchBar = () => {
 
         if(inputValue.length > 2) {
             const results = data.filter(song => song.title.toLowerCase().includes(inputValue.toLowerCase()));
-            console.log(results);
             setFilteredSongs(results);
         } else {
             setFilteredSongs([])

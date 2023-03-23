@@ -1,22 +1,24 @@
 import { useState, useEffect, useRef, ChangeEvent } from 'react';
+import { useFetch } from '../../../api/useFetch';
 import { Controls } from '../Controls/Controls';
-import { tracks } from '../../../data/traks';
 import { formatTime } from '../../../utils/formatTime';
 import { Volume } from '../Volume/Volume';
 import { InfoTrack } from '../InfoTrack/InfoTrack';
 import styles from './playerMusic.module.scss';
 
+
 export const PlayerMusic = () => {
+
+   const { data: tracks } = useFetch("http://localhost:4000/tracks");
 
    const [trackIndex, setTrackIndex] = useState(0);
    const [trackProgress, setTrackProgress] = useState(0);
    const [isPlaying, setIsPlaying] = useState(false);
-   const [volume, setVolume] = useState(0.5);
+   const [volume, setVolume] = useState(0.3);
    const [loop, setLoop] = useState(false);
    
-   const { artist, title, song, thumbnail } = tracks[trackIndex];
    
-   const audioRef = useRef(new Audio(song));
+   const audioRef = useRef(new Audio(tracks[trackIndex]?.url));
    const intervalRef:{ current:number | undefined } = useRef();
    const isReady = useRef(false);
 
@@ -56,10 +58,10 @@ export const PlayerMusic = () => {
 
    useEffect(() => {
       audioRef.current.pause();
-      audioRef.current = new Audio(song);
+      audioRef.current = new Audio(tracks[trackIndex]?.url);
       setTrackProgress(audioRef.current.currentTime);
 
-      audioRef.current.volume = 0.2;
+      audioRef.current.volume = volume;
 
       if(isReady.current && isPlaying) {
          audioRef.current.play();
@@ -78,7 +80,7 @@ export const PlayerMusic = () => {
       setTrackProgress(audioRef.current.currentTime);
       startTimer();
 
-   }, [trackIndex]);
+   }, [trackIndex, tracks]);
 
    const onLoopClick = () => {
 
@@ -138,7 +140,7 @@ export const PlayerMusic = () => {
          </div>
          <div className={`${styles.containerPlayer} flex justify-between items-center mb-16 md:mb-0 md:py-3 px-2 lg:px-6`}>
             <div className='flex-1 w-2/5 md:w-1/5'>
-               <InfoTrack title={ title } artist={ artist } thumbnail={ thumbnail }/>
+               <InfoTrack name={ tracks[trackIndex]?.name } artist={ tracks[trackIndex]?.artist } thumbnail={ tracks[trackIndex]?.thumbnail }/>
             </div>
             <div className='flex w-3/5 md:3/5 flex-col justify-end md:justify-center items-end md:items-center'>
                <Controls 

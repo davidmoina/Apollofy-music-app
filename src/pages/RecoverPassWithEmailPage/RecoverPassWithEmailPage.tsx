@@ -22,9 +22,16 @@ export const RecoverPassWithEmailPage = () => {
    return (
       <div className={styles.container}>
          <form onSubmit={ handleSubmit(onSubmit) } className={styles.form}>
-            <h3>Recover password</h3>
-            <h1>enter your email</h1>
-            <InputForm id='email' placeholder='Email' inputType='email' register={ register } errors={ errors } required/>
+            <h3> Recover password </h3>
+            <h1> enter your email </h1>
+            <InputForm 
+               id='email' 
+               placeholder='Email' 
+               inputType='email' 
+               register={ register } 
+               errors={ errors } 
+               required
+            />
             <ButtonForm name='Send link'/>
          </form>
          <BackgroundAnimated/>
