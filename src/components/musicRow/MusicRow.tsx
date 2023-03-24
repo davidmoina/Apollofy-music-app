@@ -5,22 +5,41 @@ import { useState } from 'react'
 import { AiFillHeart, AiOutlineHeart} from 'react-icons/ai'
 import { MdPlayCircleFilled, MdPauseCircleFilled } from 'react-icons/md'
 
-export const MusicRow = ({ position, thumbnail, artist, title }: Tracks) => {
+interface Props {
+  setCurrent: (id: number) => void,
+  currentSong: number,
+  togglePlaying: () => void,
+  position: number,
+  thumbnail: string,
+  artist: string,
+  title: string
+}
+
+export const MusicRow = ({setCurrent, currentSong, togglePlaying, position, thumbnail, artist, title }: Props) => {
 
   const [isLiked, setIsLiked] = useState(false)
   const [play, setPlay] = useState(false)
   const [isPlaying, setIsPlaying] = useState(false)
 
+  const handleClickSong = () => {
+    setIsPlaying(!isPlaying)
+    if(position !== currentSong) {
+      setCurrent(position)
+      return
+    }
+    togglePlaying()
+  }
+
   return (
     <div 
       className={styles.rowContainer}
       onMouseEnter={() => setPlay(true)}
-      onMouseLeave={() => setPlay(false)}     
+      onMouseLeave={() => setPlay(false)}   
     >
       <div className={`${styles.songLeftContainer} transition-all`}>
         <span 
         className={`${styles.spanPlay} text-md`}
-        onClick={() => setIsPlaying(!isPlaying)}
+        onClick={handleClickSong}
         >
           {   
             isPlaying ? 

@@ -2,6 +2,7 @@ import { TbPlayerPlayFilled, TbPlayerSkipForwardFilled, TbPlayerSkipBackFilled, 
 import styles from './control.module.scss';
 
 type TrackControls = { 
+   currentSong: number,
    isPlaying: boolean,
    onPlayPauseClick: (bool:boolean) => void,
    onPrevClick: () => void,
@@ -10,7 +11,8 @@ type TrackControls = {
    loop: boolean
 }
 
-export const Controls = ({ isPlaying, onPlayPauseClick, onPrevClick, onNextClick, onLoopClick, loop }:TrackControls) => {
+export const Controls = ({currentSong, isPlaying, onPlayPauseClick, onPrevClick, onNextClick, onLoopClick, loop }:TrackControls) => {
+   
    return (
       <div className={ `${styles.buttonsPlayer} flex justify-end md:justify-center` }>
          <button type="button" className="m-2 icon" aria-label="Previous" onClick={ onPrevClick }>
@@ -27,7 +29,7 @@ export const Controls = ({ isPlaying, onPlayPauseClick, onPrevClick, onNextClick
          <button type="button" className="m-2 icon" aria-label="Next" onClick={ onNextClick }>
             <TbPlayerSkipForwardFilled size={25} color={'white'}/>
          </button>
-         <button onClick={ onLoopClick }>
+         <button onClick={onLoopClick}>
             { loop ? <TbRepeat size={25} color={'#7b58e4'}/> : <TbRepeat size={25} color={'white'}/> }
          </button>
       </div>
