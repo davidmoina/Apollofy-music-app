@@ -1,7 +1,9 @@
 import { createContext } from "react";
 
-type ContextType = {
-  dataAuth: () => void
+export type ContextType = {
+  loginSuccess: (email: string, password: string) => void,
+  loginError: (error: string) => void,
+  logout: () => void
 }
 
-export const AuthContext = createContext<ContextType>();
+export const AuthContext = createContext<ContextType | null>(null);

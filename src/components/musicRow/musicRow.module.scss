@@ -7,6 +7,16 @@
   width: 100%;
   color: var.$secondary-color;
   padding: 0.5em;
+  transition: ease-in-out 200ms;
+  cursor: default;
+
+  ::selection {
+    user-select: none;
+  }
+
+  .spanLike {
+    cursor: pointer;
+  }
 
   &:hover {
     background-color: var.$bg-player-color;
@@ -17,6 +27,11 @@
     align-items: center;
     gap: 1em;
     min-width: 25%;
+
+    .spanPlay {
+      cursor: pointer;
+      min-width: 2rem;
+    }
 
     img {
       width: 52px;

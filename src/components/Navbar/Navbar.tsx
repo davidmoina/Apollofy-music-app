@@ -1,12 +1,15 @@
-import { useState } from "react";
+import { useState, useContext } from 'react';
 import { useNavigate } from "react-router";
 import { MdArrowBackIosNew, MdArrowForwardIos } from "react-icons/md";
 import { users } from '../../data/users';
 import styles from './navBar.module.scss';
+import { AuthContext, ContextType } from '../../context/authContext/AuthContext';
 
-export const NavBar = () => {
+export const Navbar = () => {
   const navigate = useNavigate();
   const [showModal, setShowModal] = useState(false);
+
+  const { logout } = useContext(AuthContext) as ContextType;
 
   const { name, accountType, thumbnail } = users[0];
 
@@ -15,6 +18,7 @@ export const NavBar = () => {
   }
 
   function handleLogout(){
+    logout();
     navigate('/login');
   }
 
@@ -29,7 +33,7 @@ export const NavBar = () => {
         </button>
       </div>
       <div>
-      <button className={`flex items-center p-1 mr-0 lg:w-40 lg:mr-2 ${styles.buttonProfile}`} onClick={ handleClick }>
+      <button className={`flex items-center p-1 lg:pr-4  mr-0 lg:min-w-fit lg:mr-2 ${styles.buttonProfile}`} onClick={ handleClick }>
         <img src={ thumbnail } alt="" />
         <span className="hidden lg:flex">{ name }</span>
       </button>

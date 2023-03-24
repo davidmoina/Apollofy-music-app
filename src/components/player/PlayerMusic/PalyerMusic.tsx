@@ -1,22 +1,24 @@
 import { useState, useEffect, useRef, ChangeEvent } from 'react';
+import { useFetch } from '../../../api/useFetch';
 import { Controls } from '../Controls/Controls';
-import { tracks } from '../../../data/traks';
 import { formatTime } from '../../../utils/formatTime';
 import { Volume } from '../Volume/Volume';
 import { InfoTrack } from '../InfoTrack/InfoTrack';
 import styles from './playerMusic.module.scss';
 
+
 export const PlayerMusic = () => {
+
+   const { data: tracks } = useFetch("http://localhost:4000/tracks");
 
    const [trackIndex, setTrackIndex] = useState(0);
    const [trackProgress, setTrackProgress] = useState(0);
    const [isPlaying, setIsPlaying] = useState(false);
-   const [volume, setVolume] = useState(0.5);
+   const [volume, setVolume] = useState(0.3);
    const [loop, setLoop] = useState(false);
    
-   const { artist, title, song, thumbnail } = tracks[trackIndex];
    
-   const audioRef = useRef(new Audio(song));
+   const audioRef = useRef(new Audio(tracks[trackIndex]?.url));
    const intervalRef:{ current:number | undefined } = useRef();
    const isReady = useRef(false);
 
@@ -56,10 +58,10 @@ export const PlayerMusic = () => {
 
    useEffect(() => {
       audioRef.current.pause();
-      audioRef.current = new Audio(song);
+      audioRef.current = new Audio(tracks[trackIndex]?.url);
       setTrackProgress(audioRef.current.currentTime);
 
-      audioRef.current.volume = 0.2;
+      audioRef.current.volume = volume;
 
       if(isReady.current && isPlaying) {
          audioRef.current.play();
@@ -75,10 +77,20 @@ export const PlayerMusic = () => {
          audioRef.current.loop = false;
       }
 
-   }, [trackIndex, isPlaying]);
+      setTrackProgress(audioRef.current.currentTime);
+      startTimer();
+
+   }, [trackIndex, tracks]);
 
    const onLoopClick = () => {
-      setLoop(!loop);
+
+      if (loop) {
+         setLoop(false);
+         audioRef.current.loop = false;
+      } else {
+         setLoop(true);
+         audioRef.current.loop = true;
+      }
    };
 
    const startTimer = () => {
@@ -128,7 +140,7 @@ export const PlayerMusic = () => {
          </div>
          <div className={`${styles.containerPlayer} flex justify-between items-center mb-16 md:mb-0 md:py-3 px-2 lg:px-6`}>
             <div className='flex-1 w-2/5 md:w-1/5'>
-               <InfoTrack title={ title } artist={ artist } thumbnail={ thumbnail }/>
+               <InfoTrack name={ tracks[trackIndex]?.name } artist={ tracks[trackIndex]?.artist } thumbnail={ tracks[trackIndex]?.thumbnail }/>
             </div>
             <div className='flex w-3/5 md:3/5 flex-col justify-end md:justify-center items-end md:items-center'>
                <Controls 
@@ -139,7 +151,7 @@ export const PlayerMusic = () => {
                   onLoopClick={ onLoopClick }
                   loop={ loop }
                />
-               <div className='hidden md:flex progress-track'>
+               <div className='hidden md:flex'>
                   <span>{ formatTime(trackProgress) }</span>
                   <input 
                      type="range"
@@ -147,7 +159,7 @@ export const PlayerMusic = () => {
                      step="1"
                      min="0"
                      max={ duration ? duration : `${duration}` }
-                     className="w-60 lg:w-96 mx-2 myRange"
+                     className={`w-60 lg:w-96 mx-2 ${styles.progressBar}`}
                      onChange={ (e) =>{onScrub(e.target.value); console.log(e.target.value)} }
                      onMouseUp={ onScrubEnd }
                      onKeyUp={ onScrubEnd }
