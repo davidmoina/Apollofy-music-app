@@ -1,15 +1,55 @@
 import styles from './musicRow.module.scss'
-import { Tracks } from '../../interfaces'
-import { useState } from 'react'
+import { useContext, useState } from 'react'
 // icons
 import { AiFillHeart, AiOutlineHeart} from 'react-icons/ai'
 import { MdPlayCircleFilled, MdPauseCircleFilled } from 'react-icons/md'
+import { Track } from '../../interfaces/songs'
+import { ContextTypeFav, FavSongContext } from '../../context/favSongsContext/FavSongsContext'
 
-export const MusicRow = ({ position, thumbnail, artist, title }: Tracks) => {
+export interface Props {
+  position: number,
+  thumbnail: string,
+  artist: string,
+  title: string,
+  actualSong?: Track
+}
 
-  const [isLiked, setIsLiked] = useState(false)
+export const MusicRow = ({ position, thumbnail, artist, title, actualSong }: Props) => {
+
+
+  const {addToFavorite, removeFromFavorite} = useContext(FavSongContext) as ContextTypeFav
+
+  const [isLiked, setIsLiked] = useState(actualSong?.liked)
   const [play, setPlay] = useState(false)
   const [isPlaying, setIsPlaying] = useState(false)
+
+
+  const postData = async (url = "", data = {}) => {
+    const response = await fetch(url, {
+      method: "PUT",
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(data),
+    })
+    return response.json()
+  }
+
+
+
+  const handleLike = (song: Track) => {
+    if (isLiked) {
+      setIsLiked(!isLiked)
+      song.liked = false;
+      postData(`http://localhost:4000/tracks/${song.id}`, { ...song, liked: false })
+      removeFromFavorite(song)
+    } else {
+      setIsLiked(!isLiked)
+      postData(`http://localhost:4000/tracks/${song.id}`, { ...song, liked: true })
+      song.liked = true;
+      addToFavorite(song)
+    }
+  }
 
   return (
     <div 
@@ -45,7 +85,7 @@ export const MusicRow = ({ position, thumbnail, artist, title }: Tracks) => {
       <div className={styles.songRightContainer}>
         <span 
           className={styles.spanLike}
-          onClick={() => setIsLiked(!isLiked)}
+          onClick={() => handleLike(actualSong)}
         >
           {
           isLiked ? (

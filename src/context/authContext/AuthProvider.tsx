@@ -99,9 +99,6 @@ export const AuthProvider = ({children}: Props) => {
     })
   }
 
-
-console.log(authState);
-
   return (
     <AuthContext.Provider value={{loginSuccess, loginError, logout}}>
       {children}

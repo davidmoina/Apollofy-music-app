@@ -38,7 +38,7 @@ export const SearchBar = () => {
 
             <div>{
                 filteredSongs.map((song, index) => (
-                    <MusicRow key={song.id} position={index} thumbnail={song.thumbnail} artist={song.artist} title={song.title} />
+                    <MusicRow key={song.id} position={index} thumbnail={song.thumbnail} artist={song.artist} title={song.title}/>
                 ))
             }</div>
         </div>
