@@ -61,7 +61,7 @@ const playerReducer = (state: typeof initialValues, action: PlayerActions): type
     case ACTIONS.SET_SONGS_ARRAY:
       return {
         ...state,
-        songsList: action.payload.songsList ?? []
+        songsList: action.payload.songsList
       }
 
     case ACTIONS.SET_CURRENT_SONG:
@@ -102,11 +102,11 @@ export const PlayerProvider = ({children}:Props) => {
 
   const [playerState, dispatch] = useReducer(playerReducer, initialValues)
 
-  const { data } = useFetch("http://localhost:4000/tracks");
+  // const { data } = useFetch("http://localhost:4000/tracks");
 
   useEffect(() => {
-    songsSet(data)
-  }, [data])
+    songsSet(playerState.songsList)
+  }, [])
   
   //set the current song
   const setCurrent = (id: number) => {
@@ -116,7 +116,7 @@ export const PlayerProvider = ({children}:Props) => {
       })
   }
   //set songs array
-  const songsSet = (songsArr: Track[]) => {
+  const songsSet = (songsArr: Track | Track[]) => {
     dispatch({
       type: ACTIONS.SET_SONGS_ARRAY,
       payload: {
@@ -124,6 +124,9 @@ export const PlayerProvider = ({children}:Props) => {
       }
     })
   }
+
+  console.log(playerState.songsList);
+  
 
   //set playing state
   const togglePlaying = () => {

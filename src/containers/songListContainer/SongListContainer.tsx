@@ -3,14 +3,8 @@ import { useFetch } from '../../api/useFetch';import { useContext } from 'react'
 import { PlayerContext } from '../../context/PlayerContext/PlayerContext';
 
 
-export const SongListContainer = () => {
-   
-  const {data : tracks} = useFetch('http://localhost:4000/tracks')
+export const SongListContainer = ({tracks, currentSong, setCurrent, togglePlaying}) => {
 
-  console.log(tracks[0])
-
-
-  const {currentSong, setCurrent, togglePlaying } = useContext(PlayerContext);
 
   return (
     <div className='flex flex-col p-4 gap-4'>
@@ -22,6 +16,9 @@ export const SongListContainer = () => {
           artist={song.artist} 
           title={song.name}
           actualSong={song}
+          currentSong={currentSong} 
+          setCurrent={setCurrent}
+          togglePlaying={togglePlaying}
         />
       ))}
     </div>
