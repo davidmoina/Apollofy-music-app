@@ -14,7 +14,7 @@ export interface Props {
   actualSong?: Track
 }
 
-export const MusicRow = ({actualSong, setCurrent, currentSong, togglePlaying, position, thumbnail, artist, title }: Props) => {
+export const MusicRow = ({songsSet, actualSong, setCurrent, currentSong, togglePlaying, position, thumbnail, artist, title }: Props) => {
 
   const {addToFavorite, removeFromFavorite} = useContext(FavSongContext) as ContextTypeFav
 
@@ -25,6 +25,7 @@ export const MusicRow = ({actualSong, setCurrent, currentSong, togglePlaying, po
   const handleClickSong = () => {
     setIsPlaying(!isPlaying)
     if(position !== currentSong) {
+      songsSet(actualSong)
       setCurrent(position)
       return
     }
