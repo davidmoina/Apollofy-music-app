@@ -10,6 +10,7 @@ const samplePlaylists = [
   { image: 'src/assets/images/classical.jpg', artist: 'Classical', song: "In da Club" }
 ];
 
+
 export const HomeView = () => {
 
   const { data: playlists } = useFetch("http://localhost:4000/playlists")

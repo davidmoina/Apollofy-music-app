@@ -1,6 +1,6 @@
 import React from 'react'
 import styles from './aside.module.scss';
-import {AiOutlineHome, AiOutlineSearch} from 'react-icons/ai'
+import {AiOutlineHome, AiOutlineSearch, AiFillHeart} from 'react-icons/ai'
 import {MdOutlineLibraryMusic, MdAlbum, MdOutlineAudiotrack} from 'react-icons//md'
 import { VscLibrary } from 'react-icons/vsc'
 import { TbMicrophone2 } from 'react-icons/tb'
@@ -14,6 +14,7 @@ const Aside = () => {
           <li><Link to="/"><span><AiOutlineHome/></span> Home</Link></li>
           <li><Link to="/search"><span><AiOutlineSearch/></span> Search</Link></li>
           <li><Link to="/library"><span><VscLibrary/></span> Library</Link></li>
+          <li><Link to="/fav"><span><AiFillHeart/></span> Favorite Songs</Link></li>
         </ul>
       </nav>
       <div className={styles.navbar}>
