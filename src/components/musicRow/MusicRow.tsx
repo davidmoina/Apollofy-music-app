@@ -19,7 +19,7 @@ export const MusicRow = ({ position, thumbnail, artist, title }: Tracks) => {
     >
       <div className={`${styles.songLeftContainer} transition-all`}>
         <span 
-        className={`${styles.spanPlay} text-md`}
+        className={`text-center ${styles.spanPlay} text-md`}
         onClick={() => setIsPlaying(!isPlaying)}
         >
           {   
@@ -28,7 +28,7 @@ export const MusicRow = ({ position, thumbnail, artist, title }: Tracks) => {
               : 
               (play ? (
                 <MdPlayCircleFilled 
-                  className={`${styles.play} text-3xl rounded-lg text-green-400`}
+                  className={`${styles.play} text-3xl rounded-lg text-[#ffff66]`}
                 />
               ) : (
                 position + 1
@@ -41,17 +41,17 @@ export const MusicRow = ({ position, thumbnail, artist, title }: Tracks) => {
           <span>{artist}</span>
         </div>
       </div>
-      <p className={styles.albumTitle}>{title}</p>
+      <p className={`hidden lg:block ${styles.albumTitle}`}>{title}</p>
       <div className={styles.songRightContainer}>
         <span 
-          className={styles.spanLike}
+          className={` ${styles.spanLike}`}
           onClick={() => setIsLiked(!isLiked)}
         >
           {
           isLiked ? (
-            <AiFillHeart className='text-3xl text-red-500'/>
+            <AiFillHeart className='text-lg text-[#ffff66]'/>
           ) : (
-            <AiOutlineHeart className='text-3xl'/>
+            <AiOutlineHeart className='text-lg'/>
           )          
           }
         </span>

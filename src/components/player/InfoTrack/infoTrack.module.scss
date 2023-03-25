@@ -11,10 +11,13 @@
       font-weight: 600;
       line-height: 1em;
       margin-bottom: 5px;
+      max-width: 8rem;
+      font-size: 0.9em;
    }
 
    h3{
       font-size: 0.6em;
       color: var.$muted-color;
+      max-width: 8rem;
    }
 }

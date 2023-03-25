@@ -18,7 +18,7 @@ const Aside = () => {
       </nav>
       <div className={styles.navbar}>
         <h4>My collection</h4>
-        <ul>
+        <ul className={styles.ulCollections}>
           <li><Link to="/playlists"><span><MdOutlineLibraryMusic/></span> Playlists</Link></li>
           <li><Link to="/albums"><span><MdAlbum/></span>Albums</Link></li>
           <li><Link to="/tracks"><span><MdOutlineAudiotrack/></span>Tracks</Link></li>

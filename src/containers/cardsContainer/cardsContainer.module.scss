@@ -1,7 +1,7 @@
 @use '../../sass/globals/variables' as var;
 
 .cardsContainer {
-  margin: 0 2em;
+  margin: 0 1.5em;
 }
 
 /* Estilos para motores Webkit y blink (Chrome, Safari, Opera... )*/
@@ -14,7 +14,7 @@
 //   width:10px;
 // }
 .containerCard::-webkit-scrollbar:horizontal {
-  height: 6px;
+  height: 0.3rem;
 }
 
 .containerCard::-webkit-scrollbar-button:increment,.containerCard::-webkit-scrollbar-button {
@@ -22,7 +22,7 @@
 } 
 
 .containerCard::-webkit-scrollbar-thumb {
-  background-color: #797979;
+  background-color: var.$muted-color;
   border-radius: 20px;
   // border: 2px solid #f1f2f3;
 }
