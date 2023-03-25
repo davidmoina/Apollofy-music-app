@@ -12,6 +12,7 @@ import { TracksView } from '../views/TracksView/TracksView';
 import { ArtistsView } from '../views/ArtistsView/ArtistsView';
 import { RecoverPassWithEmailPage } from '../pages/RecoverPassWithEmailPage/RecoverPassWithEmailPage';
 import { RecoverPassPage } from '../pages/RecoverPassPage/RecoverPassPage'
+import { FavView } from '../views/FavView/FavView'
 
 export const Routing = () => {
   return (
@@ -26,6 +27,7 @@ export const Routing = () => {
             <Route path='albums' element={<AlbumsView/>} />
             <Route path='tracks' element={<TracksView/>} />
             <Route path='artists' element={<ArtistsView/>} />
+            <Route path='fav' element={<FavView />} />
           </Route>
         </Route>
         <Route path='/login' element={<LoginPage/>} />
