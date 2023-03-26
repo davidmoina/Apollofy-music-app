@@ -10,7 +10,7 @@ export const SearchBar = () => {
     const handleSearch = (e: FormEvent<HTMLInputElement>) => {
         setInputValue(e.currentTarget.value);
 
-        if(inputValue.length > 2) {
+        if (inputValue.length > 2) {
             const results = data.filter(song => song.title.toLowerCase().includes(inputValue.toLowerCase()));
             console.log(results);
             setFilteredSongs(results);
