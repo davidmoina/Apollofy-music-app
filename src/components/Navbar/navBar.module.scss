@@ -16,7 +16,7 @@
       -o-border-radius: 50%;
 
       &:hover{
-         color: var.$bg-searchBar;
+         color: var.$secondary-color;
       }
    }
 
@@ -79,7 +79,8 @@
          }
 
          &:hover{
-            color:var.$bg-searchBar;
+            color:var.$secondary-color;
+            opacity: 0.9;
             width: 100%;
          }
       }
