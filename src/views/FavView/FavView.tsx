@@ -8,9 +8,10 @@ import { samplePlaylists } from "../PlaylistsView/PlaylistsView";
 export const FavView = () => {
 
   const {favorite} = useContext(FavSongContext) as ContextTypeFav
-
+  
   return (
     <>
+
       <PlaylistHeader {...samplePlaylists}/>
       <PlaylistInfoBar/>
       {
