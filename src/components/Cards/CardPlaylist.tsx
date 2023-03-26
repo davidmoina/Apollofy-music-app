@@ -8,7 +8,7 @@ interface PlaylistRecommendationProps {
   playlists: Playlist
 }
 
-export const Card = ({ playlists: {thumbnail, description, name}}: PlaylistRecommendationProps) => {
+export const CardPlaylist = ({ playlists: {thumbnail, description, name}}: PlaylistRecommendationProps) => {
 
   const [showPlay, setShowPlay] = useState(false)
   
