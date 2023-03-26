@@ -17,8 +17,22 @@ export const RecoverPassPage = () => {
          <main className={styles.container}>
             <form onSubmit={ handleSubmit(onSubmit) } className={styles.form}>
                <h1> Change Password </h1>
-                  <InputForm id='newPassword' placeholder='Password' inputType='password' register={ register } errors={ errors } required/>
-                  <InputForm id='repeatPassword' placeholder='Repeat Password' inputType='password' register={ register } errors={ errors } required/>
+                  <InputForm 
+                     id='newPassword' 
+                     placeholder='Password' 
+                     inputType='password' 
+                     register={ register } 
+                     errors={ errors } 
+                     required
+                  />
+                  <InputForm 
+                     id='repeatPassword' 
+                     placeholder='Repeat Password' 
+                     inputType='password' 
+                     register={ register } 
+                     errors={ errors } 
+                     required
+                  />
                <div className='flex justify-center'>
                   <ButtonForm name='Change Password'/>
                </div>

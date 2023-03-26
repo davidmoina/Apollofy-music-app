@@ -1,5 +1,5 @@
-import { TbPlayerPlayFilled, TbPlayerSkipForwardFilled, TbPlayerSkipBackFilled, TbPlayerPauseFilled, TbRepeat, TbRepeatOff } from "react-icons/tb";
-import styles from './control.module.scss';
+import { TbPlayerPlayFilled, TbPlayerSkipForwardFilled, TbPlayerSkipBackFilled, TbPlayerPauseFilled, TbRepeat, TbArrowsShuffle, TbRepeatOff } from "react-icons/tb";
+import styles from './controls.module.scss';
 
 type TrackControls = { 
    isPlaying: boolean,
@@ -13,22 +13,25 @@ type TrackControls = {
 export const Controls = ({ isPlaying, onPlayPauseClick, onPrevClick, onNextClick, onLoopClick, loop }:TrackControls) => {
    return (
       <div className={ `${styles.buttonsPlayer} flex justify-end md:justify-center` }>
-         <button type="button" className="m-2 icon" aria-label="Previous" onClick={ onPrevClick }>
-            <TbPlayerSkipBackFilled size={25} color={'white'}/>
+         <button className="hidden m-2 icon md:block" onClick={ onLoopClick }>
+            { loop ? <TbArrowsShuffle /> : <TbArrowsShuffle /> }
+         </button>
+         <button type="button" className="hidden m-2 icon md:block" aria-label="Previous" onClick={ onPrevClick }>
+            <TbPlayerSkipBackFilled />
          </button>
             {isPlaying 
-               ? (<button type="button" className="m-2 icon" onClick={ () => onPlayPauseClick(false) } aria-label="Pause">
-                     <TbPlayerPauseFilled size={25} style={{background:"white", borderRadius:"100px", padding:"5px"}}/>
+               ? (<button type="button" className={`m-2 ${styles.buttonPlay}`}  onClick={ () => onPlayPauseClick(false) } aria-label="Pause">
+                     <TbPlayerPauseFilled />
                   </button>) 
-               : (<button type="button" className="m-2 icon" onClick={ () => onPlayPauseClick(true) } aria-label="Play">
-                     <TbPlayerPlayFilled size={25} style={{background:"white", borderRadius:"100px", padding:"5px"}}/>
+               : (<button type="button" className={`m-2 ${styles.buttonPause}`} onClick={ () => onPlayPauseClick(true) } aria-label="Play">
+                     <TbPlayerPlayFilled />
                   </button>)
             }
-         <button type="button" className="m-2 icon" aria-label="Next" onClick={ onNextClick }>
-            <TbPlayerSkipForwardFilled size={25} color={'white'}/>
+         <button type="button" className="hidden m-2 icon  md:block" aria-label="Next" onClick={ onNextClick }>
+            <TbPlayerSkipForwardFilled />
          </button>
-         <button onClick={ onLoopClick }>
-            { loop ? <TbRepeat size={25} color={'#7b58e4'}/> : <TbRepeat size={25} color={'white'}/> }
+         <button className="hidden m-2 icon  md:block" onClick={ onLoopClick }>
+            { loop ? <TbRepeat color={'#f9f999'}/> : <TbRepeat /> }
          </button>
       </div>
    )

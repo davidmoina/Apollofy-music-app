@@ -1,4 +1,4 @@
-import React, { Children, ReducerAction, useMemo, useReducer } from 'react'
+import { Children, useMemo, useReducer } from 'react'
 import { toast } from 'react-toastify';
 import { AuthContext } from './AuthContext';
 
@@ -98,9 +98,6 @@ export const AuthProvider = ({children}: Props) => {
       type: ACTIONS.UPDATE_PASSWORD
     })
   }
-
-
-console.log(authState);
 
   return (
     <AuthContext.Provider value={{loginSuccess, loginError, logout}}>

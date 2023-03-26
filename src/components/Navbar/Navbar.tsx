@@ -33,12 +33,12 @@ export const Navbar = () => {
         </button>
       </div>
       <div>
-        <button className={`flex items-center p-1 mr-0 lg:w-40 lg:mr-2 ${styles.buttonProfile}`} onClick={handleClick}>
+        <button className={`flex items-center p-1 lg:pr-4  mr-0 lg:min-w-fit lg:mr-2 ${styles.buttonProfile}`} onClick={handleClick}>
           <img src={thumbnail} alt="" />
           <span className="hidden lg:flex">{name}</span>
         </button>
         {showModal
-          ? (<ul className="right-4">
+          ? (<ul className="right-4 z-10">
             <li>
               <a href="/edit-profile"> Edit Profile </a>
             </li>

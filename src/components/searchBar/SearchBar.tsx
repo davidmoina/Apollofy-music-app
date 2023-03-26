@@ -12,7 +12,6 @@ export const SearchBar = () => {
 
         if (inputValue.length > 2) {
             const results = data.filter(song => song.title.toLowerCase().includes(inputValue.toLowerCase()));
-            console.log(results);
             setFilteredSongs(results);
         } else {
             setFilteredSongs([])
@@ -39,7 +38,7 @@ export const SearchBar = () => {
 
             <div>{
                 filteredSongs.map((song, index) => (
-                    <MusicRow key={song.id} position={index} thumbnail={song.thumbnail} artist={song.artist} title={song.title} />
+                    <MusicRow key={song.id} position={index} thumbnail={song.thumbnail} artist={song.artist} title={song.title}/>
                 ))
             }</div>
         </div>

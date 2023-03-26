@@ -10,7 +10,7 @@ export interface Musics {
 export interface Album {
   id:       number;
   name:     string;
-  imageUrl: string;
+  imageUrl?: string;
   artist:   string;
 }
 

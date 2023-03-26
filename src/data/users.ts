@@ -10,7 +10,7 @@ type Users = {
 export const users:Users [] = [
    {
       id:1,
-      name: 'Mokodepavo',
+      name: 'Hola!',
       accountType: 'Premium',
       thumbnail:img1
    }

@@ -6,6 +6,8 @@ import MobileNavBar from '../../components/MobileNavBar/MobileNavBar';
 import styles from './home.module.scss';
 
 export const Home = () => {
+
+
   return (
     <div className={styles.homeContainer}>
       <aside className={styles.asideContainer}>

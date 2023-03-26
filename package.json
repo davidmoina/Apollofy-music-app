@@ -7,7 +7,7 @@
     "dev": "vite",
     "build": "tsc && vite build",
     "preview": "vite preview",
-    "json-server": "json-server --watch ./src/data/seed.json --port 4000"
+    "json-server": "json-server --watch ./src/data/seed.json --port 4000 --no-cors"
   },
   "dependencies": {
     "@react-hook/media-query": "^1.1.1",
