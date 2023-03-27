@@ -6,6 +6,7 @@ import { MdPlayCircleFilled, MdPauseCircleFilled } from 'react-icons/md'
 import { Track } from '../../interfaces/songs'
 import { ContextTypeFav, FavSongContext } from '../../context/favSongsContext/FavSongsContext'
 import { PlayerContext } from '../../context/PlayerContext/PlayerContext';
+import { RiPlayListAddLine } from 'react-icons/ri'
 
 export interface Props {
   position: number,
@@ -61,6 +62,9 @@ export const MusicRow = ({ actualSong, position, thumbnail, artist, title }: Pro
     }
   }
 
+  console.log(isPlaying);
+  
+
   return (
     <div 
       className={styles.rowContainer}
@@ -69,16 +73,16 @@ export const MusicRow = ({ actualSong, position, thumbnail, artist, title }: Pro
     >
       <div className={`${styles.songLeftContainer} transition-all`}>
         <span 
-        className={`${styles.spanPlay} text-md`}
+        className={`text-center ${styles.spanPlay} text-md`}
         onClick={handleClickSong}
         >
           {   
-            isPlaying ? 
+            (actualSong.id === audio?.id) && isPlaying ? 
               <MdPauseCircleFilled className='text-3xl rounded-lg' />
               : 
               (play ? (
                 <MdPlayCircleFilled 
-                  className={`${styles.play} text-3xl rounded-lg text-green-400`}
+                  className={`${styles.play} text-3xl rounded-lg text-[#ffff66]`}
                 />
               ) : (
                 position + 1
@@ -91,21 +95,22 @@ export const MusicRow = ({ actualSong, position, thumbnail, artist, title }: Pro
           <span>{artist}</span>
         </div>
       </div>
-      <p className={styles.albumTitle}>{title}</p>
+      <p className={`hidden lg:block ${styles.albumTitle}`}>{title}</p>
       <div className={styles.songRightContainer}>
+        <RiPlayListAddLine onClick={() => addSongToQueue(actualSong)} className="cursor-pointer"/>
         <span 
           className={styles.spanLike}
           onClick={() => handleLike(actualSong)}
         >
           {
           isLiked ? (
-            <AiFillHeart className='text-3xl text-red-500'/>
+            <AiFillHeart className='text-lg text-[#ffff66]'/>
           ) : (
-            <AiOutlineHeart className='text-3xl'/>
+            <AiOutlineHeart className='text-lg'/>
           )          
           }
         </span>
-        <span onClick={() => addSongToQueue(actualSong)}>3:00</span>
+        <span>3:00</span>
       </div>
     </div>
   )

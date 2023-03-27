@@ -1,8 +1,10 @@
 import { useState, useEffect, useRef, ChangeEvent, useContext } from 'react';
 import { Controls } from '../Controls/Controls';
+import { ControlsMobile } from '../Controls/ControlsMobile';
 import { formatTime } from '../../../utils/formatTime';
 import { Volume } from '../Volume/Volume';
 import { InfoTrack } from '../InfoTrack/InfoTrack';
+import { AiOutlineClose } from "react-icons/ai";
 import styles from './playerMusic.module.scss';
 import { PlayerContext } from '../../../context/PlayerContext/PlayerContext';
 
@@ -19,8 +21,11 @@ export const PlayerMusic = () => {
       nextSong,
       prevSong,
       toggleRepeat,
-      togglePlaying
+      togglePlaying,
+      handleEnd
    } = useContext(PlayerContext);
+
+   const [showModal, setShowModal] = useState(false);
 
    useEffect(() => {
       return () => {
@@ -57,24 +62,10 @@ export const PlayerMusic = () => {
          isReady.current = true;
       }
 
-      if(repeat) {
-         audioRef.current.loop = true; 
-      } else {
-         audioRef.current.loop = false;
-      }
       setTrackProgress(audioRef.current.currentTime);
       startTimer();
 
    }, [audio, currentSongNum]);
-
-   useEffect(() => {
-      if (!repeat) {
-         audioRef.current.loop = false;
-      } else {
-         audioRef.current.loop = true;
-      }
-      
-   }, [repeat])
    
 
    const startTimer = () => {
@@ -82,7 +73,7 @@ export const PlayerMusic = () => {
 
       intervalRef.current = setInterval(() => {
          if(audioRef.current.ended) {
-            nextSong();
+            handleEnd();
          } else {
             setTrackProgress(audioRef.current.currentTime);
          }
@@ -101,11 +92,12 @@ export const PlayerMusic = () => {
    }
    
    const onScrubEnd = () => {
-      if(!playing) {
-         togglePlaying();
-      }
       startTimer();
    }
+
+   const closeModal = () => {
+      setShowModal(false);
+   };
 
    return (
       <>
@@ -122,36 +114,90 @@ export const PlayerMusic = () => {
                onKeyUp={ onScrubEnd }
             />
          </div>
-         <div className={`${styles.containerPlayer} flex justify-between items-center mb-16 md:mb-0 md:py-3 px-2 lg:px-6`}>
-            <div className='flex-1 w-2/5 md:w-1/5'>
-               <InfoTrack name={ songsList[currentSongNum]?.name } artist={ songsList[currentSongNum]?.artist } thumbnail={ songsList[currentSongNum]?.thumbnail }/>
-            </div>
-            <div className='flex w-3/5 md:3/5 flex-col justify-end md:justify-center items-end md:items-center'>
-               <Controls
-                  isPlaying={ playing }
-                  onPrevClick={ prevSong }
-                  onNextClick={ nextSong }
-                  onPlayPauseClick={ togglePlaying }
-                  onLoopClick={ toggleRepeat }
-                  loop={ repeat }
-               />
-               <div className='hidden md:flex'>
-                  <span>{ formatTime(trackProgress) }</span>
-                  <input 
-                     type="range"
-                     value={ trackProgress }
-                     step="1"
-                     min="0"
-                     max={ duration ? duration : `${duration}` }
-                     className={`w-60 lg:w-96 mx-2 ${styles.progressBar}`}
-                     onChange={ (e) =>{onScrub(e.target.value); console.log(e.target.value)} }
-                     onMouseUp={ onScrubEnd }
-                     onKeyUp={ onScrubEnd }
-                  />
-                  <span>{ !isNaN(duration) ? formatTime(duration) : "0:00"  }</span>
+         <div className={`${styles.containerPlayer} flex justify-center items-center mb-16 pl-0 pr-3 lg:justify-between md:mb-0 md:py-3 md:px-2 lg:px-6`}>
+         {!showModal 
+            ? (<>
+                  <div className={`flex-1 w-1/3 ${styles.clickModal}`}  onClick={() => setShowModal(!showModal)}>
+                     <InfoTrack 
+                        name={ songsList[currentSongNum]?.name } 
+                        artist={ songsList[currentSongNum]?.artist } 
+                        thumbnail={ songsList[currentSongNum]?.thumbnail }
+                        />
+                  </div>
+                  <div className='flex w-1/3 flex-col justify-center lg:justify-end items-end md:items-center'>
+                     <Controls
+                        isPlaying={ playing }
+                        onPrevClick={ prevSong }
+                        onNextClick={ nextSong }
+                        onPlayPauseClick={ togglePlaying }
+                        onLoopClick={ toggleRepeat }
+                        loop={ repeat }
+                        />
+                     <div className='hidden md:flex'>
+                        <span>{ formatTime(trackProgress) }</span>
+                        <input 
+                           type="range"
+                           value={ trackProgress }
+                           step="1"
+                           min="0"
+                           max={ duration ? duration : `${duration}` }
+                           className={`w-60 lg:w-96 mx-2 ${styles.progressBar}`}
+                           onChange={ (e) =>{onScrub(e.target.value); console.log(e.target.value)} }
+                           onMouseUp={ onScrubEnd }
+                           onKeyUp={ onScrubEnd }
+                           />
+                        <span>{ !isNaN(duration) ? formatTime(duration) : "0:00"  }</span>
+                     </div>
+                  </div>
+         </>)
+         : (<>
+               <div className={`  ${styles.modal} ${styles.modalEnter} ${styles.modalEnterActive}`}>
+                  
+                  <div className={styles.modalContent}>
+
+                  <div className={styles.buttonModal}>
+                     <button onClick={closeModal}>
+                        <AiOutlineClose />
+                     </button>
+                  </div>
+                  <div className={`flex justify-center items-center ${styles.imgSong}`}>
+                     <img src={ songsList[currentSongNum]?.thumbnail } alt="" />
+                  </div>
+                  <div className={`flex flex-col items-center ${styles.infoTrack}`}>
+                     <h2 className='text-white'>{ songsList[currentSongNum]?.name }</h2>
+                     <h3 className='text-white'>{ songsList[currentSongNum]?.artist }</h3>
+                     <input 
+                        type="range"
+                        value={ trackProgress }
+                        step="1"
+                        min="0"
+                        max={ duration ? duration : `${duration}` }
+                        className={`w-full ${styles.progressBar}`}
+                        onChange={ (e) =>{onScrub(e.target.value); console.log(e.target.value)} }
+                        onMouseUp={ onScrubEnd }
+                        onKeyUp={ onScrubEnd }
+                     />  
+                     <div className='flex justify-between w-full mt-0.5'>
+                        <span>{ formatTime(trackProgress) }</span>
+                        <span>{ !isNaN(duration) ? formatTime(duration) : "0:00"  }</span>
+                     </div>   
+                     <ControlsMobile
+                        isPlaying={ playing }
+                        onPrevClick={ prevSong }
+                        onNextClick={ nextSong }
+                        onPlayPauseClick={ togglePlaying }
+                        onLoopClick={ toggleRepeat }
+                        loop={ repeat }
+                     />
+                  </div>
+                  <div></div>
+                  </div>
                </div>
-            </div>
-            <div className='w-1/5 hidden md:flex justify-end'>
+               </>
+            )
+
+            }
+            <div className='w-1/3 hidden md:flex justify-end'>
                <Volume
                   volume={ volume }
                   onChange={ handleVolumeChange }

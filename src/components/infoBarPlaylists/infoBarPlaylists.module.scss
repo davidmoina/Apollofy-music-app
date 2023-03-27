@@ -8,18 +8,18 @@
   color: var.$secondary-color;
   padding-left: 3em;
   padding-bottom: 1.5em;
-  border-bottom: 1px solid #dedbdb86;
+  border-bottom: 1px solid #8f85ad;
 
   
 
-  &:hover {
-    background-color: var.$bg-player-color;
-  }
+  // &:hover {
+  //   background-color: var.$bg-player-color;
+  // }
 
 
   .title {
     display:flex;
-    color: var.$muted-color;
+    color: var.$light-grey;
     min-width: 25%;
     font-weight: 300;
     letter-spacing: 0.05rem;
@@ -29,7 +29,7 @@
   }
 
   .album {
-    color: var.$muted-color;
+    color: var.$light-grey;
     min-width: 25%;
     font-weight: 300;
     letter-spacing: 0.05rem;
@@ -38,7 +38,7 @@
   }
 
   .timeIcon {
-    color: var.$muted-color;
+    color: var.$light-grey;
     min-width: 25%;
     display: flex;
     justify-content: flex-end;

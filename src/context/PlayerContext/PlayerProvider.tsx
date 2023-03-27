@@ -201,7 +201,7 @@ export const PlayerProvider = ({children}:Props) => {
     })
   }
 
-  console.log(playerState.songsList);
+  console.log(playerState.repeat);
   
 
   return (

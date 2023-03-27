@@ -6,18 +6,19 @@ import img1 from "../assets/img/peiname-juana.jpg";
 import img2 from "../assets/img/la-llegada.png";
 import img3 from "../assets/img/realejo-beach.jpg";
 import img4 from "../assets/img/darck-necessities.png";
+import { Track } from '../interfaces/songs';
 
-export type TracksType = {
-   id: number,
-   artist: string,
-   name: string,
-   url?: string,
-   thumbnail: string,
-   genre: string,
-   liked: boolean
-}
+// export type Track = {
+//    id: number,
+//    artist: string,
+//    name: string,
+//    url?: string,
+//    thumbnail: string,
+//    genre: string,
+//    liked: boolean
+// }
 
-export const tracks: TracksType[] = [
+export const tracks: Track[] = [
    {
       id:21,
       artist: 'La Plazuela',
