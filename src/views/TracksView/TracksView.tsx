@@ -1,6 +1,4 @@
 import { useFetch } from '../../api/useFetch';
-import { useContext } from 'react';
-import { PlayerContext } from '../../context/PlayerContext/PlayerContext';
 import { SongListContainer } from '../../containers/songListContainer/SongListContainer';
 import PlaylistHeader from '../../components/playlistHeader/PlaylistHeader';
 
@@ -19,12 +17,11 @@ export const TracksView = () => {
 
   const {data} = useFetch('http://localhost:4000/tracks');
 
-  const {currentSong, setCurrent, togglePlaying, songsSet } = useContext(PlayerContext);
 
   return (
     <div>
       <PlaylistHeader {...samplePlaylists}/>
-      <SongListContainer tracks={data} currentSong={currentSong} setCurrent={setCurrent} togglePlaying={togglePlaying} songsSet={songsSet}/>
+      <SongListContainer tracks={data}/>
     </div>
   )
 }

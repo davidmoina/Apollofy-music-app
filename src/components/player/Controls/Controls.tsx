@@ -1,8 +1,7 @@
 import { TbPlayerPlayFilled, TbPlayerSkipForwardFilled, TbPlayerSkipBackFilled, TbPlayerPauseFilled, TbRepeat, TbRepeatOff } from "react-icons/tb";
 import styles from './control.module.scss';
 
-type TrackControls = { 
-   currentSong: number,
+type TrackControls = {
    isPlaying: boolean,
    onPlayPauseClick: (bool:boolean) => void,
    onPrevClick: () => void,
@@ -11,7 +10,7 @@ type TrackControls = {
    loop: boolean
 }
 
-export const Controls = ({currentSong, isPlaying, onPlayPauseClick, onPrevClick, onNextClick, onLoopClick, loop }:TrackControls) => {
+export const Controls = ({ isPlaying, onPlayPauseClick, onPrevClick, onNextClick, onLoopClick, loop }:TrackControls) => {
    
    return (
       <div className={ `${styles.buttonsPlayer} flex justify-end md:justify-center` }>

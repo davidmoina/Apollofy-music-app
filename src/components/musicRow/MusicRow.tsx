@@ -5,18 +5,21 @@ import { AiFillHeart, AiOutlineHeart} from 'react-icons/ai'
 import { MdPlayCircleFilled, MdPauseCircleFilled } from 'react-icons/md'
 import { Track } from '../../interfaces/songs'
 import { ContextTypeFav, FavSongContext } from '../../context/favSongsContext/FavSongsContext'
+import { PlayerContext } from '../../context/PlayerContext/PlayerContext';
 
 export interface Props {
   position: number,
   thumbnail: string,
   artist: string,
   title: string,
-  actualSong?: Track
+  actualSong: Track
 }
 
-export const MusicRow = ({songsSet, actualSong, setCurrent, currentSong, togglePlaying, position, thumbnail, artist, title }: Props) => {
+export const MusicRow = ({ actualSong, position, thumbnail, artist, title }: Props) => {
 
   const {addToFavorite, removeFromFavorite} = useContext(FavSongContext) as ContextTypeFav
+
+  const {audio, addSongToQueue, setCurrent, togglePlaying, songsSet } = useContext(PlayerContext);
 
   const [isLiked, setIsLiked] = useState(actualSong?.liked)
   const [play, setPlay] = useState(false)
@@ -24,9 +27,10 @@ export const MusicRow = ({songsSet, actualSong, setCurrent, currentSong, toggleP
 
   const handleClickSong = () => {
     setIsPlaying(!isPlaying)
-    if(position !== currentSong) {
+
+    if(actualSong?.id !== audio?.id) {
       songsSet(actualSong)
-      setCurrent(position)
+      setCurrent(0, actualSong)
       return
     }
     togglePlaying()
@@ -42,8 +46,6 @@ export const MusicRow = ({songsSet, actualSong, setCurrent, currentSong, toggleP
     })
     return response.json()
   }
-
-
 
   const handleLike = (song: Track) => {
     if (isLiked) {
@@ -103,7 +105,7 @@ export const MusicRow = ({songsSet, actualSong, setCurrent, currentSong, toggleP
           )          
           }
         </span>
-        <span>3:00</span>
+        <span onClick={() => addSongToQueue(actualSong)}>3:00</span>
       </div>
     </div>
   )

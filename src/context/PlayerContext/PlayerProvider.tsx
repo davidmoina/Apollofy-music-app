@@ -1,7 +1,6 @@
 import { PlayerContext } from './PlayerContext';
 import { Track } from '../../interfaces/songs';
-import { useReducer, useEffect } from 'react';
-import { useFetch } from '../../api/useFetch';
+import { useReducer } from 'react';
 
 const enum ACTIONS {
   SET_SONGS_ARRAY,
@@ -12,12 +11,12 @@ const enum ACTIONS {
 }
 
 type TypePayload = {
-  currentSong: number,
+  currentSongNum: number,
   songsList: Track[] | [],
   repeat: boolean,
   random: boolean,
   playing: boolean,
-  audio: null,
+  audio: Track | null,
 }
 
 type PlayerActions = {
@@ -28,7 +27,8 @@ type PlayerActions = {
 } | {
   type: ACTIONS.SET_CURRENT_SONG,
   payload: {
-    currentSong: number
+    currentSongNum: number,
+    audio: Track | null
   }
 } | {
   type: ACTIONS.TOGGLE_RANDOM,
@@ -48,7 +48,7 @@ type PlayerActions = {
 }
 
 const initialValues: TypePayload = {
-  currentSong: 0,
+  currentSongNum: 0,
   songsList: [],
   repeat: false,
   random: false,
@@ -61,14 +61,15 @@ const playerReducer = (state: typeof initialValues, action: PlayerActions): type
     case ACTIONS.SET_SONGS_ARRAY:
       return {
         ...state,
-        songsList: action.payload.songsList
+        songsList:action.payload.songsList
       }
 
     case ACTIONS.SET_CURRENT_SONG:
       return {
         ...state,
-        currentSong: action.payload?.currentSong ?? 0,
-        playing: true
+        currentSongNum: action.payload?.currentSongNum ?? 0,
+        playing: true,
+        audio: action.payload.audio
       }
 
     case ACTIONS.TOGGLE_RANDOM:
@@ -101,32 +102,26 @@ type Props = {
 export const PlayerProvider = ({children}:Props) => {
 
   const [playerState, dispatch] = useReducer(playerReducer, initialValues)
-
-  // const { data } = useFetch("http://localhost:4000/tracks");
-
-  useEffect(() => {
-    songsSet(playerState.songsList)
-  }, [])
   
   //set the current song
-  const setCurrent = (id: number) => {
+  const setCurrent = (id: number, song?: Track) => {
     dispatch({
       type: ACTIONS.SET_CURRENT_SONG, 
-      payload: {currentSong: id}
+      payload: {
+        currentSongNum: id,
+        audio: song ?? null
+      }
       })
   }
   //set songs array
-  const songsSet = (songsArr: Track | Track[]) => {
+  const songsSet = (songsArr: Track) => {
     dispatch({
       type: ACTIONS.SET_SONGS_ARRAY,
       payload: {
-        songsList: songsArr
+        songsList: [songsArr]
       }
     })
   }
-
-  console.log(playerState.songsList);
-  
 
   //set playing state
   const togglePlaying = () => {
@@ -144,10 +139,10 @@ export const PlayerProvider = ({children}:Props) => {
       return setCurrent(~~(Math.random() * playerState.songsList.length))
     }
 
-    if (playerState.currentSong === 0) {
+    if (playerState.currentSongNum === 0) {
       return setCurrent(playerState.songsList.length - 1)
     } else {
-      return setCurrent(playerState.currentSong - 1)
+      return setCurrent(playerState.currentSongNum - 1)
     }
   }
 
@@ -156,10 +151,10 @@ export const PlayerProvider = ({children}:Props) => {
     if (playerState.random) {
       return setCurrent(~~(Math.random() * playerState.songsList.length))
     }
-    if (playerState.currentSong === playerState.songsList.length - 1) {
+    if (playerState.currentSongNum === playerState.songsList.length - 1) {
       setCurrent(0)
     } else {
-      setCurrent(playerState.currentSong + 1)
+      setCurrent(playerState.currentSongNum + 1)
     }
   }
 
@@ -189,7 +184,7 @@ export const PlayerProvider = ({children}:Props) => {
     } else {
       if(playerState.repeat) {
         nextSong()
-      } else if (playerState.currentSong === playerState.songsList.length - 1 ){
+      } else if (playerState.currentSongNum === playerState.songsList.length - 1 ){
         return
       } else {
         nextSong()
@@ -197,9 +192,21 @@ export const PlayerProvider = ({children}:Props) => {
     }
   }
 
+  const addSongToQueue= (song: Track) => {
+    dispatch({
+      type: ACTIONS.SET_SONGS_ARRAY,
+      payload: {
+        songsList: [...playerState.songsList, song]
+      }
+    })
+  }
+
+  console.log(playerState.songsList);
+  
+
   return (
     <PlayerContext.Provider value={{
-      currentSong: playerState.currentSong,
+      currentSongNum: playerState.currentSongNum,
       songsList: playerState.songsList,
       repeat: playerState.repeat,
       random: playerState.random,
@@ -212,7 +219,8 @@ export const PlayerProvider = ({children}:Props) => {
       toggleRepeat,
       togglePlaying,
       handleEnd,
-      songsSet
+      songsSet,
+      addSongToQueue
     }}>
       {children}
     </PlayerContext.Provider>

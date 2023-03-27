@@ -1,9 +1,7 @@
-import { MusicRow } from "../../components/musicRow/MusicRow"
-import { useFetch } from '../../api/useFetch';import { useContext } from 'react';
-import { PlayerContext } from '../../context/PlayerContext/PlayerContext';
+import { MusicRow } from "../../components/musicRow/MusicRow";
 
 
-export const SongListContainer = ({tracks, currentSong, setCurrent, togglePlaying, songsSet}) => {
+export const SongListContainer = ({tracks}) => {
 
   return (
     <div className='flex flex-col p-4 gap-4'>
@@ -15,10 +13,6 @@ export const SongListContainer = ({tracks, currentSong, setCurrent, togglePlayin
           artist={song.artist} 
           title={song.name}
           actualSong={song}
-          currentSong={currentSong} 
-          setCurrent={setCurrent}
-          togglePlaying={togglePlaying}
-          songsSet={songsSet}
         />
       ))}
     </div>

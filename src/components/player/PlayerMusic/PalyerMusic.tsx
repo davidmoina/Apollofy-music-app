@@ -1,5 +1,4 @@
 import { useState, useEffect, useRef, ChangeEvent, useContext } from 'react';
-import { useFetch } from '../../../api/useFetch';
 import { Controls } from '../Controls/Controls';
 import { formatTime } from '../../../utils/formatTime';
 import { Volume } from '../Volume/Volume';
@@ -9,52 +8,32 @@ import { PlayerContext } from '../../../context/PlayerContext/PlayerContext';
 
 export const PlayerMusic = () => {
 
-   // const { data: tracks } = useFetch("http://localhost:4000/tracks");
-
-   // const [trackIndex, setTrackIndex] = useState(0);
    const [trackProgress, setTrackProgress] = useState(0);
-   // const [isPlaying, setIsPlaying] = useState(false);
    const [volume, setVolume] = useState(0.3);
-   // const [loop, setLoop] = useState(false);
    const { 
-      currentSong,
+      audio,
+      currentSongNum,
       songsList,
       repeat,
-      random,
       playing,
-      audio,
-      setCurrent,
       nextSong,
       prevSong,
-      toggleRandom,
       toggleRepeat,
-      togglePlaying,
-      handleEnd,
-      songsSet } = useContext(PlayerContext);
+      togglePlaying
+   } = useContext(PlayerContext);
+
+   useEffect(() => {
+      return () => {
+         audioRef.current.pause();
+         clearInterval(intervalRef.current);
+      }
+   }, []);
    
-   
-   const audioRef = useRef(new Audio(songsList[currentSong]?.url));
+   const audioRef = useRef(new Audio(songsList[currentSongNum]?.url));
    const intervalRef:{ current:number | undefined } = useRef();
    const isReady = useRef(false);
 
    const { duration } = audioRef.current;
-   
-
-   // const toPrevTrack = () => {
-   //    if(trackIndex - 1 < 0) {
-   //       setTrackIndex(tracks.length - 1);
-   //    } else {
-   //       setTrackIndex(trackIndex - 1);
-   //    }
-   // }
-
-   // const toNextTrack = () => {
-   //    if(trackIndex < tracks.length - 1) {
-   //       setTrackIndex(trackIndex + 1);
-   //    } else {
-   //       setTrackIndex(0);
-   //    }
-   // }
 
    useEffect(() => {
       if(playing) {
@@ -64,17 +43,9 @@ export const PlayerMusic = () => {
       }
    }, [playing]);
 
-
-   useEffect(() => {
-      return () => {
-         audioRef.current.pause();
-         clearInterval(intervalRef.current);
-      }
-   }, []);
-
    useEffect(() => {
       audioRef.current.pause();
-      audioRef.current = new Audio(songsList[currentSong]?.url);
+      audioRef.current = new Audio(songsList[currentSongNum]?.url);
       setTrackProgress(audioRef.current.currentTime);
 
       audioRef.current.volume = volume;
@@ -91,11 +62,10 @@ export const PlayerMusic = () => {
       } else {
          audioRef.current.loop = false;
       }
-
       setTrackProgress(audioRef.current.currentTime);
       startTimer();
 
-   }, [currentSong, songsList]);
+   }, [audio, currentSongNum]);
 
    useEffect(() => {
       if (!repeat) {
@@ -103,7 +73,6 @@ export const PlayerMusic = () => {
       } else {
          audioRef.current.loop = true;
       }
-      console.log(repeat);
       
    }, [repeat])
    
@@ -155,11 +124,10 @@ export const PlayerMusic = () => {
          </div>
          <div className={`${styles.containerPlayer} flex justify-between items-center mb-16 md:mb-0 md:py-3 px-2 lg:px-6`}>
             <div className='flex-1 w-2/5 md:w-1/5'>
-               <InfoTrack name={ songsList[currentSong]?.name } artist={ songsList[currentSong]?.artist } thumbnail={ songsList[currentSong]?.thumbnail }/>
+               <InfoTrack name={ songsList[currentSongNum]?.name } artist={ songsList[currentSongNum]?.artist } thumbnail={ songsList[currentSongNum]?.thumbnail }/>
             </div>
             <div className='flex w-3/5 md:3/5 flex-col justify-end md:justify-center items-end md:items-center'>
                <Controls
-                  currentSong={currentSong} 
                   isPlaying={ playing }
                   onPrevClick={ prevSong }
                   onNextClick={ nextSong }

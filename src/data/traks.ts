@@ -10,38 +10,48 @@ import img4 from "../assets/img/darck-necessities.png";
 export type TracksType = {
    id: number,
    artist: string,
-   title: string,
-   song?: string,
-   thumbnail: string
+   name: string,
+   url?: string,
+   thumbnail: string,
+   genre: string,
+   liked: boolean
 }
 
 export const tracks: TracksType[] = [
    {
-      id:1,
+      id:21,
       artist: 'La Plazuela',
-      title: 'Peiname Juana',
-      song: song1,
-      thumbnail:img1
+      name: 'Peiname Juana',
+      url: song1,
+      thumbnail:img1,
+      genre: "folk",
+      liked: false
    },
    {
-      id:2,
+      id:22,
       artist: 'Rural Funny Funk',
-      title: 'La Llegada',
-      song: song2, 
-      thumbnail:img2
+      name: 'La Llegada',
+      url: song2, 
+      thumbnail:img2,
+      genre: "folk",
+      liked: false
    },
    {
-      id:3,
+      id:23,
       artist: 'La Plazuela',
-      title: 'Realejo Beach',
-      song: song3,
-      thumbnail:img3 
+      name: 'Realejo Beach',
+      url: song3,
+      thumbnail:img3,
+      genre: "folk",
+      liked: false
    },
    {
-      id:4,
+      id:24,
       artist: 'Red Hot Chili Peppers',
-      title: 'Dark Necessities',
-      song: song4, 
-      thumbnail:img4
+      name: 'Dark Necessities',
+      url: song4, 
+      thumbnail:img4,
+      genre: "folk",
+      liked: false
    },
 ];
