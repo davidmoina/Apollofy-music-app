@@ -201,7 +201,6 @@ export const PlayerProvider = ({children}:Props) => {
     })
   }
 
-  console.log(playerState.repeat);
   
 
   return (

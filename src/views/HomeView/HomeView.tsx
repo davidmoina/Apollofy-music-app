@@ -11,11 +11,6 @@ export const HomeView = () => {
 
   const latestPlayed = tracks.slice(0, 5)
 
-  useEffect(() => {
-    console.log('HomeView rendered');
-  }, []);
-  
-
   return (
     <>
       <CardsContainer title='Recently played' playlists={latestPlayed} isPlayable/>
