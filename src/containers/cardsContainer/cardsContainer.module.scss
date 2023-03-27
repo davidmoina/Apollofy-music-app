@@ -2,6 +2,20 @@
 
 .cardsContainer {
   margin: 0 1.5em;
+  
+  a{
+    height: 2rem;
+      margin-bottom: 1rem;
+      background-color: var.$bg-player-color;
+      color: var.$muted-color;
+      font-weight: 900;
+      padding: 0.3rem 0.7rem;
+      border-radius: 0.5rem;
+      -webkit-border-radius: 0.5rem;
+      -moz-border-radius: 0.5rem;
+      -ms-border-radius: 0.5rem;
+      -o-border-radius: 0.5rem;
+  }
 }
 
 /* Estilos para motores Webkit y blink (Chrome, Safari, Opera... )*/

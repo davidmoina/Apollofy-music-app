@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { useFetch } from '../../api/useFetch';
 import { CardsContainer } from '../../containers/cardsContainer/CardsContainer'
-import { CardAlbumsContainer } from '../../containers/cardsContainer/CardAlbumsContainer';
+import { CardAlbumsContainer } from '../../containers/cardsContainer/CardAlbumsContainer/CardAlbumsContainer';
 
 export const HomeView = () => {
 
@@ -20,7 +20,7 @@ export const HomeView = () => {
     <>
       <CardsContainer title='Recently played' playlists={latestPlayed} isPlayable/>
       <CardsContainer title='Your favorite playlists' playlists={playlists} />
-      <CardAlbumsContainer title='Recently albums' albums={ albums } />
+      <CardAlbumsContainer title='Recently albums' albums={ albums.slice(0, 7) } />
     </>
     
   )

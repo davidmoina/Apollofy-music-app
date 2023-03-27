@@ -14,7 +14,7 @@ export const CardPlaylist = ({ playlists, isPlayable}: PlaylistRecommendationPro
 
   const {thumbnail, artist, name} = playlists
 
-  const { songsSet, setCurrent} = useContext(PlayerContext)
+  const { songsSet, setCurrent} = useContext(PlayerContext);
 
   const [showPlay, setShowPlay] = useState(false);
 

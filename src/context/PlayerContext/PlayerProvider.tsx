@@ -61,7 +61,7 @@ const playerReducer = (state: typeof initialValues, action: PlayerActions): type
     case ACTIONS.SET_SONGS_ARRAY:
       return {
         ...state,
-        songsList:action.payload.songsList
+        songsList:action.payload.songsList ?? []
       }
 
     case ACTIONS.SET_CURRENT_SONG:
