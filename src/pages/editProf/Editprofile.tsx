@@ -16,17 +16,19 @@ export const EditProfile = () => {
     }
 
     return (
-        <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
-            <h1>Edit profile</h1>
-            <div>
-                <InputForm id='firstName' placeholder='Name' inputType='text' register={register} errors={errors} />
-                <InputForm id='lastName' placeholder='Last Name' inputType='text' register={register} errors={errors} />
-                <InputForm id='email' placeholder='Email' inputType='email' register={register} errors={errors} />
-                <InputForm id='birthday' placeholder='Date of birth' inputType='date' register={register} errors={errors} />
+        <div className={styles.container}>
+            <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
+                <h1>Edit profile</h1>
+                <div>
+                    <InputForm id='firstName' placeholder='Name' inputType='text' register={register} errors={errors} />
+                    <InputForm id='lastName' placeholder='Last Name' inputType='text' register={register} errors={errors} />
+                    <InputForm id='email' placeholder='Email' inputType='email' register={register} errors={errors} />
+                    <InputForm id='birthday' placeholder='Date of birth' inputType='date' register={register} errors={errors} />
 
-            </div>
+                </div>
 
-            <ButtonForm name='Save' />
-        </form>
+                <ButtonForm name='Save' />
+            </form>
+        </div>
     )
 }

@@ -13,7 +13,7 @@ import { ArtistsView } from '../views/ArtistsView/ArtistsView';
 import { RecoverPassWithEmailPage } from '../pages/RecoverPassWithEmailPage/RecoverPassWithEmailPage';
 import { RecoverPassPage } from '../pages/RecoverPassPage/RecoverPassPage'
 import { FavView } from '../views/FavView/FavView'
-import { EditProfile } from '../pages/editProf/Editprofile'
+import { EditProfile } from '../pages/editProf/EditProfile'
 
 export const Routing = () => {
   return (
