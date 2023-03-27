@@ -1,7 +1,6 @@
 @use '../../../sass/globals/variables' as var;
 
 .progressMvl{
-   // background: var.$gardient-footer-color;
    background: linear-gradient(0deg, rgb(32 29 43) 0%, rgb(24 22 29) 100%);
    margin-bottom: -0.3rem;
    margin-top: -1rem;
@@ -19,6 +18,7 @@
 
 input[type='range'].progressBar {
    overflow: hidden;
+   appearance:none;
    -webkit-appearance: none;
    background-color: var.$bg-player-color;
    height: 3.9px;
@@ -29,7 +29,6 @@ input[type='range'].progressBar {
       -webkit-appearance: none;
       color: var.$secondary-color;
       margin-top: -1px;
-      // width: 1500px;
    }
 
    &::-webkit-slider-thumb {
@@ -129,18 +128,3 @@ input[type='range'].progressBar {
       }
    }
 }
-
-// input[type='range']:hover::-webkit-slider-thumb {
-//    position: absolute;
-//    width: 16px;
-//    height: 16px;
-//    border-radius: 50%;
-//    background-color: #ffffff;
-//    -webkit-appearance: none;
-//    box-shadow: none;
-//    cursor: ew-resize;
-// }
-
- 
-
- 

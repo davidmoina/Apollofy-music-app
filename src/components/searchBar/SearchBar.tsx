@@ -1,17 +1,19 @@
-import { FormEvent, useState } from 'react'
-import styles from '../user/input/input/input.module.scss'
-import { tracks, TracksType } from './../../data/traks'
-import { MusicRow } from '../musicRow/MusicRow'
+import { FormEvent, useState } from 'react';
+import styles from '../user/input/input/input.module.scss';
+import { MusicRow } from '../musicRow/MusicRow';
+import { useFetch } from '../../api/useFetch';
+import { Track } from '../../interfaces/songs';
 
 export const SearchBar = () => {
-    const data = tracks;
+    const {data} = useFetch('http://localhost:4000/tracks');
+
     const [inputValue, setInputValue] = useState("");
-    const [filteredSongs, setFilteredSongs] = useState<TracksType[]>([]);
+    const [filteredSongs, setFilteredSongs] = useState<Track[]>([]);
     const handleSearch = (e: FormEvent<HTMLInputElement>) => {
         setInputValue(e.currentTarget.value);
 
-        if (inputValue.length > 2) {
-            const results = data.filter(song => song.title.toLowerCase().includes(inputValue.toLowerCase()));
+        if(inputValue.length > 2) {
+            const results = data.filter(song => song.name.toLowerCase().includes(inputValue.toLowerCase()));
             setFilteredSongs(results);
         } else {
             setFilteredSongs([])
@@ -38,7 +40,7 @@ export const SearchBar = () => {
 
             <div>{
                 filteredSongs.map((song, index) => (
-                    <MusicRow key={song.id} position={index} thumbnail={song.thumbnail} artist={song.artist} title={song.title}/>
+                    <MusicRow key={song.id} position={index} thumbnail={song.thumbnail} artist={song.artist} title={song.name}/>
                 ))
             }</div>
         </div>
