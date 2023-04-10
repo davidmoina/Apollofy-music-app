@@ -40,7 +40,7 @@ We are fixing some minor bugs and working on the backend side of the projects th
 - Vite <br>
 - Scss <br>
 
-## Images
+## Images
 
 #### Login Page
 ![SCR-20230409-fhl](https://user-images.githubusercontent.com/90968035/230962864-6566ba64-1177-4b7f-9a12-865f7e5f47e4.jpeg)
