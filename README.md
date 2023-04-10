@@ -20,7 +20,7 @@ https://youtu.be/BV3DyPRmLak (or click the image)
 
 Hi! In this project we tried to recreate the famous `Spotify` app. We used our own DB via json server to try all the different possibilities with `Tracks`, `Playlists`, etc. We built our own 
 personal music player from scratch, not using any other library. For this project we wanted to try something different so we made it with `Typescript` and `Scss` mixed with `TailwindCSS` to further develop our skills as developers.
-<br>
+<br><br>
 This `React` project was made with `Vite` and is purely the `Frontend` of the app although it has already all the functionality for once we add the `Backend` side of the project. It is fully responsive and compatible with mobile. 
 <br> 
 You can click on any card to start playing the music and also you can clic on the little heart icon to add it to your favorite playlist!
