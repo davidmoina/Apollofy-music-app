@@ -2,7 +2,7 @@
 
 # Apollofy-music-app (Name will change)
 
-# Index (HOLAAAAAAA)
+# Index
 
 - [Description](#description)
 - [Instructions](#instructions)
