@@ -7,7 +7,6 @@ type Props = {
 }
 
 interface Values {
-  // user: string,
   password?: string,
   email?: string,
   isAuthenticated?: boolean,
