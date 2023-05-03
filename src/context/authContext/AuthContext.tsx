@@ -1,7 +1,9 @@
 import { createContext } from "react";
+import { Values } from "./AuthProvider";
 
 export type ContextType = {
-  loginSuccess: (email: string, password: string) => void,
+  authState: Values,
+  loginSuccess: (email: string, id: string, token: string) => void,
   loginError: (error: string) => void,
   logout: () => void
 }

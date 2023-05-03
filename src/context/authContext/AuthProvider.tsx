@@ -6,11 +6,13 @@ type Props = {
   children: JSX.Element | JSX.Element[]
 }
 
-interface Values {
+export interface Values {
   password?: string,
   email?: string,
   isAuthenticated?: boolean,
   error?: string,
+  id?: string,
+  token?: string,
 }
 
 enum ACTIONS {
@@ -28,6 +30,8 @@ interface LoginActions {
 const initialValue = {
   password: "",
   email: "",
+  id: "",
+  token: "",
   isAuthenticated: false,
   error: "",
 }
@@ -37,7 +41,9 @@ const reducer = (state: Values, action: LoginActions): Values => {
     case ACTIONS.LOGIN_SUCCESS:
       return {
         email: action.payload?.email,
-        password: action.payload?.password,
+        password: "",
+        id: action.payload?.id,
+        token: action.payload?.token,
         isAuthenticated: true,
         error: ""
       }
@@ -64,12 +70,13 @@ export const AuthProvider = ({children}: Props) => {
 
   const [ authState, dispatch ] = useReducer(reducer, initialValue);
 
-  const loginSuccess = (email: string, password: string): void => {
+  const loginSuccess = (email: string, id: string, token: string): void => {
     dispatch({
       type: ACTIONS.LOGIN_SUCCESS,
       payload: {
         email,
-        password
+        token, 
+        id,
       }
     })
     toast.success("Logged successfully ", {icon: "🙌" })
@@ -99,7 +106,7 @@ export const AuthProvider = ({children}: Props) => {
   }
 
   return (
-    <AuthContext.Provider value={{loginSuccess, loginError, logout}}>
+    <AuthContext.Provider value={{loginSuccess, loginError, logout, authState}}>
       {children}
     </AuthContext.Provider>
   )
