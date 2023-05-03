@@ -4,13 +4,17 @@ import { InputForm } from '../../components/user/input/input/InputForm';
 import styles from '../LoginPage/loginPage.module.scss';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { FormInputs } from '../../interfaces';
+import useUserAuth from '../../hooks/useUserAuth';
 
 export const RegisterPage = () => {
 
   const { register, handleSubmit, formState: { errors } } = useForm<FormInputs>();
 
-  const onSubmit: SubmitHandler<FormInputs>= (data) => {
-    console.log(data);
+  const { useRegister } = useUserAuth()
+
+  const onSubmit: SubmitHandler<FormInputs>= async (data) => {
+    
+   await useRegister(data)
     
   }
 
@@ -26,7 +30,7 @@ export const RegisterPage = () => {
         </div>
         <InputForm id='email' placeholder='Email' inputType='email' register={register} errors={errors} required/>
         <InputForm id='password' placeholder='Password' inputType='password' register={register} errors={errors} required/>
-        <InputForm id='repeatPassword' placeholder='Repeat Password' inputType='password' register={register} errors={errors} required/>
+        <InputForm id='confirmPassword' placeholder='Repeat Password' inputType='password' register={register} errors={errors} required/>
         <InputForm id='birthday' placeholder='Birthday' inputType='date' register={register} errors={errors} required/>
         <div className='flex justify-center'>
             <ButtonForm name='Sign Up'/>

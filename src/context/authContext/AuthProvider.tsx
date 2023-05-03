@@ -7,8 +7,12 @@ type Props = {
 }
 
 export interface Values {
-  password?: string,
+  firstName?: string,
+  lastName?: string,
   email?: string,
+  password?: string,
+  confirmPassword?: string,
+  birthday?: Date,
   isAuthenticated?: boolean,
   error?: string,
   id?: string,
@@ -18,6 +22,8 @@ export interface Values {
 enum ACTIONS {
   LOGIN_SUCCESS = "LOGIN_SUCCESS",
   LOGIN_ERROR = "LOGIN_ERROR",
+  REGISTER_SUCCESS = "REGISTER_SUCCESS",
+  REGISTER_ERROR = "REGISTER_ERROR",
   LOGOUT = "LOGOUT",
   UPDATE_PASSWORD = "UPDATE_PASSWORD"
 }
@@ -28,8 +34,12 @@ interface LoginActions {
 }
 
 const initialValue = {
-  password: "",
+  firstName: "",
+  lastName: "",
   email: "",
+  password: "",
+  confirmPassword: "",
+  birthday: new Date(),
   id: "",
   token: "",
   isAuthenticated: false,
@@ -52,6 +62,24 @@ const reducer = (state: Values, action: LoginActions): Values => {
         ...state,
         error: action.payload?.error
       };
+    case ACTIONS.REGISTER_SUCCESS:
+      return {
+        firstName: action.payload?.firstName,
+        lastName: action.payload?.lastName,
+        email: action.payload?.email,
+        password: action.payload?.password,
+        confirmPassword: action.payload?.confirmPassword,
+        birthday: action.payload?.birthday,
+        id: action.payload?.id,
+        token: action.payload?.token,
+        isAuthenticated: true,
+        error: ""
+      }
+    case ACTIONS.REGISTER_ERROR:
+      return {
+        ...state, 
+        error: action.payload?.error
+      }
     case ACTIONS.LOGOUT:
       return initialValue;
 
@@ -92,6 +120,36 @@ export const AuthProvider = ({children}: Props) => {
     toast.error("Invalid credentials")
   }
 
+  const registerSuccess = (firstName: string, lastName: string, email: string, password: string, 
+                          confirmPassword: string,  birthday: Date, 
+                          id: string, token: string): void => {
+                            dispatch({
+      type: ACTIONS.REGISTER_SUCCESS,
+      payload: {
+        firstName,
+        lastName,
+        email,
+        password,
+        confirmPassword,
+        birthday,
+        id,
+        token,
+      }
+    })
+    toast.success("Registered successfully ", {icon: "✅" })
+  }
+
+  const registerError = (error: string):void => {
+
+    dispatch({
+      type: ACTIONS.REGISTER_ERROR,
+      payload: {
+        error
+      }
+    })
+    toast.error("Invalid register")
+  
+  }
   const logout = (): void => {
     dispatch({
       type: ACTIONS.LOGOUT
@@ -106,7 +164,17 @@ export const AuthProvider = ({children}: Props) => {
   }
 
   return (
-    <AuthContext.Provider value={{loginSuccess, loginError, logout, authState}}>
+    <AuthContext.Provider value={
+        {
+          loginSuccess, 
+          loginError, 
+          logout, 
+          authState,
+          registerSuccess,
+          registerError,
+        }
+      }
+      >
       {children}
     </AuthContext.Provider>
   )
