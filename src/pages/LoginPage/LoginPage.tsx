@@ -4,41 +4,17 @@ import { ButtonForm } from '../../components/user/input/button/ButtonForm';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { FormInputs } from '../../interfaces';
 import { BackgroundAnimated } from '../../components/BackgroundAnimated/BackgroundAnimated';
-import { useNavigate } from 'react-router-dom';
-import { useContext } from 'react';
-import { AuthContext, ContextType } from '../../context/authContext/AuthContext';
+import useUserAuth from '../../hooks/useUserAuth';
 
 export const LoginPage = () => {
 
-  const { loginSuccess, loginError, authState } = useContext(AuthContext) as ContextType;
+  const { useLogin } = useUserAuth()
 
   const { register, handleSubmit, formState: { errors } } = useForm<FormInputs>();
 
-  const navigate = useNavigate();
-
   const onSubmit: SubmitHandler<FormInputs> = async (data: FormInputs) => {
-    
-    const {email, password} = data;
-    try {
-      const response = await fetch('http://localhost:8080/users/login/', {
-        method: 'POST',
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify({email, password})
-      })
-      const json = await response.json();
-      console.log(json)
-      
-      const { id, token} = json;
-        loginSuccess(email, id, token )
-        console.log(authState)
-        navigate("/")
-    } catch {
-      loginError("Invalid credentials")
+    useLogin(data);
     }
-    }
-  
 
   return (
     <>
