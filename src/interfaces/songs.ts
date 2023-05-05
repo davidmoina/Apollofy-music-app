@@ -14,13 +14,13 @@ export interface Album {
 	artist: string;
 }
 
-export interface Artist {
-	id: number;
-	name: string;
-	genres: string[];
-	popularity: number;
-	photoUrl: string;
-}
+// export interface Artist {
+//   id: number;
+//   name: string;
+//   genres: string[];
+//   popularity: number;
+//   photoUrl: string;
+// }
 
 export interface Genre {
 	id: number;
@@ -42,13 +42,28 @@ export enum PrimaryColor {
 }
 
 export interface Track {
-	id: number;
+	_id: string;
+	trackId: string;
+	rating: number;
+	popularity: number;
+	duration: number;
+	color: string;
+	userId: string;
+	albums: string;
+	releasedAt: Date;
+	likedBy: string[];
 	name: string;
-	artist: string;
+	artists: Artist[];
 	url: string;
 	thumbnail: string;
 	genre: string;
 	liked: boolean;
+}
+
+export interface Artist {
+	id: string;
+	name: string;
+	_id: string;
 }
 
 export interface User {

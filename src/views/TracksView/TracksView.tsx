@@ -15,7 +15,8 @@ const samplePlaylists = {
 };
 
 export const TracksView = () => {
-	const { data } = useFetch('http://localhost:4000/tracks');
+	const { VITE_APP_SERVICE_URL } = import.meta.env;
+	const { data } = useFetch(`${VITE_APP_SERVICE_URL}/track`);
 
 	return (
 		<div>

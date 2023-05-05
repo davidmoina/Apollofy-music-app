@@ -1,9 +1,13 @@
 import styles from './musicRow.module.scss';
 import { useContext, useState } from 'react';
 // icons
-import { AiFillHeart, AiOutlineHeart } from 'react-icons/ai';
+import {
+	AiFillHeart,
+	AiOutlineHeart,
+	AiOutlineCaretRight,
+} from 'react-icons/ai';
 import { MdPlayCircleFilled, MdPauseCircleFilled } from 'react-icons/md';
-import { Track } from '../../interfaces/songs';
+import { Artist, Track } from '../../interfaces/songs';
 import {
 	ContextTypeFav,
 	FavSongContext,
@@ -12,20 +16,13 @@ import { PlayerContext } from '../../context/PlayerContext/PlayerContext';
 import { RiPlayListAddLine } from 'react-icons/ri';
 
 export interface Props {
-	position: number;
 	thumbnail: string;
-	artist: string;
+	artist: Artist[];
 	title: string;
 	actualSong: Track;
 }
 
-export const MusicRow = ({
-	actualSong,
-	position,
-	thumbnail,
-	artist,
-	title,
-}: Props) => {
+export const MusicRow = ({ actualSong, thumbnail, artist, title }: Props) => {
 	const { addToFavorite, removeFromFavorite } = useContext(
 		FavSongContext
 	) as ContextTypeFav;
@@ -40,7 +37,7 @@ export const MusicRow = ({
 	const handleClickSong = () => {
 		setIsPlaying(!isPlaying);
 
-		if (actualSong?.id !== audio?.id) {
+		if (actualSong?._id !== audio?._id) {
 			songsSet(actualSong);
 			setCurrent(0, actualSong);
 			return;
@@ -63,14 +60,14 @@ export const MusicRow = ({
 		if (isLiked) {
 			setIsLiked(!isLiked);
 			song.liked = false;
-			postData(`http://localhost:4000/tracks/${song.id}`, {
+			postData(`http://localhost:4000/tracks/${song._id}`, {
 				...song,
 				liked: false,
 			});
 			removeFromFavorite(song);
 		} else {
 			setIsLiked(!isLiked);
-			postData(`http://localhost:4000/tracks/${song.id}`, {
+			postData(`http://localhost:4000/tracks/${song._id}`, {
 				...song,
 				liked: true,
 			});
@@ -92,20 +89,22 @@ export const MusicRow = ({
 					className={`text-center ${styles.spanPlay} text-md`}
 					onClick={handleClickSong}
 				>
-					{actualSong.id === audio?.id && isPlaying ? (
+					{actualSong._id === audio?._id && isPlaying ? (
 						<MdPauseCircleFilled className='text-3xl rounded-lg' />
 					) : play ? (
 						<MdPlayCircleFilled
 							className={`${styles.play} text-3xl rounded-lg text-[#ffff66]`}
 						/>
 					) : (
-						position + 1
+						<AiOutlineCaretRight
+							className={`${styles.play} text-1xl rounded-lg m-2 text-[#ffffff]`}
+						/>
 					)}
 				</span>
 				<img src={thumbnail} alt={title} />
 				<div className={styles.songInfo}>
 					<span>{title}</span>
-					<span>{artist}</span>
+					<span>{artist?.map(({ name }) => name).join(' - ')}</span>
 				</div>
 			</div>
 			<p className={`hidden lg:block ${styles.albumTitle}`}>{title}</p>

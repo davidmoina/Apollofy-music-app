@@ -5,7 +5,7 @@ import { useFetch } from '../../api/useFetch';
 import { Track } from '../../interfaces/songs';
 
 export const SearchBar = () => {
-	const { data } = useFetch('http://localhost:4000/tracks');
+	const { data } = useFetch('http://localhost:4000/track');
 
 	const [inputValue, setInputValue] = useState('');
 	const [filteredSongs, setFilteredSongs] = useState<Track[]>([]);
@@ -42,7 +42,6 @@ export const SearchBar = () => {
 					<MusicRow
 						actualSong={song}
 						key={song.id}
-						position={index}
 						thumbnail={song.thumbnail}
 						artist={song.artist}
 						title={song.name}
