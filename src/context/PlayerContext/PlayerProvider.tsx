@@ -171,9 +171,9 @@ export const PlayerProvider = ({children}:Props) => {
   //toggle random
   const toggleRandom = () => {
     dispatch({
-      type: ACTIONS.TOGGLE_REPEAT,
+      type: ACTIONS.TOGGLE_RANDOM,
       payload: {
-        repeat: !playerState.random
+        random: !playerState.random
       }
     })
   }

@@ -1,40 +1,40 @@
 export interface Musics {
   playlists: Playlist[];
-  tracks:    Track[];
-  user:      User[];
-  albums:    Album[];
-  artists:   Artist[];
-  genres:    Genre[];
+  tracks: Track[];
+  user: User[];
+  albums: Album[];
+  artists: Artist[];
+  genres: Genre[];
 }
 
 export interface Album {
-  id:       number;
-  name:     string;
+  id: number;
+  name: string;
   imageUrl?: string;
-  artist:   string;
+  artist: string;
 }
 
-export interface Artist {
-  id:         number;
-  name:       string;
-  genres:     string[];
-  popularity: number;
-  photoUrl:   string;
-}
+// export interface Artist {
+//   id: number;
+//   name: string;
+//   genres: string[];
+//   popularity: number;
+//   photoUrl: string;
+// }
 
 export interface Genre {
-  id:   number;
+  id: number;
   name: string;
 }
 
 export interface Playlist {
-  id?:               number;
-  name:             string;
-  isFollowed?:       boolean;
-  thumbnail:        string;
-  description?:      string;
+  id?: number;
+  name: string;
+  isFollowed?: boolean;
+  thumbnail: string;
+  description?: string;
   publicAccessible?: boolean;
-  primaryColor?:     PrimaryColor;
+  primaryColor?: PrimaryColor;
 }
 
 export enum PrimaryColor {
@@ -42,20 +42,35 @@ export enum PrimaryColor {
 }
 
 export interface Track {
-  id:        number;
-  name:      string;
-  artist:    string;
-  url:       string;
+  _id: string;
+  trackId: string;
+  rating: number;
+  popularity: number;
+  duration: number;
+  color: string;
+  userId: string;
+  albums: string;
+  releasedAt: Date;
+  likedBy: string[];
+  name: string;
+  artists: Artist[];
+  url: string;
   thumbnail: string;
-  genre:     string;
-  liked:     boolean;
+  genre: string;
+  liked: boolean;
+}
+
+export interface Artist {
+  id: string;
+  name: string;
+  _id: string;
 }
 
 export interface User {
-  id:             number;
-  first_name:     string;
-  last_name:      string;
-  email:          string;
+  id: number;
+  first_name: string;
+  last_name: string;
+  email: string;
   profilePicture: string;
-  isLoggedin:     boolean;
+  isLoggedin: boolean;
 }
