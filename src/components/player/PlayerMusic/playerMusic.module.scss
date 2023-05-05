@@ -1,130 +1,127 @@
 @use '../../../sass/globals/variables' as var;
 
-.progressMvl{
-   background: linear-gradient(0deg, rgb(32 29 43) 0%, rgb(24 22 29) 100%);
-   margin-bottom: -0.3rem;
-   margin-top: -1rem;
+.progressMvl {
+	background: linear-gradient(0deg, rgb(32 29 43) 0%, rgb(24 22 29) 100%);
+	margin-bottom: -0.3rem;
+	margin-top: -1rem;
 }
 
-.containerPlayer{
-   background: var.$gardient-footer-color;
+.containerPlayer {
+	background: var.$gardient-footer-color;
 
-   span{
-      color: var.$light-grey;
-      font-size: 0.8em;
-   }
-   
+	span {
+		color: var.$light-grey;
+		font-size: 0.8em;
+	}
 }
 
 input[type='range'].progressBar {
-   overflow: hidden;
-   appearance:none;
-   -webkit-appearance: none;
-   background-color: var.$bg-player-color;
-   height: 3.9px;
-   margin-top: 7px;
-   border-radius: 5px;
+	overflow: hidden;
+	appearance: none;
+	-webkit-appearance: none;
+	background-color: var.$bg-player-color;
+	height: 3.9px;
+	margin-top: 7px;
+	border-radius: 5px;
 
-   &::-webkit-slider-runnable-track {
-      -webkit-appearance: none;
-      color: var.$secondary-color;
-      margin-top: -1px;
-   }
+	&::-webkit-slider-runnable-track {
+		-webkit-appearance: none;
+		color: var.$secondary-color;
+		margin-top: -1px;
+	}
 
-   &::-webkit-slider-thumb {
-      width: 1px;
-      -webkit-appearance: none;
-      cursor: ew-resize;
-      background: #434343;
-      box-shadow: -280px 0 0 280px var.$muted-color;
-   }
+	&::-webkit-slider-thumb {
+		width: 1px;
+		-webkit-appearance: none;
+		cursor: ew-resize;
+		background: #434343;
+		box-shadow: -280px 0 0 280px var.$muted-color;
+	}
 
-   &:hover::-webkit-slider-thumb {
-      height: 36px;
-      width: 16px;
-      border-radius: 3px;
-      background: #ffffff;
-      cursor: pointer;
-   }
-   
+	&:hover::-webkit-slider-thumb {
+		height: 36px;
+		width: 16px;
+		border-radius: 3px;
+		background: #ffffff;
+		cursor: pointer;
+	}
 }
 
-.modal{
-   position: fixed;
-   top: 500px;
-   width: 100%;
-   background: var.$gardient-footer-color;
-   left: 0;
+.modal {
+	position: fixed;
+	top: 500px;
+	width: 100%;
+	background: var.$gardient-footer-color;
+	left: 0;
 
-   .modalContent{
-      height: 100vh;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-evenly;
-      align-items: center;
-   }
+	.modalContent {
+		height: 100vh;
+		display: flex;
+		flex-direction: column;
+		justify-content: space-evenly;
+		align-items: center;
+	}
 
-   .buttonModal{
-      margin-top: -3rem;
-      width: 90%;
-      font-size: 2rem;
-      color: #8f85ad;
-      line-height: 0;
-   }
+	.buttonModal {
+		margin-top: -3rem;
+		width: 90%;
+		font-size: 2rem;
+		color: #8f85ad;
+		line-height: 0;
+	}
 
-   .imgSong{
-      width: 90%;
-      margin-top: -3rem;
+	.imgSong {
+		width: 90%;
+		margin-top: -3rem;
 
-      img{
-         width: 100%;
-         border-radius: 0.5rem;
-         -webkit-border-radius: 0.5rem;
-         -moz-border-radius: 0.5rem;
-         -ms-border-radius: 0.5rem;
-         -o-border-radius: 0.5rem;
-      }
-   }
+		img {
+			width: 100%;
+			border-radius: 0.5rem;
+			-webkit-border-radius: 0.5rem;
+			-moz-border-radius: 0.5rem;
+			-ms-border-radius: 0.5rem;
+			-o-border-radius: 0.5rem;
+		}
+	}
 
-   .infoTrack{
-      width: 90%;
-      margin-top: -2rem;
-      text-align: left;
+	.infoTrack {
+		width: 90%;
+		margin-top: -2rem;
+		text-align: left;
 
-      h3{
-         margin-bottom: 1rem;
-      }
-   }
-
+		h3 {
+			margin-bottom: 1rem;
+		}
+	}
 }
 
 .modalEnterActive {
-   transform: translateY(-500px);
-   transition: transform 0.3s ease-out;
-   -webkit-transition: transform 0.3s ease-out;
-   -moz-transition: transform 0.3s ease-out;
-   -ms-transition: transform 0.3s ease-out;
-   -o-transition: transform 0.3s ease-out;
-   -webkit-transform: translateY(-500px);
-   -moz-transform: translateY(-500px);
-   -ms-transform: translateY(-500px);
-   -o-transform: translateY(-500px);
+	transform: translateY(-500px);
+	transition: transform 0.3s ease-out;
+	-webkit-transition: transform 0.3s ease-out;
+	-moz-transition: transform 0.3s ease-out;
+	-ms-transition: transform 0.3s ease-out;
+	-o-transition: transform 0.3s ease-out;
+	-webkit-transform: translateY(-500px);
+	-moz-transform: translateY(-500px);
+	-ms-transform: translateY(-500px);
+	-o-transform: translateY(-500px);
 }
 
 @media (min-width: 641px) {
-   .clickModal {
-      pointer-events: none;
-   }
+	.clickModal {
+		pointer-events: none;
+	}
 }
 
 @media screen and (min-width: 553px) {
-   .imgSong{
-      width: 90% !important;
-      margin-top: -5rem;
+	.imgSong {
+		width: 90% !important;
+		margin-top: -5rem;
 
-      img{
-         max-width: 70% !important;
-         border-radius: 1rem;
-      }
-   }
+		img {
+			max-width: 70% !important;
+			border-radius: 1rem;
+		}
+	}
 }

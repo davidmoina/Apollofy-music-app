@@ -1,33 +1,33 @@
 @use '../../../sass/globals/variables' as var;
 
 input[type='range'].progressVol {
-   overflow: hidden;
-   -webkit-appearance: none;
-   background-color: var.$bg-player-color ;
-   height: 5px;
-   margin-top: 10px;
-   border-radius: 5px;
+	overflow: hidden;
+	-webkit-appearance: none;
+	background-color: var.$bg-player-color;
+	height: 5px;
+	margin-top: 10px;
+	border-radius: 5px;
 
-   &::-webkit-slider-runnable-track {
-      -webkit-appearance: none;
-      color: var.$secondary-color;
-      margin-top: -1px;
-      // width: 1500px;
-   }
+	&::-webkit-slider-runnable-track {
+		-webkit-appearance: none;
+		color: var.$secondary-color;
+		margin-top: -1px;
+		// width: 1500px;
+	}
 
-   &::-webkit-slider-thumb {
-      width: 1px;
-      -webkit-appearance: none;
-      cursor: ew-resize;
-      background: var.$muted-color;
-      box-shadow: -80px 0 0 80px var.$muted-color;
-   }
+	&::-webkit-slider-thumb {
+		width: 1px;
+		-webkit-appearance: none;
+		cursor: ew-resize;
+		background: var.$muted-color;
+		box-shadow: -80px 0 0 80px var.$muted-color;
+	}
 
-   &:hover::-webkit-slider-thumb {
-      height: 36px;
-      width: 16px;
-      border-radius: 3px;
-      background: #ffffff;
-      cursor: pointer;
-   }
+	&:hover::-webkit-slider-thumb {
+		height: 36px;
+		width: 16px;
+		border-radius: 3px;
+		background: #ffffff;
+		cursor: pointer;
+	}
 }

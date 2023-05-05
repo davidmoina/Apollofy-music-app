@@ -1,51 +1,45 @@
 @use '../../sass/globals/variables' as var;
 
 .container {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 100%;
-  color: var.$secondary-color;
-  padding-left: 3em;
-  padding-bottom: 1.5em;
-  border-bottom: 1px solid #8f85ad;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	width: 100%;
+	color: var.$secondary-color;
+	padding-left: 3em;
+	padding-bottom: 1.5em;
+	border-bottom: 1px solid #8f85ad;
 
-  
+	// &:hover {
+	//   background-color: var.$bg-player-color;
+	// }
 
-  // &:hover {
-  //   background-color: var.$bg-player-color;
-  // }
+	.title {
+		display: flex;
+		color: var.$light-grey;
+		min-width: 25%;
+		font-weight: 300;
+		letter-spacing: 0.05rem;
+		text-align: center;
+		padding-right: 3em;
+	}
 
+	.album {
+		color: var.$light-grey;
+		min-width: 25%;
+		font-weight: 300;
+		letter-spacing: 0.05rem;
+		text-align: center;
+		margin-right: 3em;
+	}
 
-  .title {
-    display:flex;
-    color: var.$light-grey;
-    min-width: 25%;
-    font-weight: 300;
-    letter-spacing: 0.05rem;
-    text-align: center;
-    padding-right: 3em;
-
-  }
-
-  .album {
-    color: var.$light-grey;
-    min-width: 25%;
-    font-weight: 300;
-    letter-spacing: 0.05rem;
-    text-align: center;
-    margin-right: 3em;
-  }
-
-  .timeIcon {
-    color: var.$light-grey;
-    min-width: 25%;
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    gap: 1em;
-    padding-right:2em;
-  }
-
-
+	.timeIcon {
+		color: var.$light-grey;
+		min-width: 25%;
+		display: flex;
+		justify-content: flex-end;
+		align-items: center;
+		gap: 1em;
+		padding-right: 2em;
+	}
 }

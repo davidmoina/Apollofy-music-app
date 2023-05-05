@@ -1,7 +1,5 @@
-import React from 'react'
+import React from 'react';
 
 export const LibraryView = () => {
-  return (
-    <div>LibraryView</div>
-  )
-}
+	return <div>LibraryView</div>;
+};

@@ -1,13 +1,12 @@
-import React from 'react'
+import React from 'react';
 import { Navigate, Outlet } from 'react-router-dom';
 
 export const ProtectedRoutes = () => {
+	const user: boolean = true;
 
-  const user: boolean = true;
+	if (!user) {
+		return <Navigate to='/login' />;
+	}
 
-  if(!user) {
-    return <Navigate to="/login"/>
-  }
-
-  return <Outlet/>
-}
+	return <Outlet />;
+};

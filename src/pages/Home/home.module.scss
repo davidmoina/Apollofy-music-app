@@ -1,38 +1,38 @@
 @use '../../sass/globals/variables' as var;
 
-.homeContainer {  
-  display: grid;
-  grid-template-columns: auto 1fr 1fr;
-  grid-template-rows: 1fr 1fr auto;
-  height: 100vh;
-  gap: 0px 0px;
-  grid-auto-flow: row;
-  grid-template-areas:
-    "asideContainer mainContainer mainContainer"
-    "asideContainer mainContainer mainContainer"
-    "playerContainer playerContainer playerContainer";
+.homeContainer {
+	display: grid;
+	grid-template-columns: auto 1fr 1fr;
+	grid-template-rows: 1fr 1fr auto;
+	height: 100vh;
+	gap: 0px 0px;
+	grid-auto-flow: row;
+	grid-template-areas:
+		'asideContainer mainContainer mainContainer'
+		'asideContainer mainContainer mainContainer'
+		'playerContainer playerContainer playerContainer';
 }
 
-.asideContainer { 
-  grid-area: asideContainer;
-  background: var.$gradient-sidebar-color;
+.asideContainer {
+	grid-area: asideContainer;
+	background: var.$gradient-sidebar-color;
 
-  @media(max-width: 768px) {
-    display: none;
-  }
+	@media (max-width: 768px) {
+		display: none;
+	}
 }
 
-.playerContainer { 
-  grid-area: playerContainer;
+.playerContainer {
+	grid-area: playerContainer;
 }
 
-.mainContainer { 
-  grid-area: mainContainer;
-  background-color: var.$bg-dark-color;
-  overflow: auto;
+.mainContainer {
+	grid-area: mainContainer;
+	background-color: var.$bg-dark-color;
+	overflow: auto;
 
-  // .contentContainer {
-  //   height: auto;
-  //   overflow: auto;
-  // }
+	// .contentContainer {
+	//   height: auto;
+	//   overflow: auto;
+	// }
 }

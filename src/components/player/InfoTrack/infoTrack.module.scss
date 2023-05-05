@@ -1,23 +1,23 @@
 @use '../../../sass/globals/variables' as var;
 
-.imgPlayer{
-   max-width: 4rem;
+.imgPlayer {
+	max-width: 4rem;
 }
 
-.textInfo{
-   color: var.$secondary-color;
+.textInfo {
+	color: var.$secondary-color;
 
-   h2{
-      font-weight: 600;
-      line-height: 1em;
-      margin-bottom: 5px;
-      max-width: 8rem;
-      font-size: 0.9em;
-   }
+	h2 {
+		font-weight: 600;
+		line-height: 1em;
+		margin-bottom: 5px;
+		max-width: 8rem;
+		font-size: 0.9em;
+	}
 
-   h3{
-      font-size: 0.6em;
-      color: var.$muted-color;
-      max-width: 8rem;
-   }
+	h3 {
+		font-size: 0.6em;
+		color: var.$muted-color;
+		max-width: 8rem;
+	}
 }

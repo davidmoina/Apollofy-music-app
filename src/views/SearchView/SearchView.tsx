@@ -1,10 +1,8 @@
-import React from 'react'
-import { SearchBar } from '../../components/searchBar/SearchBar'
+import React from 'react';
+import { SearchBar } from '../../components/searchBar/SearchBar';
 
 const SearchView = () => {
-  return (
-    <SearchBar />
-  )
-}
+	return <SearchBar />;
+};
 
-export default SearchView
+export default SearchView;

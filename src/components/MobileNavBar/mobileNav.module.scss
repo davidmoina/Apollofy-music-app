@@ -1,12 +1,11 @@
 @use '../../sass/globals/variables' as var;
 
-
-.navMobil{
-    height: 4rem;
-    background: var.$gardient-footer-color;
+.navMobil {
+	height: 4rem;
+	background: var.$gardient-footer-color;
 }
 
 .textMob {
-    font-family: var.$font-primary;
-    color: white;
+	font-family: var.$font-primary;
+	color: white;
 }

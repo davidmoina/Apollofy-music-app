@@ -1,9 +1,5 @@
-import styles from './container.module.scss'
+import styles from './container.module.scss';
 
-export const Container = ({children}:any) => {
-  return (
-    <div className={styles.container}>
-        {children}
-    </div>
-  )
-}
+export const Container = ({ children }: any) => {
+	return <div className={styles.container}>{children}</div>;
+};

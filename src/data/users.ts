@@ -1,17 +1,17 @@
-import img1 from "../assets/images/monkey.jpg";
+import img1 from '../assets/images/monkey.jpg';
 
 type Users = {
-   id: number,
-   name: string,
-   accountType: string,
-   thumbnail: string
-}
+	id: number;
+	name: string;
+	accountType: string;
+	thumbnail: string;
+};
 
-export const users:Users [] = [
-   {
-      id:1,
-      name: 'Hola!',
-      accountType: 'Premium',
-      thumbnail:img1
-   }
-]
+export const users: Users[] = [
+	{
+		id: 1,
+		name: 'Hola!',
+		accountType: 'Premium',
+		thumbnail: img1,
+	},
+];

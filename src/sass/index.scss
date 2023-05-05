@@ -7,12 +7,12 @@
 *,
 *::after,
 *::before {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
 }
 
 :root {
-  font-family: var.$font-primary;
-  --toastify-color-dark: 	#221F2E;
+	font-family: var.$font-primary;
+	--toastify-color-dark: #221f2e;
 }
