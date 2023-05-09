@@ -1,4 +1,5 @@
 @use './globals/variables' as var;
+@forward './globals/errorMessage';
 
 @tailwind base;
 @tailwind components;

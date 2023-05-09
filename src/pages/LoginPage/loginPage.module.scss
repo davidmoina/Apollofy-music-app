@@ -115,9 +115,10 @@
 			}
 		}
 	}
+}
 
-	.noAccountText {
-		color: var.$muted-color;
-		margin-bottom: 2em;
-	}
+.noAccountText {
+	color: var.$muted-color;
+	margin-top: 1em;
+	margin-bottom: 2em;
 }

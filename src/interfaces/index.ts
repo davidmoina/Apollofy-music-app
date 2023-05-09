@@ -1,12 +1,13 @@
 export interface FormInputs {
-	firstName?: string;
-	lastName?: string;
+	firstName: string;
+	lastName: string;
 	email: string;
 	password: string;
-	confirmPassword?: string;
-	birthday?: Date;
-	oldPassword?: string;
-	newPassword?: string;
+	confirmPassword: string;
+	birthday: Date;
+	oldPassword: string;
+	newPassword: string;
+	repeatPassword: string;
 }
 
 export interface Tracks {
