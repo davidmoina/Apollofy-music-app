@@ -26,6 +26,9 @@ function useUserAuth() {
 				body: JSON.stringify({ email, password }),
 			});
 			const json = await response.json();
+
+			if(!response.ok) return loginError(json.message as string)
+			
 			// console.log(json);
 
 			const { id, token } = json;
