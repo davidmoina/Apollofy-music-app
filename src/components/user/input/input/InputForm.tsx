@@ -1,11 +1,11 @@
 import { UseFormRegister, Path, RegisterOptions } from 'react-hook-form';
 import { FormInputs } from '../../../../interfaces';
 import styles from './input.module.scss';
-import { ReactElement } from 'react';
+import { HTMLInputTypeAttribute, ReactElement } from 'react';
 
 type InputProps = {
-	children: ReactElement | boolean;
-	inputType: string;
+	children?: ReactElement | boolean;
+	inputType: HTMLInputTypeAttribute;
 	id: Path<FormInputs>;
 	placeholder: string;
 	register: UseFormRegister<FormInputs>;

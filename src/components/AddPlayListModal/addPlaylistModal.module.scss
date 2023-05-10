@@ -1,0 +1,25 @@
+@use '../../sass/globals/variables' as var;
+
+.textArea {
+	width: 100%;
+	background-color: transparent;
+	outline: 1px solid var.$muted-color;
+	border-radius: var.$radius;
+	padding: 1em;
+	margin-top: -1.5em;
+	margin-bottom: 1em;
+	opacity: 0.8;
+	color: var.$secondary-color;
+	resize: none;
+
+	&:focus {
+		outline: none;
+		box-shadow: 0 0 0 0.2em var.$bg-dark-color, 0 0 0 0.4em var.$primary-color;
+		border: none;
+		transition: border var.$tspeed_slow var.$ttype_squish;
+	}
+
+	&::placeholder {
+		color: var.$muted-color;
+	}
+}

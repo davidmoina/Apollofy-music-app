@@ -8,6 +8,8 @@ export interface FormInputs {
 	oldPassword: string;
 	newPassword: string;
 	repeatPassword: string;
+	playlistName: string;
+	playlistDescription: string;
 }
 
 export interface Tracks {
