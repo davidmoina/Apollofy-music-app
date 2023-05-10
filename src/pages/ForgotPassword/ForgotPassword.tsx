@@ -32,7 +32,7 @@ export const ForgotPassword = () => {
 				headers: {
 					'Content-Type': 'application/json',
 				},
-				body: JSON.stringify({email, token}),
+				body: JSON.stringify({email, token, url: VITE_APP_SERVICE_URL}),
 			})
 			const json = await response.json();
 			console.log(json);
