@@ -31,7 +31,7 @@ export const Routing = () => {
 						<Route path='artists' element={<ArtistsView />} />
 						<Route path='fav' element={<FavView />} />
 						<Route path='edit-profile' element={<EditProfile />} />
-						<Route path='recovery-password' element={<ChangePassView />} />
+						<Route path='change-password' element={<ChangePassView />} />
 					</Route>
 				</Route>
 				<Route path='/login' element={<LoginPage />} />

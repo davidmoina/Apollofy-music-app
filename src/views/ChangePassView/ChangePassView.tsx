@@ -3,6 +3,7 @@ import styles from '../../pages/LoginPage/loginPage.module.scss';
 import { InputForm } from '../../components/user/input/input/InputForm';
 import { FormInputs } from '../../interfaces';
 import { ButtonForm } from '../../components/user/input/button/ButtonForm';
+import { toast } from 'react-toastify';
 
 export const ChangePassView = () => {
 	const {
@@ -20,11 +21,57 @@ export const ChangePassView = () => {
 			clearErrors('repeatPassword');
 		}
 
+		console.log(errors);
+
 		return pass1 === pass2;
 	};
 
-	const onSubmit: SubmitHandler<FormInputs> = data => {
-		console.log(data);
+	const onSubmit: SubmitHandler<FormInputs> = async data => {
+		const toastId = toast.loading('Please wait...');
+		const userId = localStorage.getItem('actualUser');
+
+		console.log(userId);
+
+		try {
+			const response = await fetch(
+				`${
+					import.meta.env.VITE_APP_SERVICE_URL
+				}/users/change-password/${userId}`,
+				{
+					method: 'PUT',
+					headers: {
+						'Content-Type': 'application/json',
+					},
+					body: JSON.stringify({
+						oldPassword: data.oldPassword,
+						newPassword: data.newPassword,
+					}),
+				}
+			);
+			const result = await response.json();
+
+			if (response.status === 400) {
+				return toast.update(toastId, {
+					render: result.message,
+					type: 'error',
+					isLoading: false,
+					hideProgressBar: false,
+					autoClose: 2000,
+				});
+			}
+
+			toast.update(toastId, {
+				render: 'All is good',
+				type: 'success',
+				isLoading: false,
+				autoClose: 2000,
+				hideProgressBar: false,
+			});
+			console.log(result);
+			return;
+		} catch (error) {
+			console.log(error);
+		}
 	};
 
 	return (
@@ -54,11 +101,20 @@ export const ChangePassView = () => {
 					register={register}
 					validations={{
 						required: true,
+						pattern:
+							/^(?=.*\d)(?=.*[\u0021-\u002b\u003c-\u0040])(?=.*[A-Z])(?=.*[a-z])\S{8,16}$/,
 					}}
 				>
-					{errors.newPassword?.type === 'required' && (
-						<span className='errorMessage'>Field required</span>
-					)}
+					<>
+						{errors.newPassword?.type === 'pattern' && (
+							<span className='errorMessage'>
+								Password must don't have white spaces
+							</span>
+						)}
+						{errors.newPassword?.type === 'required' && (
+							<span className='errorMessage'>Field required</span>
+						)}
+					</>
 				</InputForm>
 				<InputForm
 					validate={validatePass}

@@ -29,6 +29,7 @@ function useUserAuth() {
 			console.log(json);
 
 			const { id, token } = json;
+			localStorage.setItem('actualUser', id);
 			loginSuccess(email, id, token);
 			console.log(authState);
 			navigate('/');
@@ -58,6 +59,7 @@ function useUserAuth() {
 			const json = await response.json();
 			const { id, token } = json;
 			if (!response.ok) {
+				localStorage.setItem('actualUser', id);
 				return;
 			}
 			registerSuccess(
