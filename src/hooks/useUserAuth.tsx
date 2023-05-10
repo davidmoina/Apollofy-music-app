@@ -26,12 +26,12 @@ function useUserAuth() {
 				body: JSON.stringify({ email, password }),
 			});
 			const json = await response.json();
-			console.log(json);
+			// console.log(json);
 
 			const { id, token } = json;
-			localStorage.setItem('actualUser', id);
+			window.localStorage.setItem('User', JSON.stringify({ email, id, token }));
 			loginSuccess(email, id, token);
-			console.log(authState);
+			// console.log(authState);
 			navigate('/');
 		} catch {
 			loginError('Invalid credentials');
