@@ -2,8 +2,6 @@ import { useContext } from 'react';
 import { FormInputs } from '../interfaces';
 import { AuthContext, ContextType } from '../context/authContext/AuthContext';
 import { useNavigate } from 'react-router-dom';
-import { Id } from 'react-toastify';
-import { UserData } from '../pages/editProf/Editprofile';
 
 function useUserAuth() {
 	const { VITE_APP_SERVICE_URL } = import.meta.env;
@@ -28,15 +26,19 @@ function useUserAuth() {
 				body: JSON.stringify({ email, password }),
 			});
 			const json = await response.json();
-			console.log(json);
+
+			if (!response.ok) return loginError(json.message as string);
+
+			// console.log(json);
 
 			const { id, token } = json;
 			window.localStorage.setItem('User', JSON.stringify({ email, id, token }));
 			loginSuccess(email, id, token);
-			console.log(authState);
+			// console.log(authState);
 			navigate('/');
-		} catch {
-			loginError('Invalid credentials');
+		} catch (error) {
+			// loginError('Invalid credentials');
+			console.log(error);
 		}
 	};
 
@@ -61,6 +63,7 @@ function useUserAuth() {
 			const json = await response.json();
 			const { id, token } = json;
 			if (!response.ok) {
+				localStorage.setItem('actualUser', id);
 				return;
 			}
 			registerSuccess(
@@ -117,6 +120,7 @@ function useUserAuth() {
 		useGetUser,
 		useLogin,
 		useRegister,
+		authState,
 	};
 }
 export default useUserAuth;

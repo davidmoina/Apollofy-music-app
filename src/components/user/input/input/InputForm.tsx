@@ -1,43 +1,45 @@
-import { UseFormRegister, Path, FieldErrors } from 'react-hook-form';
+import { UseFormRegister, Path, RegisterOptions } from 'react-hook-form';
 import { FormInputs } from '../../../../interfaces';
 import styles from './input.module.scss';
+import { HTMLInputTypeAttribute, ReactElement } from 'react';
 
 type InputProps = {
-	inputType: string;
+	children?: ReactElement | boolean;
+	inputType: HTMLInputTypeAttribute;
 	id: Path<FormInputs>;
 	placeholder: string;
 	register: UseFormRegister<FormInputs>;
-	errors: FieldErrors;
-	required?: boolean;
+	validations: RegisterOptions;
+	validate?: () => boolean;
 	defaultValue?: string;
 };
 
 export const InputForm = ({
+	children,
 	inputType,
 	id,
 	placeholder,
 	register,
-	errors,
-	required,
+	validate,
+	validations,
 	defaultValue,
 }: InputProps) => {
 	return (
 		<div className={styles.inputWrapper}>
 			<input
-				{...register(id, { required })}
+				{...register(id, validations)}
 				type={inputType}
 				id={id}
 				className={styles.formInput}
 				placeholder={placeholder}
 				autoComplete='given-name'
+				onKeyUp={validate}
 				defaultValue={defaultValue}
 			/>
 			<label htmlFor={id} className={styles.formLabel}>
 				{placeholder}
 			</label>
-			{errors[id] && (
-				<span className={styles.errorMsg}>{placeholder} is required*</span>
-			)}
+			{children}
 		</div>
 	);
 };
