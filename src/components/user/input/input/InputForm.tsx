@@ -9,6 +9,7 @@ type InputProps = {
 	register: UseFormRegister<FormInputs>;
 	errors: FieldErrors;
 	required?: boolean;
+	defaultValue?: string;
 };
 
 export const InputForm = ({
@@ -18,6 +19,7 @@ export const InputForm = ({
 	register,
 	errors,
 	required,
+	defaultValue,
 }: InputProps) => {
 	return (
 		<div className={styles.inputWrapper}>
@@ -28,6 +30,7 @@ export const InputForm = ({
 				className={styles.formInput}
 				placeholder={placeholder}
 				autoComplete='given-name'
+				defaultValue={defaultValue}
 			/>
 			<label htmlFor={id} className={styles.formLabel}>
 				{placeholder}
