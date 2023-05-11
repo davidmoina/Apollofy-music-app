@@ -1,6 +1,7 @@
 export interface FormInputs {
-	firstName: string;
-	lastName: string;
+	name?: string;
+	firstName?: string;
+	lastName?: string;
 	email: string;
 	password: string;
 	confirmPassword: string;
@@ -8,6 +9,8 @@ export interface FormInputs {
 	oldPassword: string;
 	newPassword: string;
 	repeatPassword: string;
+	playlistName: string;
+	playlistDescription: string;
 }
 
 export interface Tracks {

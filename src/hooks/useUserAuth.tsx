@@ -27,8 +27,8 @@ function useUserAuth() {
 			});
 			const json = await response.json();
 
-			if(!response.ok) return loginError(json.message as string)
-			
+			if (!response.ok) return loginError(json.message as string);
+
 			// console.log(json);
 
 			const { id, token } = json;
@@ -36,8 +36,9 @@ function useUserAuth() {
 			loginSuccess(email, id, token);
 			// console.log(authState);
 			navigate('/');
-		} catch {
-			loginError('Invalid credentials');
+		} catch (error) {
+			// loginError('Invalid credentials');
+			console.log(error);
 		}
 	};
 
@@ -80,10 +81,46 @@ function useUserAuth() {
 			registerError('Invalid Registration');
 		}
 	};
-
+	const useGetUser = async (id: string) => {
+		try {
+			const response = await fetch(`${VITE_APP_SERVICE_URL}/users/${id}`);
+			const result = await response.json();
+			return result;
+		} catch (error) {
+			console.log(error);
+		}
+	};
+	const useUpdateUser = async (data: FormInputs, id: string) => {
+		try {
+			const { firstName, lastName, email, password, birthday } = data;
+			const response = await fetch(`${VITE_APP_SERVICE_URL}/users/${id}`, {
+				method: 'PUT',
+				headers: {
+					'Content-Type': 'application/json',
+				},
+				body: JSON.stringify({
+					firstName,
+					lastName,
+					email,
+					password,
+					birthday,
+				}),
+			});
+			const json = await response.json();
+			console.log(json);
+			if (!response.ok) {
+				return;
+			}
+		} catch (error) {
+			console.log(error);
+		}
+	};
 	return {
+		useUpdateUser,
+		useGetUser,
 		useLogin,
 		useRegister,
+		authState,
 	};
 }
 export default useUserAuth;

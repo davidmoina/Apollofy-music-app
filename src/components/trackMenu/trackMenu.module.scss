@@ -1,0 +1,26 @@
+@use '../../sass/globals/variables' as var;
+
+.menuContainer {
+	position: absolute;
+	right: 0;
+	width: 180px;
+	padding: 0.5em 1em;
+	background-color: var.$gray-700;
+	border-radius: 6px;
+	font-size: 16px;
+	z-index: 1;
+
+	.menuList {
+		display: flex;
+		flex-direction: column;
+		gap: 10px;
+		list-style: none;
+		padding: 0;
+		color: var.$gray-200;
+		cursor: pointer;
+
+		li:hover {
+			color: purple;
+		}
+	}
+}

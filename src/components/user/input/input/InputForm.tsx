@@ -1,16 +1,17 @@
 import { UseFormRegister, Path, RegisterOptions } from 'react-hook-form';
 import { FormInputs } from '../../../../interfaces';
 import styles from './input.module.scss';
-import { ReactElement } from 'react';
+import { HTMLInputTypeAttribute, ReactElement } from 'react';
 
 type InputProps = {
-	children: ReactElement | boolean;
-	inputType: string;
+	children?: ReactElement | boolean;
+	inputType: HTMLInputTypeAttribute;
 	id: Path<FormInputs>;
 	placeholder: string;
 	register: UseFormRegister<FormInputs>;
 	validations: RegisterOptions;
 	validate?: () => boolean;
+	defaultValue?: string;
 };
 
 export const InputForm = ({
@@ -21,6 +22,7 @@ export const InputForm = ({
 	register,
 	validate,
 	validations,
+	defaultValue,
 }: InputProps) => {
 	return (
 		<div className={styles.inputWrapper}>
@@ -32,6 +34,7 @@ export const InputForm = ({
 				placeholder={placeholder}
 				autoComplete='given-name'
 				onKeyUp={validate}
+				defaultValue={defaultValue}
 			/>
 			<label htmlFor={id} className={styles.formLabel}>
 				{placeholder}

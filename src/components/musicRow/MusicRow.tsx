@@ -7,13 +7,19 @@ import {
 	AiOutlineCaretRight,
 } from 'react-icons/ai';
 import { MdPlayCircleFilled, MdPauseCircleFilled } from 'react-icons/md';
+import { BsThreeDotsVertical } from 'react-icons/bs';
 import { Artist, Track } from '../../interfaces/songs';
 import {
 	ContextTypeFav,
 	FavSongContext,
 } from '../../context/favSongsContext/FavSongsContext';
 import { PlayerContext } from '../../context/PlayerContext/PlayerContext';
-import { RiPlayListAddLine } from 'react-icons/ri';
+import { TrackMenu } from '../trackMenu/TrackMenu';
+import { Modal } from '../Modal/Modal';
+import { useModal } from '../../hooks/useModal';
+import { InputForm } from '../user/input/input/InputForm';
+import { ListsModalContent } from '../ListsModalContent/ListsModalContent';
+import { AddPlaylistModal } from '../AddPlayListModal/AddPlaylistModal';
 
 export interface Props {
 	thumbnail: string;
@@ -27,9 +33,17 @@ export const MusicRow = ({ actualSong, thumbnail, artist, title }: Props) => {
 		FavSongContext
 	) as ContextTypeFav;
 
+	const { isOpen, closeModal, openModal } = useModal(false);
+	const {
+		isOpen: activeAddModal,
+		closeModal: closeAddModal,
+		openModal: openAddModal,
+	} = useModal(false);
+
 	const { audio, addSongToQueue, setCurrent, togglePlaying, songsSet } =
 		useContext(PlayerContext);
 
+	const [showMenu, setShowMenu] = useState(false);
 	const [isLiked, setIsLiked] = useState(actualSong?.liked);
 	const [play, setPlay] = useState(false);
 	const [isPlaying, setIsPlaying] = useState(false);
@@ -76,7 +90,11 @@ export const MusicRow = ({ actualSong, thumbnail, artist, title }: Props) => {
 		}
 	};
 
-	console.log(isPlaying);
+	const changeModal = () => {
+		closeModal();
+
+		openAddModal();
+	};
 
 	return (
 		<div
@@ -109,10 +127,6 @@ export const MusicRow = ({ actualSong, thumbnail, artist, title }: Props) => {
 			</div>
 			<p className={`hidden lg:block ${styles.albumTitle}`}>{title}</p>
 			<div className={styles.songRightContainer}>
-				<RiPlayListAddLine
-					onClick={() => addSongToQueue(actualSong)}
-					className='cursor-pointer'
-				/>
 				<span
 					className={styles.spanLike}
 					onClick={() => handleLike(actualSong)}
@@ -124,7 +138,25 @@ export const MusicRow = ({ actualSong, thumbnail, artist, title }: Props) => {
 					)}
 				</span>
 				<span>3:00</span>
+				<span className='relative' onClick={() => setShowMenu(!showMenu)}>
+					<BsThreeDotsVertical />
+					{showMenu && (
+						<TrackMenu
+							addSongToQueue={addSongToQueue}
+							actualSong={actualSong}
+							openModal={openModal}
+						/>
+					)}
+				</span>
 			</div>
+
+			<Modal isOpen={isOpen} closeModal={closeModal}>
+				<ListsModalContent changeModal={changeModal} />
+			</Modal>
+
+			<Modal isOpen={activeAddModal} closeModal={closeAddModal}>
+				<AddPlaylistModal />
+			</Modal>
 		</div>
 	);
 };

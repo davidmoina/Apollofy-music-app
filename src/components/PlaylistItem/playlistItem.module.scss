@@ -1,0 +1,21 @@
+@use '../../sass/globals/variables' as var;
+
+.playlistContainer {
+	display: flex;
+	gap: 0.5rem;
+	min-width: 250px;
+	width: 100%;
+	padding: 0.4rem;
+	margin-top: 0.5em;
+	cursor: pointer;
+	border-radius: 6px;
+
+	&:hover {
+		background-color: var.$gray-500;
+	}
+
+	.playlistImg {
+		width: 50px;
+		border-radius: 6px;
+	}
+}
