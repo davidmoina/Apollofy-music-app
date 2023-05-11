@@ -15,6 +15,7 @@ import { FavView } from '../views/FavView/FavView';
 import { EditProfile } from '../pages/editProf/Editprofile';
 import { ChangePassView } from '../views/ChangePassView/ChangePassView';
 import { ForgotPassword } from '../pages/ForgotPassword/ForgotPassword';
+import { ResetPass } from '../pages/ResetPass/ResetPass';
 
 export const Routing = () => {
 	return (
@@ -38,6 +39,7 @@ export const Routing = () => {
 				<Route path='/recovery-pass' element={<RecoverPassPage />} />
 				<Route path='/forgot-pass' element={<ForgotPassword />} />
 				<Route path='/register' element={<RegisterPage />} />
+				<Route path='/reset/:id/:resetString' element={<ResetPass />} />
 			</Routes>
 		</BrowserRouter>
 	);
