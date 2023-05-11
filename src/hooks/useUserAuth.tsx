@@ -2,7 +2,6 @@ import { useContext } from 'react';
 import { FormInputs } from '../interfaces';
 import { AuthContext, ContextType } from '../context/authContext/AuthContext';
 import { useNavigate } from 'react-router-dom';
-import { FormInputsTrack } from '../components/ModalCreateTrack/ModalCreateTrack';
 
 function useUserAuth() {
 	const { VITE_APP_SERVICE_URL } = import.meta.env;
