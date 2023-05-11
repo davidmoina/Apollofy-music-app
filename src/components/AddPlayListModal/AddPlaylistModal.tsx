@@ -8,7 +8,7 @@ export const AddPlaylistModal = () => {
 	const {
 		handleSubmit,
 		register,
-		formState: { errors },
+		// formState: { errors },
 	} = useForm<FormInputs>();
 
 	const onSubmit = (data: any) => {
