@@ -30,7 +30,7 @@ export const RecoverPassPage = () => {
 						required
 					/>
 					<InputForm
-						id='repeatPassword'
+						id='confirmPassword'
 						placeholder='Repeat Password'
 						inputType='password'
 						register={register}

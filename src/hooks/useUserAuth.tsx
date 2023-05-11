@@ -2,6 +2,7 @@ import { useContext } from 'react';
 import { FormInputs } from '../interfaces';
 import { AuthContext, ContextType } from '../context/authContext/AuthContext';
 import { useNavigate } from 'react-router-dom';
+import { FormInputsTrack } from '../components/ModalCreateTrack/ModalCreateTrack';
 
 function useUserAuth() {
 	const { VITE_APP_SERVICE_URL } = import.meta.env;
@@ -27,8 +28,8 @@ function useUserAuth() {
 			});
 			const json = await response.json();
 
-			if(!response.ok) return loginError(json.message as string)
-			
+			if (!response.ok) return loginError(json.message as string);
+
 			// console.log(json);
 
 			const { id, token } = json;
@@ -36,8 +37,9 @@ function useUserAuth() {
 			loginSuccess(email, id, token);
 			// console.log(authState);
 			navigate('/');
-		} catch {
-			loginError('Invalid credentials');
+		} catch (error) {
+			// loginError('Invalid credentials');
+			console.log(error);
 		}
 	};
 
@@ -84,6 +86,7 @@ function useUserAuth() {
 	return {
 		useLogin,
 		useRegister,
+		authState,
 	};
 }
 export default useUserAuth;
