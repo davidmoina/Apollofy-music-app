@@ -27,13 +27,15 @@ function useUserAuth() {
 				body: JSON.stringify({ email, password }),
 			});
 			const json = await response.json();
-			console.log(json);
+
+			if (!response.ok) return loginError(json.message as string);
+
+			// console.log(json);
 
 			const { id, token } = json;
 			window.localStorage.setItem('User', JSON.stringify({ email, id, token }));
 			loginSuccess(email, id, token);
 			// console.log(authState);
-
 			navigate('/');
 		} catch (error) {
 			// loginError('Invalid credentials');
@@ -62,6 +64,7 @@ function useUserAuth() {
 			const json = await response.json();
 			const { id, token } = json;
 			if (!response.ok) {
+				localStorage.setItem('actualUser', id);
 				return;
 			}
 			registerSuccess(

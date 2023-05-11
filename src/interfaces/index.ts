@@ -4,10 +4,11 @@ export interface FormInputs {
 	lastName?: string;
 	email: string;
 	password: string;
-	confirmPassword?: string;
-	birthday?: Date;
-	oldPassword?: string;
-	newPassword?: string;
+	confirmPassword: string;
+	birthday: Date;
+	oldPassword: string;
+	newPassword: string;
+	repeatPassword: string;
 }
 
 export interface Tracks {
