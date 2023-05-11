@@ -1,6 +1,7 @@
 import { UseFormRegister, Path, FieldErrors } from 'react-hook-form';
 import { FormInputs } from '../../../../interfaces';
 import styles from './input.module.scss';
+import { FormInputsTrack } from '../../../ModalCreateTrack/ModalCreateTrack';
 
 type InputProps = {
 	inputType: string;

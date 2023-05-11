@@ -1,4 +1,5 @@
 export interface FormInputs {
+	name?: string;
 	firstName?: string;
 	lastName?: string;
 	email: string;

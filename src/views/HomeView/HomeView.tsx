@@ -10,8 +10,6 @@ export const HomeView = () => {
 	const { data: playlists } = useFetch('http://localhost:4000/playlists');
 	const { data: albums } = useFetch('http://localhost:4000/albums');
 
-	console.log(tracks);
-
 	const latestPlayed = tracks.slice(0, 5);
 
 	return (
