@@ -17,7 +17,6 @@ import { PlayerContext } from '../../context/PlayerContext/PlayerContext';
 import { TrackMenu } from '../trackMenu/TrackMenu';
 import { Modal } from '../Modal/Modal';
 import { useModal } from '../../hooks/useModal';
-import { InputForm } from '../user/input/input/InputForm';
 import { ListsModalContent } from '../ListsModalContent/ListsModalContent';
 import { AddPlaylistModal } from '../AddPlayListModal/AddPlaylistModal';
 

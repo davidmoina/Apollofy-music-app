@@ -14,7 +14,7 @@ export const CardPlaylist = ({
 	playlists,
 	isPlayable,
 }: PlaylistRecommendationProps) => {
-	const { thumbnail, artist, name } = playlists;
+	const { thumbnail, artists, name } = playlists;
 
 	const { songsSet, setCurrent } = useContext(PlayerContext);
 
@@ -36,7 +36,7 @@ export const CardPlaylist = ({
 			<div className={`${styles.divPlay} relative`}>
 				<img
 					src={thumbnail}
-					alt={artist}
+					// alt={artist}
 					className={`shadow-lg rounded-lg ${styles.songCover}`}
 				/>
 				<MdPlayCircleFilled
@@ -47,7 +47,9 @@ export const CardPlaylist = ({
 				/>
 			</div>
 			<h3 className={styles.songTitle}>{name}</h3>
-			<h5 className={styles.songArtist}>{artist}</h5>
+			<h5 className={styles.songArtist}>
+				{artists.map(item => item.name).join(' , ')}
+			</h5>
 		</div>
 	);
 };

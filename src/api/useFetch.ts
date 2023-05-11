@@ -1,9 +1,8 @@
 import { useEffect, useState } from 'react';
-import { Track } from '../interfaces/songs';
 
-export const useFetch = (url: string) => {
+export const useFetch = <T>(url: string) => {
 	const [loading, setLoading] = useState<boolean>(false);
-	const [data, setData] = useState<Track[]>([]);
+	const [data, setData] = useState<T[]>([]);
 	const [error, setError] = useState<string>('');
 
 	useEffect(() => {
@@ -15,7 +14,7 @@ export const useFetch = (url: string) => {
 
 				setData(result.data);
 			} catch (error) {
-				setError('error');
+				setError((error as Error).message);
 			}
 			setLoading(false);
 		})();
