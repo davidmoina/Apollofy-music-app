@@ -27,7 +27,11 @@
 		}
 	}
 }
-
+.inputModal{
+	input{
+		padding: 5px !important;
+	}
+}
 .modalOpen {
 	display: flex;
 }

@@ -11,6 +11,12 @@ export interface FormInputs {
 	repeatPassword: string;
 	playlistName: string;
 	playlistDescription: string;
+	artists: string;
+	genre: string;
+	duration: string;
+	thumbnail: string;
+	url: string;
+	albums: string[];
 }
 
 export interface Tracks {

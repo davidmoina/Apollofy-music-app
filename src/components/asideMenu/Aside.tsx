@@ -8,8 +8,14 @@ import {
 import { VscLibrary } from 'react-icons/vsc';
 import { TbMicrophone2 } from 'react-icons/tb';
 import { Link, useLocation } from 'react-router-dom';
+import { CreateTrack } from '../CreateTrack/CreateTrack';
+import { useModal } from '../../hooks/useModal';
+import { Modal } from '../Modal/Modal';
+import { IoMdAdd } from 'react-icons/io';
+import styleButonModal from '../ListsModalContent/listsModalContent.module.scss';
 
 const Aside = () => {
+	const { isOpen, openModal, closeModal } = useModal();
 	const location = useLocation();
 
 	return (
@@ -63,6 +69,20 @@ const Aside = () => {
 							</span>{' '}
 							Favorite Songs
 						</Link>
+					</li>
+					<li>
+						<button
+							onClick={openModal}
+							className={styleButonModal.addPlaylistBtn}
+						>
+							Create new Song{' '}
+							<IoMdAdd
+								style={{ display: 'inline-block', marginBottom: '5px' }}
+							/>
+						</button>
+						<Modal isOpen={isOpen} closeModal={closeModal}>
+							<CreateTrack />
+						</Modal>
 					</li>
 				</ul>
 			</nav>

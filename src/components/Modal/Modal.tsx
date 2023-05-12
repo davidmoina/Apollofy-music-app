@@ -15,7 +15,9 @@ export const Modal = ({ children, isOpen, closeModal }: Props) => {
 
 	return (
 		<article
-			className={`${styles.modalContainer} ${isOpen && styles.modalOpen}`}
+			className={`${styles.modalContainer} ${isOpen && styles.modalOpen} ${
+				styles.inputModal
+			}`}
 			onClick={closeModal}
 		>
 			<div className={styles.modalContent} onClick={handleModalClick}>

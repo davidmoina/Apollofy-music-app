@@ -8,7 +8,7 @@ interface Props {
 export const SongListContainer = ({ tracks }: Props) => {
 	return (
 		<div className='flex flex-col p-4 gap-3'>
-			{tracks.map(song => (
+			{tracks?.map(song => (
 				<MusicRow
 					key={song._id}
 					thumbnail={song.thumbnail}
