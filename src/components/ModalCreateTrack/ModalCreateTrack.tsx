@@ -1,6 +1,6 @@
 import { useTrack } from '../../hooks/useTrack';
 import { useForm, SubmitHandler } from 'react-hook-form';
-import { useState, useContext, useRef } from 'react';
+import { useRef } from 'react';
 
 export type FormInputsTrack = {
 	name: string;
@@ -22,6 +22,9 @@ export const ModalCreateTrack = () => {
 		const formData: any = new FormData(formRef.current);
 
 		await addTrack(formData);
+
+		console.log(formData);
+
 		reset();
 	};
 

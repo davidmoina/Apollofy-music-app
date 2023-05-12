@@ -22,7 +22,7 @@ const Aside = () => {
 	const { isOpen, openModal, closeModal } = useModal();
 	const [playlists, setPlaylists] = useState<Playlist[]>([]);
 
-	const { data } = useFetch<Playlist>(
+	const { data } = useFetch<Playlist[]>(
 		`${import.meta.env.VITE_APP_SERVICE_URL}/playlist`
 	);
 

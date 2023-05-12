@@ -14,7 +14,7 @@ export const SongListContainer = ({ tracks }: Props) => {
 					artist={song.artists}
 					title={song.name}
 					actualSong={song}
-					key={song.name}
+					key={song._id}
 				/>
 			))}
 		</div>

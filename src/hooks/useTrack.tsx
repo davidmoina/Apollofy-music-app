@@ -1,5 +1,4 @@
 import { useNavigate } from 'react-router-dom';
-import { Track } from '../interfaces/songs';
 import { FormInputsTrack } from '../components/ModalCreateTrack/ModalCreateTrack';
 
 export function useTrack() {
