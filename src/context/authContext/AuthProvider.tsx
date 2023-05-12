@@ -26,6 +26,8 @@ enum ACTIONS {
 	REGISTER_ERROR = 'REGISTER_ERROR',
 	LOGOUT = 'LOGOUT',
 	UPDATE_PASSWORD = 'UPDATE_PASSWORD',
+	GET_USER_ERROR = 'GET_USER_ERROR',
+	USER_RECIEVED = 'USER_RECIEVED',
 }
 
 interface LoginActions {
@@ -88,7 +90,22 @@ const reducer = (state: Values, action: LoginActions): Values => {
 				...state,
 				password: action.payload?.password,
 			};
-
+		case ACTIONS.GET_USER_ERROR:
+			return {
+				...state,
+				error: action.payload?.error,
+			};
+		case ACTIONS.USER_RECIEVED:
+			return {
+				firstName: action.payload?.firstName,
+				lastName: action.payload?.lastName,
+				email: action.payload?.email,
+				birthday: action.payload?.birthday,
+				id: action.payload?.id,
+				token: action.payload?.token,
+				isAuthenticated: true,
+				error: '',
+			};
 		default:
 			return state;
 	}

@@ -11,6 +11,7 @@ type InputProps = {
 	register: UseFormRegister<FormInputs>;
 	validations: RegisterOptions;
 	validate?: () => boolean;
+	defaultValue?: string;
 };
 
 export const InputForm = ({
@@ -21,6 +22,7 @@ export const InputForm = ({
 	register,
 	validate,
 	validations,
+	defaultValue,
 }: InputProps) => {
 	return (
 		<div className={styles.inputWrapper}>
@@ -32,6 +34,7 @@ export const InputForm = ({
 				placeholder={placeholder}
 				autoComplete='given-name'
 				onKeyUp={validate}
+				defaultValue={defaultValue}
 			/>
 			<label htmlFor={id} className={styles.formLabel}>
 				{placeholder}
