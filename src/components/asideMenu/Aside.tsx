@@ -10,8 +10,6 @@ import { IoMdAdd } from 'react-icons/io';
 import { VscLibrary } from 'react-icons/vsc';
 import { TbMicrophone2 } from 'react-icons/tb';
 import { Link, useLocation } from 'react-router-dom';
-import { CreateTrack } from '../CreateTrack/CreateTrack';
-import styleButonModal from '../ListsModalContent/listsModalContent.module.scss';
 import { Modal } from '../Modal/Modal';
 import { useModal } from '../../hooks/useModal';
 import { AddPlaylistModal } from '../AddPlayListModal/AddPlaylistModal';
