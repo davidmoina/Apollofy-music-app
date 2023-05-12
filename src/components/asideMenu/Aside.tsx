@@ -22,7 +22,6 @@ import { Playlist } from '../../interfaces/playlist';
 const Aside = () => {
 	const { isOpen, openModal, closeModal } = useModal();
 	const location = useLocation();
-	const { isOpen, openModal, closeModal } = useModal();
 	const [playlists, setPlaylists] = useState<Playlist[]>([]);
 
 	const { data } = useFetch<Playlist[]>(
@@ -86,20 +85,6 @@ const Aside = () => {
 							</span>{' '}
 							Favorite Songs
 						</Link>
-					</li>
-					<li>
-						<button
-							onClick={openModal}
-							className={styleButonModal.addPlaylistBtn}
-						>
-							Create new Song{' '}
-							<IoMdAdd
-								style={{ display: 'inline-block', marginBottom: '5px' }}
-							/>
-						</button>
-						<Modal isOpen={isOpen} closeModal={closeModal}>
-							<CreateTrack />
-						</Modal>
 					</li>
 				</ul>
 			</nav>
