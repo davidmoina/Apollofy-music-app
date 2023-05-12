@@ -4,11 +4,18 @@ import { ButtonForm } from '../../components/user/input/button/ButtonForm';
 import { InputForm } from '../../components/user/input/input/InputForm';
 import { FormInputs } from '../../interfaces';
 import styles from '../LoginPage/loginPage.module.scss';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
+import { useContext } from 'react';
+import { AuthContext, ContextType } from '../../context/authContext/AuthContext';
 
 export const ResetPass = () => {
 
 	const { VITE_APP_SERVICE_URL } = import.meta.env;
+
+	const {
+		loginSuccess,
+	} = useContext(AuthContext) as ContextType;
+	const navigate = useNavigate();
 
 	const {
 		register,
@@ -21,8 +28,7 @@ export const ResetPass = () => {
 
 	const onSubmit: SubmitHandler<FormInputs> = async (data) => {
 
-		const { password } = data;
-
+		const { password, repeatPassword} = data;
 
 		try {
 			const response = await fetch(`${VITE_APP_SERVICE_URL}/users/update-password-reset`, {
@@ -30,12 +36,17 @@ export const ResetPass = () => {
 				headers: {
 					'Content-Type': 'application/json',
 				},
-				body: JSON.stringify({id, password}),
+				body: JSON.stringify({id, password, repeatPassword}),
 			})
 			const json = await response.json();
+			if (!response.ok) {
+				return;
+			}
 			console.log(json);
-			
-
+			const { token, email } = json;
+			window.localStorage.setItem('User', JSON.stringify({ email, id, token }));
+			loginSuccess(email, id!, token);
+			navigate('/');
 		} catch(error) {
 			console.log(error);
 		}

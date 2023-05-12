@@ -29,15 +29,12 @@ function useUserAuth() {
 
 			if (!response.ok) return loginError(json.message as string);
 
-			// console.log(json);
-
 			const { id, token } = json;
 			window.localStorage.setItem('User', JSON.stringify({ email, id, token }));
 			loginSuccess(email, id, token);
-			// console.log(authState);
 			navigate('/');
 		} catch (error) {
-			// loginError('Invalid credentials');
+			loginError('Invalid credentials');
 			console.log(error);
 		}
 	};
