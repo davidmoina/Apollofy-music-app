@@ -13,6 +13,8 @@ export const CardsContainer = ({
 	playlists,
 	isPlayable,
 }: PlaylistRecommendationsContainerProps) => {
+	console.log(playlists);
+
 	return (
 		<section className={`mb-8 ${styles.cardsContainer}`}>
 			<h2 className={`text-xl md:text-2xl mb-2 ${styles.containerTitle}`}>

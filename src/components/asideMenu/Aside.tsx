@@ -4,19 +4,36 @@ import {
 	MdOutlineLibraryMusic,
 	MdAlbum,
 	MdOutlineAudiotrack,
+	MdFeaturedPlayList,
 } from 'react-icons//md';
+import { IoMdAdd } from 'react-icons/io';
 import { VscLibrary } from 'react-icons/vsc';
 import { TbMicrophone2 } from 'react-icons/tb';
 import { Link, useLocation } from 'react-router-dom';
 import { CreateTrack } from '../CreateTrack/CreateTrack';
-import { useModal } from '../../hooks/useModal';
-import { Modal } from '../Modal/Modal';
-import { IoMdAdd } from 'react-icons/io';
 import styleButonModal from '../ListsModalContent/listsModalContent.module.scss';
+import { Modal } from '../Modal/Modal';
+import { useModal } from '../../hooks/useModal';
+import { AddPlaylistModal } from '../AddPlayListModal/AddPlaylistModal';
+import { useFetch } from '../../api/useFetch';
+import { useEffect, useState } from 'react';
+import { Playlist } from '../../interfaces/playlist';
 
 const Aside = () => {
 	const { isOpen, openModal, closeModal } = useModal();
 	const location = useLocation();
+	const { isOpen, openModal, closeModal } = useModal();
+	const [playlists, setPlaylists] = useState<Playlist[]>([]);
+
+	const { data } = useFetch<Playlist[]>(
+		`${import.meta.env.VITE_APP_SERVICE_URL}/playlist`
+	);
+
+	useEffect(() => {
+		if (data) {
+			setPlaylists(data);
+		}
+	}, [data]);
 
 	return (
 		<div className={styles.container}>
@@ -151,6 +168,35 @@ const Aside = () => {
 					</li>
 				</ul>
 			</div>
+			<div className={styles.navbar}>
+				<h4>My playlists</h4>
+				<button className={styles.addPlaylistBtn} onClick={openModal}>
+					<IoMdAdd />
+					<p>Create playlist</p>
+				</button>
+				<ul>
+					{playlists?.map(item => (
+						<li key={item._id}>
+							<Link
+								className={`${
+									location.pathname == `/playlist/${item._id}`
+										? styles.activeLink
+										: styles.inactiveLink
+								}`}
+								to={`/playlist/${item._id}`}
+							>
+								<span>
+									<MdFeaturedPlayList />
+								</span>
+								{item.name}
+							</Link>
+						</li>
+					))}
+				</ul>
+			</div>
+			<Modal isOpen={isOpen} closeModal={closeModal}>
+				<AddPlaylistModal />
+			</Modal>
 		</div>
 	);
 };

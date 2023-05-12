@@ -6,12 +6,22 @@ import 'react-toastify/dist/ReactToastify.css';
 import './sass/index.scss';
 import { FavSongProvider } from './context/favSongsContext/FavSongsProvider';
 import { PlayerProvider } from './context/PlayerContext/PlayerProvider';
+import { Toaster } from 'react-hot-toast';
 
 const App: FC = () => {
 	return (
 		<AuthProvider>
 			<PlayerProvider>
 				<FavSongProvider>
+					<Toaster
+						toastOptions={{
+							style: {
+								borderRadius: '10px',
+								background: '#333',
+								color: '#fff',
+							},
+						}}
+					/>
 					<ToastContainer
 						theme='dark'
 						position='top-center'

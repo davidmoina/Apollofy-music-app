@@ -17,10 +17,10 @@ export const samplePlaylists = {
 
 export const PlaylistsView = () => {
 	return (
-		<div>
+		<>
 			<PlaylistHeader {...samplePlaylists} />
 			<PlaylistInfoBar />
 			<SongListContainer tracks={tracks} />
-		</div>
+		</>
 	);
 };

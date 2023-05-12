@@ -11,6 +11,8 @@
 		h4 {
 			color: var.$muted-color;
 			margin-bottom: 0.5em;
+			font-size: 14px;
+			text-transform: uppercase;
 		}
 
 		ul {
@@ -51,6 +53,19 @@
 		}
 		.inactiveLink:hover {
 			color: var.$secondary-color;
+		}
+	}
+
+	.addPlaylistBtn {
+		display: flex;
+		color: white;
+		gap: 0.8rem;
+		align-items: center;
+		margin: 0.5em 0;
+		color: var.$secondary-color;
+
+		&:hover {
+			color: var.$active-color;
 		}
 	}
 }
