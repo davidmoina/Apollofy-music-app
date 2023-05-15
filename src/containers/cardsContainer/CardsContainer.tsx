@@ -1,10 +1,10 @@
 import { CardPlaylist } from '../../components/Cards/CardPlaylist';
-import { Track } from '../../interfaces/songs';
+import { Playlist, Track} from '../../interfaces/songs';
 import styles from './cardsContainer.module.scss';
 
 interface PlaylistRecommendationsContainerProps {
 	title: string;
-	playlists: Track[];
+	playlists: Playlist[] | Track[];
 	isPlayable?: boolean;
 }
 
@@ -13,7 +13,6 @@ export const CardsContainer = ({
 	playlists,
 	isPlayable,
 }: PlaylistRecommendationsContainerProps) => {
-	console.log(playlists);
 
 	return (
 		<section className={`mb-8 ${styles.cardsContainer}`}>

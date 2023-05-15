@@ -1,12 +1,13 @@
 import styles from './card.module.scss';
-import { Track } from '../../interfaces/songs';
-import { useState, useContext } from 'react';
+import { Playlist } from '../../interfaces/songs';
+// import { useState, useContext } from 'react';
+import { useState } from 'react';
 import { MdPlayCircleFilled } from 'react-icons/md';
-import { PlayerContext } from '../../context/PlayerContext/PlayerContext';
+// import { PlayerContext } from '../../context/PlayerContext/PlayerContext';
 
 interface PlaylistRecommendationProps {
 	key: number;
-	playlists: Track;
+	playlists: Playlist;
 	isPlayable: boolean;
 }
 
@@ -16,16 +17,16 @@ export const CardPlaylist = ({
 }: PlaylistRecommendationProps) => {
 	const { thumbnail, artists, name } = playlists;
 
-	const { songsSet, setCurrent } = useContext(PlayerContext);
+	// const { songsSet, setCurrent } = useContext(PlayerContext);
 
 	const [showPlay, setShowPlay] = useState(false);
 
-	const handlePlay = () => {
-		if (isPlayable) {
-			songsSet(playlists);
-			setCurrent(0, playlists);
-		}
-	};
+	// const handlePlay = () => {
+	// 	if (isPlayable) {
+	// 		songsSet(playlists);
+	// 		setCurrent(0, playlists);
+	// 	}
+	// };
 
 	return (
 		<div
@@ -40,7 +41,7 @@ export const CardPlaylist = ({
 					className={`shadow-lg rounded-lg ${styles.songCover}`}
 				/>
 				<MdPlayCircleFilled
-					onClick={handlePlay}
+					// onClick={handlePlay}
 					className={`absolute text-5xl rounded-lg z-50 bottom-3 right-0 text-[#ffff66] ${
 						!showPlay ? 'opacity-0' : 'opacity-100 bottom-3 right-3'
 					} transition-all duration-200`}
@@ -48,7 +49,7 @@ export const CardPlaylist = ({
 			</div>
 			<h3 className={styles.songTitle}>{name}</h3>
 			<h5 className={styles.songArtist}>
-				{artists.map(item => item.name).join(' , ')}
+				{artists?.map(item => item.name).join(' , ')}
 			</h5>
 		</div>
 	);
