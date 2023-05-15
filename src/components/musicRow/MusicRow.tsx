@@ -1,5 +1,5 @@
 import styles from './musicRow.module.scss';
-import { useContext, useState } from 'react';
+import { Dispatch, useContext, useState } from 'react';
 // icons
 import {
 	AiFillHeart,
@@ -15,34 +15,40 @@ import {
 } from '../../context/favSongsContext/FavSongsContext';
 import { PlayerContext } from '../../context/PlayerContext/PlayerContext';
 import { TrackMenu } from '../trackMenu/TrackMenu';
-import { Modal } from '../Modal/Modal';
-import { useModal } from '../../hooks/useModal';
-import { ListsModalContent } from '../ListsModalContent/ListsModalContent';
-import { AddPlaylistModal } from '../AddPlayListModal/AddPlaylistModal';
 
 export interface Props {
 	thumbnail: string;
 	artist: Artist[];
 	title: string;
 	actualSong: Track;
+	openModal: () => void;
+	menu: boolean;
+	setMenu: Dispatch<React.SetStateAction<boolean>>;
 }
 
-export const MusicRow = ({ actualSong, thumbnail, artist, title }: Props) => {
+export const MusicRow = ({
+	actualSong,
+	thumbnail,
+	artist,
+	title,
+	openModal,
+	menu,
+	setMenu,
+}: Props) => {
 	const { addToFavorite, removeFromFavorite } = useContext(
 		FavSongContext
 	) as ContextTypeFav;
 
-	const { isOpen, closeModal, openModal } = useModal(false);
 	const {
-		isOpen: activeAddModal,
-		closeModal: closeAddModal,
-		openModal: openAddModal,
-	} = useModal(false);
+		audio,
+		addSongToQueue,
+		setCurrent,
+		togglePlaying,
+		songsSet,
+		selectedTrack,
+		setSelectedTrack,
+	} = useContext(PlayerContext);
 
-	const { audio, addSongToQueue, setCurrent, togglePlaying, songsSet } =
-		useContext(PlayerContext);
-
-	const [showMenu, setShowMenu] = useState(false);
 	const [isLiked, setIsLiked] = useState(actualSong?.liked);
 	const [play, setPlay] = useState(false);
 	const [isPlaying, setIsPlaying] = useState(false);
@@ -89,10 +95,15 @@ export const MusicRow = ({ actualSong, thumbnail, artist, title }: Props) => {
 		}
 	};
 
-	const changeModal = () => {
-		closeModal();
+	const handleMenu = () => {
+		setMenu(!menu);
 
-		openAddModal();
+		if (selectedTrack?._id === actualSong._id) {
+			setSelectedTrack(null);
+			return;
+		}
+
+		setSelectedTrack(actualSong);
 	};
 
 	return (
@@ -137,9 +148,9 @@ export const MusicRow = ({ actualSong, thumbnail, artist, title }: Props) => {
 					)}
 				</span>
 				<span>3:00</span>
-				<span className='relative' onClick={() => setShowMenu(!showMenu)}>
+				<span className='relative' onClick={handleMenu}>
 					<BsThreeDotsVertical />
-					{showMenu && (
+					{selectedTrack?._id === actualSong._id && (
 						<TrackMenu
 							addSongToQueue={addSongToQueue}
 							actualSong={actualSong}
@@ -148,14 +159,6 @@ export const MusicRow = ({ actualSong, thumbnail, artist, title }: Props) => {
 					)}
 				</span>
 			</div>
-
-			<Modal isOpen={isOpen} closeModal={closeModal}>
-				<ListsModalContent changeModal={changeModal} />
-			</Modal>
-
-			<Modal isOpen={activeAddModal} closeModal={closeAddModal}>
-				<AddPlaylistModal />
-			</Modal>
 		</div>
 	);
 };

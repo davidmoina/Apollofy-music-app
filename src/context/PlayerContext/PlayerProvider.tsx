@@ -8,6 +8,7 @@ const enum ACTIONS {
 	TOGGLE_RANDOM,
 	TOGGLE_REPEAT,
 	TOGGLE_PLAYING,
+	SET_SELECTED_AUDIO,
 }
 
 type TypePayload = {
@@ -17,6 +18,7 @@ type TypePayload = {
 	random: boolean;
 	playing: boolean;
 	audio: Track | null;
+	selectedTrack: Track | null;
 };
 
 type PlayerActions =
@@ -50,6 +52,12 @@ type PlayerActions =
 			payload: {
 				playing: boolean;
 			};
+	  }
+	| {
+			type: ACTIONS.SET_SELECTED_AUDIO;
+			payload: {
+				selectedTrack: Track | null;
+			};
 	  };
 
 const initialValues: TypePayload = {
@@ -59,6 +67,7 @@ const initialValues: TypePayload = {
 	random: false,
 	playing: false,
 	audio: null,
+	selectedTrack: null,
 };
 
 const playerReducer = (
@@ -98,6 +107,12 @@ const playerReducer = (
 				playing: action.payload?.playing ?? false,
 			};
 
+		case ACTIONS.SET_SELECTED_AUDIO:
+			return {
+				...state,
+				selectedTrack: action.payload.selectedTrack,
+			};
+
 		default:
 			return state;
 	}
@@ -120,6 +135,15 @@ export const PlayerProvider = ({ children }: Props) => {
 			},
 		});
 	};
+
+	const setSelectedTrack = (song: Track | null) => {
+		dispatch({
+			type: ACTIONS.SET_SELECTED_AUDIO,
+			payload: {
+				selectedTrack: song,
+			},
+		});
+	};
 	//set songs array
 	const songsSet = (songsArr: Track) => {
 		dispatch({
@@ -139,6 +163,8 @@ export const PlayerProvider = ({ children }: Props) => {
 			},
 		});
 	};
+
+	console.log(playerState.selectedTrack);
 
 	//previous song
 	const prevSong = () => {
@@ -220,6 +246,7 @@ export const PlayerProvider = ({ children }: Props) => {
 				random: playerState.random,
 				playing: playerState.playing,
 				audio: playerState.audio,
+				selectedTrack: playerState.selectedTrack,
 				setCurrent,
 				nextSong,
 				prevSong,
@@ -229,6 +256,7 @@ export const PlayerProvider = ({ children }: Props) => {
 				handleEnd,
 				songsSet,
 				addSongToQueue,
+				setSelectedTrack,
 			}}
 		>
 			{children}

@@ -5,21 +5,38 @@ import { FormInputs } from '../../interfaces';
 import { ButtonForm } from '../user/input/button/ButtonForm';
 import { useRef } from 'react';
 import { toast } from 'react-hot-toast';
+import { Playlist } from '../../interfaces/playlist';
 
-export const AddPlaylistModal = () => {
+interface Props {
+	closeModal: () => void;
+}
+
+export const AddPlaylistModal = ({ closeModal }: Props) => {
 	const {
 		handleSubmit,
 		register,
-		reset,
 		// formState: { errors },
 	} = useForm<FormInputs>();
 
 	const formRef = useRef<HTMLFormElement>(null);
 
-	const onSubmit: SubmitHandler<FormInputs> = async () => {
-		const newFormData = new FormData(formRef.current!);
+	const onSubmit: SubmitHandler<FormInputs> = async data => {
+		const user = localStorage.getItem('User');
 
-		const toastId = toast.loading('Loading');
+		if (!user) {
+			throw new Error('No user registered');
+		}
+
+		const userId = JSON.parse(user).id;
+
+		if (!formRef.current) {
+			throw new Error('No Data');
+		}
+
+		const newFormData = new FormData(formRef.current);
+		newFormData.append('userId', userId);
+
+		const toastId = toast.loading(`Creating ${data.playlistName} playlist`);
 
 		try {
 			const response = await fetch(
@@ -30,12 +47,11 @@ export const AddPlaylistModal = () => {
 				}
 			);
 
-			const result = await response.json();
+			const result: Playlist<string> = await response.json();
 
-			toast.success('This worked', {
+			toast.success(`Playlist ${result.name} created`, {
 				id: toastId,
 			});
-			console.log(result);
 		} catch (error) {
 			toast.error((error as Error).message, {
 				id: toastId,
@@ -43,7 +59,7 @@ export const AddPlaylistModal = () => {
 			console.log(error);
 		}
 
-		reset();
+		closeModal();
 	};
 
 	return (

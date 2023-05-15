@@ -8,6 +8,7 @@ interface ContextPlayerType {
 	random: boolean;
 	playing: boolean;
 	audio: Track | null;
+	selectedTrack: Track | null;
 	setCurrent: (id: number, song?: Track) => void;
 	nextSong: () => void;
 	prevSong: () => void;
@@ -17,6 +18,7 @@ interface ContextPlayerType {
 	handleEnd: () => void;
 	songsSet: (songsArr: Track) => void;
 	addSongToQueue: (song: Track) => void;
+	setSelectedTrack: (song: Track | null) => void;
 }
 
 export const PlayerContext = createContext<ContextPlayerType>(

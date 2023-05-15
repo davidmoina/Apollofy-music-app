@@ -1,13 +1,17 @@
 @use '../../sass/globals/variables' as var;
 
-.addPlaylistBtn {
-	background-color: var.$gray-200;
-	color: var.$gray-700;
-	margin-top: 1em;
-	padding: 0.2em 0.4em;
-	border-radius: 50px;
+.modalContent {
+	color: var.$gray-200;
 
-	&:hover {
-		background-color: var.$gray-300;
+	.addPlaylistBtn {
+		background-color: var.$gray-200;
+		color: var.$gray-700;
+		margin-top: 1em;
+		padding: 0.2em 0.4em;
+		border-radius: 50px;
+
+		&:hover {
+			background-color: var.$gray-300;
+		}
 	}
 }

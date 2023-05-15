@@ -20,10 +20,12 @@ import { Playlist } from '../../interfaces/playlist';
 const Aside = () => {
 	const { isOpen, openModal, closeModal } = useModal();
 	const location = useLocation();
-	const [playlists, setPlaylists] = useState<Playlist[]>([]);
+	const [playlists, setPlaylists] = useState<Playlist<String>[]>([]);
 
-	const { data } = useFetch<Playlist>(
-		`${import.meta.env.VITE_APP_SERVICE_URL}/playlist`
+	const user = JSON.parse(localStorage.getItem('User')!);
+
+	const { data } = useFetch<Playlist<string>>(
+		`${import.meta.env.VITE_APP_SERVICE_URL}/playlist/${user.id}`
 	);
 
 	useEffect(() => {
@@ -178,7 +180,7 @@ const Aside = () => {
 				</ul>
 			</div>
 			<Modal isOpen={isOpen} closeModal={closeModal}>
-				<AddPlaylistModal />
+				<AddPlaylistModal closeModal={closeModal} />
 			</Modal>
 		</div>
 	);

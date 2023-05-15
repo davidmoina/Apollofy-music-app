@@ -7,7 +7,7 @@ interface Followed {
 	userId: string;
 }
 
-export interface Playlist {
+export interface Playlist<T> {
 	_id: string;
 	name: string;
 	collaborative: boolean;
@@ -19,7 +19,7 @@ export interface Playlist {
 	numberSongs: number;
 	followers: number;
 	rating: number;
-	userId: string;
+	userId: T;
 	tracks: Tracks[];
 	followedBy: Followed[];
 }
