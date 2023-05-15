@@ -126,6 +126,7 @@ export const MusicRow = ({
 
 	return (
 		<div
+			key={actualSong._id}
 			className={styles.rowContainer}
 			onMouseEnter={() => setPlay(true)}
 			onMouseLeave={() => setPlay(false)}

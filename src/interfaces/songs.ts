@@ -30,6 +30,7 @@ export interface Genre {
 export interface Playlist {
 	id?: number;
 	name: string;
+	artists?: Artist[];
 	isFollowed?: boolean;
 	thumbnail: string;
 	description?: string;
