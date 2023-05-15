@@ -37,6 +37,7 @@ export const SongListContainer = ({ tracks }: Props) => {
 					openModal={openModal}
 					menu={menu}
 					setMenu={setMenu}
+					track={song}
 				/>
 			))}
 			<Modal isOpen={isOpen} closeModal={closeModal}>

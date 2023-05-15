@@ -7,7 +7,7 @@ import { ButtonForm } from '../user/input/button/ButtonForm';
 import stylesInput from '../user/input/input/input.module.scss';
 
 export const CreateTrack = () => {
-	const { addTrack }: any = useTrack();
+	const { addTrack } = useTrack();
 	const {
 		register,
 		handleSubmit,
@@ -15,10 +15,10 @@ export const CreateTrack = () => {
 		formState: { errors },
 	} = useForm<FormInputs>();
 
-	const formRef: any = useRef();
+	const formRef = useRef<HTMLFormElement | null>(null);
 
 	const onSubmit: SubmitHandler<FormInputs> = async () => {
-		const formData: any = new FormData(formRef.current);
+		const formData = new FormData(formRef.current!);
 		await addTrack(formData);
 		reset();
 	};

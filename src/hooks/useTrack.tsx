@@ -28,6 +28,27 @@ export function useTrack() {
 		}
 	};
 
+	const deleteTrack = async (trackId: string) => {
+		const { id } = JSON.parse(localStorage.getItem('User')!);
+		console.log('userId:', id);
+		try {
+			const response = await fetch(
+				`${VITE_APP_SERVICE_URL}/track/${trackId}/${id}`,
+				{
+					method: 'DELETE',
+				}
+			);
+
+			console.log(await response.json());
+
+			if (!response.ok) {
+				throw new Error('Something went wrong');
+			}
+		} catch (error) {
+			console.log((error as Error).message);
+		}
+	};
+
 	const getTrackOfUser = async () => {
 		const { id } = JSON.parse(localStorage.getItem('User')!);
 
@@ -49,6 +70,7 @@ export function useTrack() {
 
 	return {
 		addTrack,
+		deleteTrack,
 		getTrackOfUser,
 	};
 }

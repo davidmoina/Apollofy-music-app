@@ -6,7 +6,11 @@ import {
 	AiOutlineHeart,
 	AiOutlineCaretRight,
 } from 'react-icons/ai';
-import { MdPlayCircleFilled, MdPauseCircleFilled } from 'react-icons/md';
+import {
+	MdPlayCircleFilled,
+	MdPauseCircleFilled,
+	MdDangerous,
+} from 'react-icons/md';
 import { BsThreeDotsVertical } from 'react-icons/bs';
 import { Artist, Track } from '../../interfaces/songs';
 import {
@@ -15,6 +19,7 @@ import {
 } from '../../context/favSongsContext/FavSongsContext';
 import { PlayerContext } from '../../context/PlayerContext/PlayerContext';
 import { TrackMenu } from '../trackMenu/TrackMenu';
+import { useTrack } from '../../hooks/useTrack';
 
 export interface Props {
 	thumbnail: string;
@@ -24,6 +29,7 @@ export interface Props {
 	openModal: () => void;
 	menu: boolean;
 	setMenu: Dispatch<React.SetStateAction<boolean>>;
+	track: Track;
 }
 
 export const MusicRow = ({
@@ -34,6 +40,7 @@ export const MusicRow = ({
 	openModal,
 	menu,
 	setMenu,
+	track,
 }: Props) => {
 	const { addToFavorite, removeFromFavorite } = useContext(
 		FavSongContext
@@ -52,6 +59,17 @@ export const MusicRow = ({
 	const [isLiked, setIsLiked] = useState(actualSong?.liked);
 	const [play, setPlay] = useState(false);
 	const [isPlaying, setIsPlaying] = useState(false);
+
+	const { deleteTrack } = useTrack();
+
+	const handleDelete = async () => {
+		try {
+			console.log(track._id);
+			await deleteTrack(track._id);
+		} catch (error) {
+			console.log((error as Error).message);
+		}
+	};
 
 	const handleClickSong = () => {
 		setIsPlaying(!isPlaying);
@@ -151,12 +169,17 @@ export const MusicRow = ({
 				<span className='relative' onClick={handleMenu}>
 					<BsThreeDotsVertical />
 					{selectedTrack?._id === actualSong._id && (
-						<TrackMenu
-							addSongToQueue={addSongToQueue}
-							actualSong={actualSong}
-							openModal={openModal}
-						/>
+						<>
+							<TrackMenu
+								addSongToQueue={addSongToQueue}
+								actualSong={actualSong}
+								openModal={openModal}
+							/>
+						</>
 					)}
+				</span>
+				<span onClick={handleDelete}>
+					<MdDangerous />
 				</span>
 			</div>
 		</div>
