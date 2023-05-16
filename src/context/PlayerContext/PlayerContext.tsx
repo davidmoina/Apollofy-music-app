@@ -16,7 +16,7 @@ interface ContextPlayerType {
 	toggleRepeat: () => void;
 	togglePlaying: () => void;
 	handleEnd: () => void;
-	songsSet: (songsArr: Track) => void;
+	songsSet: (songsArr: Track | Track[]) => void;
 	addSongToQueue: (song: Track) => void;
 	setSelectedTrack: (song: Track | null) => void;
 }

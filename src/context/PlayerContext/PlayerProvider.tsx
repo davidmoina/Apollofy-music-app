@@ -145,11 +145,11 @@ export const PlayerProvider = ({ children }: Props) => {
 		});
 	};
 	//set songs array
-	const songsSet = (songsArr: Track) => {
+	const songsSet = (songsArr: Track | Track[]) => {
 		dispatch({
 			type: ACTIONS.SET_SONGS_ARRAY,
 			payload: {
-				songsList: [songsArr],
+				songsList: Array.isArray(songsArr) ? songsArr : [songsArr],
 			},
 		});
 	};

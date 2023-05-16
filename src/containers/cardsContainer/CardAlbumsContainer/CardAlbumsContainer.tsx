@@ -1,11 +1,12 @@
-import { NavLink } from 'react-router-dom';
-import { Album } from '../../../interfaces/songs';
-import { CardAlbum } from '../../../components/Cards/CardAlbum';
+// import { NavLink } from 'react-router-dom';
+// import { Album } from '../../../interfaces/songs';
+import { AlbumCard, CardAlbum } from '../../../components/Cards/CardAlbum';
 import styles from '../cardsContainer.module.scss';
 
 interface AlbumContainerProps {
 	title: string;
-	albums: Album[] | null;
+	albums: AlbumCard[] | null;
+	isPlayable: boolean;
 }
 
 export const CardAlbumsContainer = ({ title, albums }: AlbumContainerProps) => {
@@ -15,7 +16,7 @@ export const CardAlbumsContainer = ({ title, albums }: AlbumContainerProps) => {
 				<h2 className={`text-xl md:text-2xl mb-2 ${styles.containerTitle}`}>
 					{title}
 				</h2>
-				<NavLink to='/albums'>View All</NavLink>
+				{/* <NavLink to='/albums'>View All</NavLink> */}
 			</div>
 			<div
 				className={`flex jutify-center items-center overflow-x-auto lg:flex-wrap gap-6 ${styles.containerCard}`}

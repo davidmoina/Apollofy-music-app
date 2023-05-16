@@ -4,10 +4,13 @@ import stylesTitle from '../../containers/cardsContainer/cardsContainer.module.s
 import { Playlist, Track } from '../../interfaces/songs';
 import { SongListContainer } from '../../containers/songListContainer/SongListContainer';
 import { CardsContainer } from '../../containers/cardsContainer/CardsContainer';
+import { CardAlbumsContainer } from '../../containers/cardsContainer/CardAlbumsContainer/CardAlbumsContainer';
+import { AlbumCard } from '../Cards/CardAlbum';
 
 export const SearchBar = () => {
 	
 	const [filteredSongs, setFilteredSongs] = useState<Track[]>([]);
+	const [filteredAlbums, setFilteredAlbums] = useState<AlbumCard[]>([]);
 	const [filteredPlaylists, setFilteredPlaylists] = useState<Playlist[]>([]);
 	const { VITE_APP_SERVICE_URL } = import.meta.env;
 
@@ -25,9 +28,10 @@ export const SearchBar = () => {
 						body: JSON.stringify({inputValue})
 				})
 
-				const {tracks, playlists} = await response.json();
+				const {tracks, playlists, albums} = await response.json();
 				setFilteredSongs(tracks);
 				setFilteredPlaylists(playlists);
+				setFilteredAlbums(albums);
 				
 			}catch (error) {
 				console.log(error);
@@ -35,6 +39,7 @@ export const SearchBar = () => {
 			} else {
 				setFilteredSongs([]);
 				setFilteredPlaylists([]);
+				setFilteredAlbums([]);
 			}
 
 	};
@@ -54,7 +59,7 @@ export const SearchBar = () => {
 				</label>
 			</div>
 			{
-				(filteredSongs.length > 0 || filteredPlaylists.length > 0) &&
+				(filteredSongs.length > 0 || filteredPlaylists.length > 0 || filteredAlbums.length > 0) &&
 				<>
 					<div>
 						<section className='ml-5'>
@@ -68,6 +73,13 @@ export const SearchBar = () => {
 						<CardsContainer
 							title='Playlists'
 							playlists={filteredPlaylists}
+							isPlayable
+						/>
+					</div>
+					<div>
+						<CardAlbumsContainer
+							title='Albums'
+							albums={filteredAlbums}
 							isPlayable
 						/>
 					</div>

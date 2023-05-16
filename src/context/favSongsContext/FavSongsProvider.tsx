@@ -7,63 +7,65 @@ type ChildrenProps = {
 };
 
 export const FavSongProvider = ({ children }: ChildrenProps) => {
-
-	const { VITE_APP_SERVICE_URL } = import.meta.env
+	const { VITE_APP_SERVICE_URL } = import.meta.env;
 	const [toggle, setToggle] = useState(true);
-	const user = localStorage.getItem('User')
-	const userId = JSON.parse(user!).id
-	const [data, setData] = useState<Track[]>([])
+	const user = localStorage.getItem('User');
+	const userId = user ? JSON.parse(user).id : '';
+	const [data, setData] = useState<Track[]>([]);
 
 	const addToFavorite = async (song: Track) => {
-
 		const songId = song._id;
 
-		const response = await fetch(`${VITE_APP_SERVICE_URL}/users/likes/${userId}`, {
-			method: 'POST',
-			headers: {
-				'Content-Type': 'application/json',
-			},
-			body: JSON.stringify({songId}),
-		})
-		const data = await response.json()
-		console.log(data)
-		setToggle(!toggle);
-	}
-
-	useEffect(() => {
-
-		getLikedSongs(userId);
-
-	}, [toggle]);
-
-	const removeFromFavorite = async (song: Track) => {
-
-		const songId = song._id;
-
-		const response = await fetch(`${VITE_APP_SERVICE_URL}/users/dislikes/${userId}`, {
-			method: 'POST',
-			headers: {
-				'Content-Type': 'application/json',
-			},
-			body: JSON.stringify({songId}),
-		})
-		const data = await response.json()
-		console.log(data)
+		const response = await fetch(
+			`${VITE_APP_SERVICE_URL}/users/likes/${userId}`,
+			{
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/json',
+				},
+				body: JSON.stringify({ songId }),
+			}
+		);
+		const data = await response.json();
+		console.log(data);
 		setToggle(!toggle);
 	};
 
-	const getLikedSongs = async (userId :string) => {
+	useEffect(() => {
+		getLikedSongs(userId);
+	}, [toggle]);
 
-		const response = await fetch(`${VITE_APP_SERVICE_URL}/users/likes/${userId}`, {
-			method: 'GET',
-			headers: {
-				'Content-Type': 'application/json',
-			},
-			
-		})
-		const data = await response.json()
-		setData(data)
-	}
+	const removeFromFavorite = async (song: Track) => {
+		const songId = song._id;
+
+		const response = await fetch(
+			`${VITE_APP_SERVICE_URL}/users/dislikes/${userId}`,
+			{
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/json',
+				},
+				body: JSON.stringify({ songId }),
+			}
+		);
+		const data = await response.json();
+		console.log(data);
+		setToggle(!toggle);
+	};
+
+	const getLikedSongs = async (userId: string) => {
+		const response = await fetch(
+			`${VITE_APP_SERVICE_URL}/users/likes/${userId}`,
+			{
+				method: 'GET',
+				headers: {
+					'Content-Type': 'application/json',
+				},
+			}
+		);
+		const data = await response.json();
+		setData(data);
+	};
 
 	return (
 		<FavSongContext.Provider
@@ -73,7 +75,7 @@ export const FavSongProvider = ({ children }: ChildrenProps) => {
 				setToggle,
 				toggle,
 				data,
-				getLikedSongs
+				getLikedSongs,
 			}}
 		>
 			{children}

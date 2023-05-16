@@ -122,7 +122,9 @@ export const PlayerMusic = () => {
 						>
 							<InfoTrack
 								name={songsList[currentSongNum]?.name}
-								artist={songsList[currentSongNum]?.artist}
+								artist={songsList[currentSongNum]?.artists
+									.map(item => item.name)
+									.join(' , ')}
 								thumbnail={songsList[currentSongNum]?.thumbnail}
 							/>
 						</div>
@@ -178,7 +180,9 @@ export const PlayerMusic = () => {
 										{songsList[currentSongNum]?.name}
 									</h2>
 									<h3 className='text-white'>
-										{songsList[currentSongNum]?.artist}
+										{songsList[currentSongNum]?.artists
+											.map(item => item.name)
+											.join(' , ')}
 									</h3>
 									<input
 										type='range'
