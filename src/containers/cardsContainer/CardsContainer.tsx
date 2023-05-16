@@ -4,7 +4,7 @@ import styles from './cardsContainer.module.scss';
 
 interface PlaylistRecommendationsContainerProps {
 	title: string;
-	playlists: Playlist[] | Track[];
+	playlists: Playlist[] | Track[] | undefined;
 	isPlayable?: boolean;
 }
 

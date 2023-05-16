@@ -1,9 +1,8 @@
 import { Playlist } from '../../interfaces/playlist';
-import { Track } from '../../interfaces/songs';
 import styles from './playlistHeader.module.scss';
 
 interface Props {
-	data: Playlist<Track[]> | null;
+	data: Playlist<string> | null;
 }
 
 function PlaylistHeader({ data }: Props) {

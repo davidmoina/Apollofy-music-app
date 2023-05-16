@@ -5,7 +5,7 @@ import styles from '../cardsContainer.module.scss';
 
 interface AlbumContainerProps {
 	title: string;
-	albums: Album[];
+	albums: Album[] | null;
 }
 
 export const CardAlbumsContainer = ({ title, albums }: AlbumContainerProps) => {
@@ -20,7 +20,7 @@ export const CardAlbumsContainer = ({ title, albums }: AlbumContainerProps) => {
 			<div
 				className={`flex jutify-center items-center overflow-x-auto lg:flex-wrap gap-6 ${styles.containerCard}`}
 			>
-				{albums.map((album, index) => (
+				{albums?.map((album, index) => (
 					<CardAlbum key={index} albums={album} />
 				))}
 			</div>
