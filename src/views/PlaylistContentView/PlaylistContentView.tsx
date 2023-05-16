@@ -5,26 +5,21 @@ import { useFetch } from '../../api/useFetch';
 import { useParams } from 'react-router-dom';
 import { Playlist } from '../../interfaces/playlist';
 import { Track } from '../../interfaces/songs';
+import { useEffect } from 'react';
 
-export const samplePlaylists = {
-	id: 1,
-	name: 'Road trip! All the masters I need!',
-	isFollowed: true,
-	thumbnail:
-		'https://res.cloudinary.com/dmkdsujzh/image/upload/v1644625060/tracks-thumbnails-dev/car_yx6ld1.jpg',
-	description:
-		'Get your mic on with this beats. You are going to sing all the way down',
-	publicAccessible: true,
-	primaryColor: '#fbdc00',
-};
+export const PlaylistContentView = () => {
+	// const [infoData, setInfoData] = useState<Playlist<Track[]> | null>(null);
 
-export const PlaylistsView = () => {
 	const { id } = useParams();
 
-	const { data } = useFetch<Playlist<Track[]>>(
+	const { data, reload, setReload } = useFetch<Playlist<Track[]>>(
 		`${import.meta.env.VITE_APP_SERVICE_URL}/playlist/${id}`
 	);
 	console.log(data);
+
+	useEffect(() => {
+		setReload(!reload);
+	}, [id]);
 
 	return (
 		<>

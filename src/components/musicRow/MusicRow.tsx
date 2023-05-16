@@ -148,8 +148,8 @@ export const MusicRow = ({
 					)}
 				</span>
 				<span>3:00</span>
-				<span className='relative' onClick={handleMenu}>
-					<BsThreeDotsVertical />
+				<span className='relative'>
+					<BsThreeDotsVertical onClick={handleMenu} />
 					{selectedTrack?._id === actualSong._id && (
 						<TrackMenu
 							addSongToQueue={addSongToQueue}

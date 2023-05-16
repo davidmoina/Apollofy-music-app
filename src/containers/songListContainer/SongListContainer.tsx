@@ -7,7 +7,7 @@ import { useModal } from '../../hooks/useModal';
 import { Track } from '../../interfaces/songs';
 
 interface Props {
-	tracks: Track[];
+	tracks: Track[] | undefined;
 }
 
 export const SongListContainer = ({ tracks }: Props) => {
@@ -40,7 +40,7 @@ export const SongListContainer = ({ tracks }: Props) => {
 				/>
 			))}
 			<Modal isOpen={isOpen} closeModal={closeModal}>
-				<ListsModalContent changeModal={changeModal} />
+				<ListsModalContent closeModal={closeModal} changeModal={changeModal} />
 			</Modal>
 
 			<Modal isOpen={activeAddModal} closeModal={closeAddModal}>

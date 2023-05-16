@@ -2,8 +2,9 @@ import { useEffect, useState } from 'react';
 
 export const useFetch = <T>(url: string) => {
 	const [loading, setLoading] = useState<boolean>(false);
-	const [data, setData] = useState<T[]>([]);
+	const [data, setData] = useState<T | null>(null);
 	const [error, setError] = useState<string>('');
+	const [reload, setReload] = useState<boolean>(false);
 
 	useEffect(() => {
 		(async () => {
@@ -19,7 +20,7 @@ export const useFetch = <T>(url: string) => {
 			setLoading(false);
 			console.log('UseFetch executed');
 		})();
-	}, []);
+	}, [reload]);
 
-	return { loading, data, error };
+	return { loading, data, error, reload, setReload };
 };

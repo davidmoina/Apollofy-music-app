@@ -4,7 +4,7 @@ import styles from './cardsContainer.module.scss';
 
 interface PlaylistRecommendationsContainerProps {
 	title: string;
-	playlists: Track[];
+	playlists?: Track[];
 	isPlayable?: boolean;
 }
 
@@ -21,7 +21,7 @@ export const CardsContainer = ({
 				{title}
 			</h2>
 			<div className={`flex overflow-x-auto gap-6 ${styles.containerCard}`}>
-				{playlists.map((playlist, index) => (
+				{playlists?.map((playlist, index) => (
 					<CardPlaylist key={index} playlists={playlist} isPlayable />
 				))}
 			</div>

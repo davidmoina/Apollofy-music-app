@@ -16,6 +16,7 @@ import { EditProfile } from '../pages/editProf/Editprofile';
 import { ChangePassView } from '../views/ChangePassView/ChangePassView';
 import { ForgotPassword } from '../pages/ForgotPassword/ForgotPassword';
 import { ResetPass } from '../pages/ResetPass/ResetPass';
+import { PlaylistContentView } from '../views/PlaylistContentView/PlaylistContentView';
 
 export const Routing = () => {
 	return (
@@ -27,6 +28,7 @@ export const Routing = () => {
 						<Route path='search' element={<SearchView />} />
 						<Route path='library' element={<LibraryView />} />
 						<Route path='playlists' element={<PlaylistsView />} />
+						<Route path='playlist/:id' element={<PlaylistContentView />} />
 						<Route path='albums' element={<AlbumsView />} />
 						<Route path='tracks' element={<TracksView />} />
 						<Route path='artists' element={<ArtistsView />} />
