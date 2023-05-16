@@ -42,7 +42,8 @@ export const MusicRow = ({
 	setMenu,
 	track,
 }: Props) => {
-	const { addToFavorite, removeFromFavorite } = useContext(
+
+	const { addToFavorite, removeFromFavorite, setToggle, toggle, data } = useContext(
 		FavSongContext
 	) as ContextTypeFav;
 
@@ -56,15 +57,15 @@ export const MusicRow = ({
 		setSelectedTrack,
 	} = useContext(PlayerContext);
 
-	const [isLiked, setIsLiked] = useState(actualSong?.liked);
 	const [play, setPlay] = useState(false);
 	const [isPlaying, setIsPlaying] = useState(false);
+
+	const [isLiked, setIsLiked] = useState(data.find(song => song._id === actualSong._id) && true);
 
 	const { deleteTrack } = useTrack();
 
 	const handleDelete = async () => {
 		try {
-			console.log(track._id);
 			await deleteTrack(track._id);
 		} catch (error) {
 			console.log((error as Error).message);
@@ -82,33 +83,14 @@ export const MusicRow = ({
 		togglePlaying();
 	};
 
-	const postData = async (url = '', data = {}) => {
-		const response = await fetch(url, {
-			method: 'PUT',
-			headers: {
-				'Content-Type': 'application/json',
-			},
-			body: JSON.stringify(data),
-		});
-		return response.json();
-	};
-
 	const handleLike = (song: Track) => {
 		if (isLiked) {
 			setIsLiked(!isLiked);
-			song.liked = false;
-			postData(`http://localhost:4000/tracks/${song._id}`, {
-				...song,
-				liked: false,
-			});
+			setToggle(!toggle)
 			removeFromFavorite(song);
 		} else {
 			setIsLiked(!isLiked);
-			postData(`http://localhost:4000/tracks/${song._id}`, {
-				...song,
-				liked: true,
-			});
-			song.liked = true;
+			setToggle(!toggle)
 			addToFavorite(song);
 		}
 	};

@@ -2,13 +2,14 @@ import {
 	ContextTypeFav,
 	FavSongContext,
 } from '../../context/favSongsContext/FavSongsContext';
-import { useContext } from 'react';
-import { MusicRow } from '../../components/musicRow/MusicRow';
+import { useContext} from 'react';
 import PlaylistInfoBar from '../../components/infoBarPlaylists/InfoBarPlaylists';
 import PlaylistHeader from '../../components/playlistHeader/PlaylistHeader';
+import { SongListContainer } from '../../containers/songListContainer/SongListContainer';
 
 export const FavView = () => {
-	const { favorite } = useContext(FavSongContext) as ContextTypeFav;
+
+	const { data } = useContext(FavSongContext) as ContextTypeFav;
 
 	const samplePlaylists = {
 		id: 1,
@@ -25,16 +26,12 @@ export const FavView = () => {
 		<>
 			<PlaylistHeader {...samplePlaylists} />
 			<PlaylistInfoBar />
-			{favorite.map((song, index) => (
-				<MusicRow
-					key={index}
-					position={index}
-					thumbnail={song.thumbnail}
-					artist={song.artist}
-					title={song.name}
-					actualSong={song}
-				/>
-			))}
+			{
+				data ? 
+				<SongListContainer tracks={data}/>
+				:
+				<h1 className='text-center text-xl text-white'>You have no favorite songs</h1>
+			}
 		</>
 	);
 };

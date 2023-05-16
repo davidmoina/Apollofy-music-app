@@ -16,13 +16,14 @@ const samplePlaylists = {
 };
 
 export const TracksView = () => {
+
 	const { VITE_APP_SERVICE_URL } = import.meta.env;
-	const { data } = useFetch<Track>(`${VITE_APP_SERVICE_URL}/track`);
+	const { data:  tracks } = useFetch<Track>(`${VITE_APP_SERVICE_URL}/track`);
 
 	return (
 		<div>
 			<PlaylistHeader {...samplePlaylists} />
-			<SongListContainer tracks={data} />
+			<SongListContainer tracks={tracks} />
 		</div>
 	);
 };
