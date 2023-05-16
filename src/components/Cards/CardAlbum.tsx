@@ -19,16 +19,16 @@ interface LikedByAlbum {
   }
 
 interface AlbumProps {
-	key: number;
+	key?: number;
 	albums: AlbumCard;
 }
 
-export const CardAlbum = ({ key , albums }: AlbumProps)=> {
+export const CardAlbum = ({ albums }: AlbumProps)=> {
 	const [showPlay, setShowPlay] = useState(false);
 
 	return (
 		<div
-			key={key}
+			key={albums.id}
 			className={`flex flex-col w-28 md:w-32 lg:w-48 transition-all duration-200 ${styles.card} cursor-pointer hover:bg`}
 			onMouseEnter={() => setShowPlay(true)}
 			onMouseLeave={() => setShowPlay(false)}
