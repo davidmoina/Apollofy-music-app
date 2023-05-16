@@ -23,7 +23,12 @@ export const PlaylistContentView = () => {
 
 	return (
 		<>
-			<PlaylistHeader data={data} />
+			<PlaylistHeader
+				name={data?.name}
+				thumbnail={data?.thumbnail}
+				description={data?.description}
+				publicAccessible={data?.publicAccessible}
+			/>
 			<PlaylistInfoBar />
 			<SongListContainer tracks={data?.tracks} />
 		</>

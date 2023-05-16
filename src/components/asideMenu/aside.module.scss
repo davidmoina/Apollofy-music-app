@@ -39,6 +39,14 @@
 				opacity: 0.9;
 				font-weight: 700;
 			}
+
+			.playlistImage img{
+				border-radius: 0.3rem;
+				-webkit-border-radius: 0.3rem;
+				-moz-border-radius: 0.3rem;
+				-ms-border-radius: 0.3rem;
+				-o-border-radius: 0.3rem;
+}
 		}
 	}
 
@@ -54,6 +62,7 @@
 		.inactiveLink:hover {
 			color: var.$secondary-color;
 		}
+		
 	}
 
 	.addPlaylistBtn {
@@ -68,4 +77,7 @@
 			color: var.$active-color;
 		}
 	}
+	
 }
+
+

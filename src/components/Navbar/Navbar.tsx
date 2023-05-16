@@ -27,7 +27,7 @@ export const Navbar = () => {
 
 	return (
 		<nav
-			className={`flex justify-end lg:justify-between p-5 ${styles.containerNav}`}
+			className={`flex justify-end lg:justify-between p-5 z-30 ${styles.containerNav}`}
 		>
 			<div className={`hidden lg:flex ${styles.arrowNav}`}>
 				<button onClick={() => navigate(-1)}>

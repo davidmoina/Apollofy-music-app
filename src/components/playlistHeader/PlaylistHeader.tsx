@@ -1,29 +1,28 @@
-import { Playlist } from '../../interfaces/playlist';
 import styles from './playlistHeader.module.scss';
 
 interface Props {
-	data: Playlist<string> | null;
+	thumbnail?: string;
+	publicAccessible?: boolean;
+	description?: string;
+	name?: string;
 }
 
-function PlaylistHeader({ data }: Props) {
-	console.log(data?.publicAccessible);
-
+function PlaylistHeader({
+	thumbnail,
+	publicAccessible,
+	description,
+	name,
+}: Props) {
 	return (
 		<div className={styles.playlistHeader}>
-			<img
-				className={styles.playlistImage}
-				src={data?.thumbnail}
-				alt={data?.name}
-			/>
+			<img className={styles.playlistImage} src={thumbnail} alt={name} />
 			<div className={styles.playlistInfo}>
 				<p className={styles.publicPlaylist}>
-					{data?.publicAccessible ? 'Public Playlist' : 'Private playlist'}
+					{publicAccessible ? 'Public Playlist' : 'Private playlist'}
 				</p>
-				<h2 className={styles.playlistName}>{data?.name}</h2>
+				<h2 className={styles.playlistName}>{name}</h2>
 				<div className={styles.creatorInfo}>
-					<span className={styles.playlistDescription}>
-						{data?.description}
-					</span>
+					<span className={styles.playlistDescription}>{description}</span>
 				</div>
 			</div>
 		</div>

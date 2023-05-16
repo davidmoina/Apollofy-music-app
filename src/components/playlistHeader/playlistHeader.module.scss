@@ -10,8 +10,13 @@
 
 	.playlistImage {
 		height: 17vh;
-		padding-left: 2vh;
-	}
+		margin-left: 2vh;
+		border-radius: 0.5rem;
+		-webkit-border-radius: 0.5rem;
+		-moz-border-radius: 0.5rem;
+		-ms-border-radius: 0.5rem;
+		-o-border-radius: 0.5rem;
+}
 
 	.playlistInfo {
 		width: 75%;

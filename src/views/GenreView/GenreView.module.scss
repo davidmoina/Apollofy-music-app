@@ -1,0 +1,31 @@
+@use '../../sass/globals/variables' as var;
+
+.containerGenre{
+     
+
+   h1{
+      margin: 1rem;
+      color: white;
+      font-size: 2em;
+      font-weight: 800;
+   }
+   .divGenre{ 
+      // margin: 2rem;
+   
+      button{
+         min-width: 12rem;
+         min-height: 12rem;
+         margin: 0.5rem;
+         padding: 2rem;
+         border-radius: 0.5rem;
+         -webkit-border-radius: 0.5rem;
+         font-size: 1.5em;
+         font-weight: 800;
+   
+         span{
+            font-size: 0.5em;
+            font-weight: 100;
+         }
+      }
+   }
+}

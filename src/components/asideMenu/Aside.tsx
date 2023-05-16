@@ -1,5 +1,10 @@
 import styles from './aside.module.scss';
-import { AiOutlineHome, AiOutlineSearch, AiFillHeart } from 'react-icons/ai';
+import {
+	AiOutlineHome,
+	AiOutlineSearch,
+	AiFillHeart,
+	AiOutlineHeatMap,
+} from 'react-icons/ai';
 import {
 	MdOutlineLibraryMusic,
 	MdAlbum,
@@ -151,6 +156,21 @@ const Aside = () => {
 							Artists
 						</Link>
 					</li>
+					<li>
+						<Link
+							className={`${
+								location.pathname == '/genre'
+									? styles.activeLink
+									: styles.inactiveLink
+							}`}
+							to='/genre'
+						>
+							<span>
+								<AiOutlineHeatMap />
+							</span>
+							Genres
+						</Link>
+					</li>
 				</ul>
 			</div>
 			<div className={styles.navbar}>
@@ -170,8 +190,14 @@ const Aside = () => {
 								}`}
 								to={`/playlist/${item._id}`}
 							>
-								<span>
-									<MdFeaturedPlayList />
+								<span className={styles.playlistImage}>
+									{/* <MdFeaturedPlayList /> */}
+									<img
+										src={item.thumbnail}
+										alt={item.name}
+										width={40}
+										height={40}
+									/>
 								</span>
 								{item.name}
 							</Link>
