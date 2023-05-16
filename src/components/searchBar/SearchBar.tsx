@@ -1,14 +1,16 @@
 import { FormEvent, useState } from 'react';
 import styles from '../user/input/input/input.module.scss';
 import stylesTitle from '../../containers/cardsContainer/cardsContainer.module.scss';
-import { Album, Playlist, Track } from '../../interfaces/songs';
+import { Playlist, Track } from '../../interfaces/songs';
 import { SongListContainer } from '../../containers/songListContainer/SongListContainer';
 import { CardsContainer } from '../../containers/cardsContainer/CardsContainer';
+import { CardAlbumsContainer } from '../../containers/cardsContainer/CardAlbumsContainer/CardAlbumsContainer';
+import { AlbumCard } from '../Cards/CardAlbum';
 
 export const SearchBar = () => {
 	
 	const [filteredSongs, setFilteredSongs] = useState<Track[]>([]);
-	const [filteredAlbums, setFilteredAlbums] = useState<Album[]>([]);
+	const [filteredAlbums, setFilteredAlbums] = useState<AlbumCard[]>([]);
 	const [filteredPlaylists, setFilteredPlaylists] = useState<Playlist[]>([]);
 	const { VITE_APP_SERVICE_URL } = import.meta.env;
 
@@ -75,9 +77,9 @@ export const SearchBar = () => {
 						/>
 					</div>
 					<div>
-						<CardsContainer
+						<CardAlbumsContainer
 							title='Albums'
-							playlists={filteredAlbums}
+							albums={filteredAlbums}
 							isPlayable
 						/>
 					</div>
