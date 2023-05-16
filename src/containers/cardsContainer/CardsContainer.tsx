@@ -1,10 +1,10 @@
 import { CardPlaylist } from '../../components/Cards/CardPlaylist';
-import { Playlist, Track } from '../../interfaces/songs';
+import { Album, Playlist, Track } from '../../interfaces/songs';
 import styles from './cardsContainer.module.scss';
 
 interface PlaylistRecommendationsContainerProps {
 	title: string;
-	playlists: Playlist[] | Track[] | undefined;
+	playlists: Playlist[] | Track[] | Album[] | undefined;
 	isPlayable?: boolean;
 }
 

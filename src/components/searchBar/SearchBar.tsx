@@ -1,13 +1,14 @@
 import { FormEvent, useState } from 'react';
 import styles from '../user/input/input/input.module.scss';
 import stylesTitle from '../../containers/cardsContainer/cardsContainer.module.scss';
-import { Playlist, Track } from '../../interfaces/songs';
+import { Album, Playlist, Track } from '../../interfaces/songs';
 import { SongListContainer } from '../../containers/songListContainer/SongListContainer';
 import { CardsContainer } from '../../containers/cardsContainer/CardsContainer';
 
 export const SearchBar = () => {
 	
 	const [filteredSongs, setFilteredSongs] = useState<Track[]>([]);
+	const [filteredAlbums, setFilteredAlbums] = useState<Album[]>([]);
 	const [filteredPlaylists, setFilteredPlaylists] = useState<Playlist[]>([]);
 	const { VITE_APP_SERVICE_URL } = import.meta.env;
 
@@ -25,9 +26,10 @@ export const SearchBar = () => {
 						body: JSON.stringify({inputValue})
 				})
 
-				const {tracks, playlists} = await response.json();
+				const {tracks, playlists, albums} = await response.json();
 				setFilteredSongs(tracks);
 				setFilteredPlaylists(playlists);
+				setFilteredAlbums(albums);
 				
 			}catch (error) {
 				console.log(error);
@@ -35,6 +37,7 @@ export const SearchBar = () => {
 			} else {
 				setFilteredSongs([]);
 				setFilteredPlaylists([]);
+				setFilteredAlbums([]);
 			}
 
 	};
@@ -54,7 +57,7 @@ export const SearchBar = () => {
 				</label>
 			</div>
 			{
-				(filteredSongs.length > 0 || filteredPlaylists.length > 0) &&
+				(filteredSongs.length > 0 || filteredPlaylists.length > 0 || filteredAlbums.length > 0) &&
 				<>
 					<div>
 						<section className='ml-5'>
@@ -68,6 +71,13 @@ export const SearchBar = () => {
 						<CardsContainer
 							title='Playlists'
 							playlists={filteredPlaylists}
+							isPlayable
+						/>
+					</div>
+					<div>
+						<CardsContainer
+							title='Albums'
+							playlists={filteredAlbums}
 							isPlayable
 						/>
 					</div>

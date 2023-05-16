@@ -1,5 +1,5 @@
 import styles from './card.module.scss';
-import { Playlist } from '../../interfaces/songs';
+import { Album, Playlist, Track } from '../../interfaces/songs';
 // import { useState, useContext } from 'react';
 import { useState } from 'react';
 import { MdPlayCircleFilled } from 'react-icons/md';
@@ -7,7 +7,7 @@ import { MdPlayCircleFilled } from 'react-icons/md';
 
 interface PlaylistRecommendationProps {
 	key: number;
-	playlists: Playlist;
+	playlists: Track  | Album | Playlist;
 	isPlayable: boolean;
 }
 
@@ -15,7 +15,7 @@ export const CardPlaylist = ({
 	playlists,
 	isPlayable,
 }: PlaylistRecommendationProps) => {
-	const { thumbnail, artists, name } = playlists;
+	const { thumbnail, artists, name } = playlists as Playlist;
 
 	// const { songsSet, setCurrent } = useContext(PlayerContext);
 
