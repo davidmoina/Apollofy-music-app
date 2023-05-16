@@ -4,7 +4,6 @@ import PlaylistInfoBar from '../../components/infoBarPlaylists/InfoBarPlaylists'
 import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { useGenre } from '../../hooks/useGenre';
-import { BsDisc } from 'react-icons/bs';
 
 interface Genre {
 	_id: string;
