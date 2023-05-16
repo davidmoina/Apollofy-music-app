@@ -6,7 +6,11 @@ import {
 	AiOutlineHeart,
 	AiOutlineCaretRight,
 } from 'react-icons/ai';
-import { MdPlayCircleFilled, MdPauseCircleFilled } from 'react-icons/md';
+import {
+	MdPlayCircleFilled,
+	MdPauseCircleFilled,
+	MdDangerous,
+} from 'react-icons/md';
 import { BsThreeDotsVertical } from 'react-icons/bs';
 import { Artist, Track } from '../../interfaces/songs';
 import {
@@ -15,6 +19,7 @@ import {
 } from '../../context/favSongsContext/FavSongsContext';
 import { PlayerContext } from '../../context/PlayerContext/PlayerContext';
 import { TrackMenu } from '../trackMenu/TrackMenu';
+import { useTrack } from '../../hooks/useTrack';
 
 export interface Props {
 	thumbnail: string;
@@ -24,6 +29,7 @@ export interface Props {
 	openModal: () => void;
 	menu: boolean;
 	setMenu: Dispatch<React.SetStateAction<boolean>>;
+	track: Track;
 }
 
 export const MusicRow = ({
@@ -34,8 +40,10 @@ export const MusicRow = ({
 	openModal,
 	menu,
 	setMenu,
+	track,
 }: Props) => {
-	const { addToFavorite, removeFromFavorite } = useContext(
+
+	const { addToFavorite, removeFromFavorite, setToggle, toggle, data } = useContext(
 		FavSongContext
 	) as ContextTypeFav;
 
@@ -49,9 +57,20 @@ export const MusicRow = ({
 		setSelectedTrack,
 	} = useContext(PlayerContext);
 
-	const [isLiked, setIsLiked] = useState(actualSong?.liked);
 	const [play, setPlay] = useState(false);
 	const [isPlaying, setIsPlaying] = useState(false);
+
+	const [isLiked, setIsLiked] = useState(data.find(song => song._id === actualSong._id) && true);
+
+	const { deleteTrack } = useTrack();
+
+	const handleDelete = async () => {
+		try {
+			await deleteTrack(track._id);
+		} catch (error) {
+			console.log((error as Error).message);
+		}
+	};
 
 	const handleClickSong = () => {
 		setIsPlaying(!isPlaying);
@@ -64,33 +83,14 @@ export const MusicRow = ({
 		togglePlaying();
 	};
 
-	const postData = async (url = '', data = {}) => {
-		const response = await fetch(url, {
-			method: 'PUT',
-			headers: {
-				'Content-Type': 'application/json',
-			},
-			body: JSON.stringify(data),
-		});
-		return response.json();
-	};
-
 	const handleLike = (song: Track) => {
 		if (isLiked) {
 			setIsLiked(!isLiked);
-			song.liked = false;
-			postData(`http://localhost:4000/tracks/${song._id}`, {
-				...song,
-				liked: false,
-			});
+			setToggle(!toggle)
 			removeFromFavorite(song);
 		} else {
 			setIsLiked(!isLiked);
-			postData(`http://localhost:4000/tracks/${song._id}`, {
-				...song,
-				liked: true,
-			});
-			song.liked = true;
+			setToggle(!toggle)
 			addToFavorite(song);
 		}
 	};
@@ -108,6 +108,7 @@ export const MusicRow = ({
 
 	return (
 		<div
+			key={actualSong._id}
 			className={styles.rowContainer}
 			onMouseEnter={() => setPlay(true)}
 			onMouseLeave={() => setPlay(false)}
@@ -151,12 +152,17 @@ export const MusicRow = ({
 				<span className='relative'>
 					<BsThreeDotsVertical onClick={handleMenu} />
 					{selectedTrack?._id === actualSong._id && (
-						<TrackMenu
-							addSongToQueue={addSongToQueue}
-							actualSong={actualSong}
-							openModal={openModal}
-						/>
+						<>
+							<TrackMenu
+								addSongToQueue={addSongToQueue}
+								actualSong={actualSong}
+								openModal={openModal}
+							/>
+						</>
 					)}
+				</span>
+				<span onClick={handleDelete}>
+					<MdDangerous />
 				</span>
 			</div>
 		</div>

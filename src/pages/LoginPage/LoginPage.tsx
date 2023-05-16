@@ -5,7 +5,7 @@ import { SubmitHandler, useForm } from 'react-hook-form';
 import { FormInputs } from '../../interfaces';
 import { BackgroundAnimated } from '../../components/BackgroundAnimated/BackgroundAnimated';
 import useUserAuth from '../../hooks/useUserAuth';
-import { FormInputsTrack } from '../../components/ModalCreateTrack/ModalCreateTrack';
+// import { FormInputsTrack } from '../../components/ModalCreateTrack/ModalCreateTrack';
 
 export const LoginPage = () => {
 	const { useLogin } = useUserAuth();
