@@ -39,7 +39,7 @@ export function useTrack() {
 				}
 			);
 
-			console.log(await response.json());
+			await response.json();
 
 			if (!response.ok) {
 				throw new Error('Something went wrong');

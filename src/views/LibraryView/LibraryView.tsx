@@ -22,7 +22,7 @@ export const LibraryView = () => {
 
 	return (
 		<>
-			<div>
+			<div className={styles.modalContent}>
 				<button onClick={openModal} className={styles.addPlaylistBtn}>
 					Create new Song{' '}
 					<IoMdAdd style={{ display: 'inline-block', marginBottom: '5px' }} />

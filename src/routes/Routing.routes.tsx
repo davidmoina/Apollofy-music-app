@@ -16,6 +16,7 @@ import { EditProfile } from '../pages/editProf/Editprofile';
 import { ChangePassView } from '../views/ChangePassView/ChangePassView';
 import { ForgotPassword } from '../pages/ForgotPassword/ForgotPassword';
 import { ResetPass } from '../pages/ResetPass/ResetPass';
+import { GenreView } from '../views/GenreView/GenreView';
 
 export const Routing = () => {
 	return (
@@ -30,6 +31,7 @@ export const Routing = () => {
 						<Route path='albums' element={<AlbumsView />} />
 						<Route path='tracks' element={<TracksView />} />
 						<Route path='artists' element={<ArtistsView />} />
+						<Route path='genre' element={<GenreView />} />
 						<Route path='fav' element={<FavView />} />
 						<Route path='edit-profile' element={<EditProfile />} />
 						<Route path='change-password' element={<ChangePassView />} />
