@@ -1,7 +1,9 @@
-interface Tracks {
-	trackId: string;
-	order: number;
-}
+import { Track } from './songs';
+
+// interface Tracks {
+// 	trackId: string;
+// 	order: number;
+// }
 
 interface Followed {
 	userId: string;
@@ -20,6 +22,6 @@ export interface Playlist<T> {
 	followers: number;
 	rating: number;
 	userId: T;
-	tracks: Tracks[];
+	tracks: Track[];
 	followedBy: Followed[];
 }

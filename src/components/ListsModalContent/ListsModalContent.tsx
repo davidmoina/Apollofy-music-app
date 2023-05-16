@@ -6,36 +6,53 @@ import { PlaylistModalItem } from '../PlaylistItem/PlaylistModalItem';
 import styles from './listsModalContent.module.scss';
 import { IoMdAdd } from 'react-icons/io';
 import { PlayerContext } from '../../context/PlayerContext/PlayerContext';
+import { toast } from 'react-hot-toast';
 
 interface Props {
 	changeModal: () => void;
+	closeModal: () => void;
 }
 
-export const ListsModalContent = ({ changeModal }: Props) => {
+export const ListsModalContent = ({ changeModal, closeModal }: Props) => {
 	const user = JSON.parse(localStorage.getItem('User')!);
 
-	const { selectedTrack } = useContext(PlayerContext);
+	const { selectedTrack, setSelectedTrack } = useContext(PlayerContext);
 
-	const { data } = useFetch<Playlist<User>>(
-		`${import.meta.env.VITE_APP_SERVICE_URL}/playlist/${user.id}`
+	const { data } = useFetch<Playlist<User>[]>(
+		`${import.meta.env.VITE_APP_SERVICE_URL}/playlist/all/${user.id}`
 	);
 
 	const addToPlaylist = async (id: string) => {
+		const trackId = selectedTrack?._id;
+
+		console.log(trackId);
+
 		try {
+			if (!trackId) throw new Error('No track id');
+
 			const response = await fetch(
 				`${import.meta.env.VITE_APP_SERVICE_URL}/playlist/${id}`,
 				{
 					method: 'PATCH',
-					body: selectedTrack?._id,
+					headers: {
+						'content-type': 'application/json',
+					},
+					body: JSON.stringify({ trackId: trackId }),
 				}
 			);
 
 			const result = await response.json();
 
+			toast.success(
+				`${selectedTrack?.name} added to ${result.data.name} playlist`
+			);
+
 			console.log(result);
 		} catch (error) {
 			console.log((error as Error).message);
 		}
+		closeModal();
+		setSelectedTrack(null);
 	};
 
 	return (

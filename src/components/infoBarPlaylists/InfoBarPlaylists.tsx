@@ -1,4 +1,3 @@
-import React from 'react';
 import { FiClock } from 'react-icons/fi';
 import { IconType } from 'react-icons';
 import styles from './infoBarPlaylists.module.scss';

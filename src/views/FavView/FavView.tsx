@@ -3,38 +3,42 @@ import {
 	FavSongContext,
 } from '../../context/favSongsContext/FavSongsContext';
 import { useContext } from 'react';
-import { MusicRow } from '../../components/musicRow/MusicRow';
 import PlaylistInfoBar from '../../components/infoBarPlaylists/InfoBarPlaylists';
 import PlaylistHeader from '../../components/playlistHeader/PlaylistHeader';
+import { SongListContainer } from '../../containers/songListContainer/SongListContainer';
 
 export const FavView = () => {
-	const { favorite } = useContext(FavSongContext) as ContextTypeFav;
+	const { data } = useContext(FavSongContext) as ContextTypeFav;
 
 	const samplePlaylists = {
-		id: 1,
+		_id: '1',
 		name: 'Your favorite songs',
-		isFollowed: true,
+		collaborative: false,
+		description: 'These are the tracks you liked',
+		primaryColor: '#fbdc00',
+		cover: 'gdgdfg',
 		thumbnail:
 			'https://cdn.discordapp.com/attachments/1030785013798666240/1089833477962207272/liked-songs-300.png',
-		description: 'These are the tracks you liked',
 		publicAccessible: true,
-		primaryColor: '#fbdc00',
+		numberSongs: 1,
+		followers: 1,
+		rating: 1,
+		userId: 'werwerwer',
+		followedBy: [],
+		tracks: data,
 	};
 
 	return (
 		<>
-			<PlaylistHeader {...samplePlaylists} />
+			<PlaylistHeader data={samplePlaylists} />
 			<PlaylistInfoBar />
-			{favorite.map((song, index) => (
-				<MusicRow
-					key={index}
-					position={index}
-					thumbnail={song.thumbnail}
-					artist={song.artist}
-					title={song.name}
-					actualSong={song}
-				/>
-			))}
+			{data ? (
+				<SongListContainer tracks={data} />
+			) : (
+				<h1 className='text-center text-xl text-white'>
+					You have no favorite songs
+				</h1>
+			)}
 		</>
 	);
 };
