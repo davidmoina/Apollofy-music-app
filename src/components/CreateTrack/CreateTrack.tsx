@@ -77,14 +77,33 @@ export const CreateTrack = () => {
 						<span className='errorMessage'>Field required</span>
 					)}
 				</InputForm>
-
-				<select id='genre' {...register2('genre')}>
-					{genres.map(genre => (
-						<option key={genre.name} value={genre.name}>
-							{genre.name}
-						</option>
-					))}
-				</select>
+				<div style={{ marginTop: '-2rem' }}>
+					<label
+						style={{ color: 'rgba(123, 88, 228, 0.7)', fontWeight: 'bold' }}
+					>
+						Genre
+					</label>
+					<br />
+					<select
+						id='genre'
+						{...register2('genre')}
+						style={{
+							backgroundColor: 'rgb(34, 31, 46)',
+							width: '50%',
+							marginTop: '0.5rem',
+							marginBottom: '2rem',
+							padding: '0.5rem',
+							border: '1px solid #8f85ad',
+							borderRadius: '5px',
+						}}
+					>
+						{genres.map(genre => (
+							<option key={genre.name} value={genre.name}>
+								{genre.name}
+							</option>
+						))}
+					</select>
+				</div>
 
 				<InputForm
 					id='albums'

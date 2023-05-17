@@ -1,6 +1,7 @@
 import { useFetch } from '../../api/useFetch';
 import { CardsContainer } from '../../containers/cardsContainer/CardsContainer';
 import { Track } from '../../interfaces/songs';
+import { GenreView } from '../GenreView/GenreView';
 
 export const HomeView = () => {
 	const { VITE_APP_SERVICE_URL } = import.meta.env;
@@ -23,6 +24,7 @@ export const HomeView = () => {
         title="Recently albums"
         albums={albums.slice(0, 7)}
       /> */}
+			<GenreView />
 		</>
 	);
 };
