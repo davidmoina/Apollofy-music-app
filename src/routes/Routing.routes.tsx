@@ -19,6 +19,7 @@ import { ResetPass } from '../pages/ResetPass/ResetPass';
 import { GenreView } from '../views/GenreView/GenreView';
 import { PlaylistContentView } from '../views/PlaylistContentView/PlaylistContentView';
 import { GenreContentView } from '../views/GenreContentView/GenreContentView';
+import { WelcomePage } from '../pages/WelcomePage/WelcomePage';
 
 export const Routing = () => {
 	return (
@@ -41,6 +42,7 @@ export const Routing = () => {
 						<Route path='change-password' element={<ChangePassView />} />
 					</Route>
 				</Route>
+				<Route path='/welcome' element={<WelcomePage />} />
 				<Route path='/login' element={<LoginPage />} />
 				<Route path='/recovery-pass' element={<RecoverPassPage />} />
 				<Route path='/forgot-pass' element={<ForgotPassword />} />

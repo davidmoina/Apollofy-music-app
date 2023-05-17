@@ -2,27 +2,22 @@ import { SubmitHandler, useForm } from 'react-hook-form';
 import styles from './addPlaylistModal.module.scss';
 import { PlaylistInputs } from '../../interfaces';
 import { ButtonForm } from '../User/Button/ButtonForm';
-import { Dispatch, SetStateAction, useRef } from 'react';
+import { useContext, useRef } from 'react';
 import { toast } from 'react-hot-toast';
 import { Playlist } from '../../interfaces/playlist';
 import { InputForm } from '../User/Input/InputForm';
+import { FavSongContext } from '../../context/FavSongsContext/FavSongsContext';
 
 interface Props {
 	closeModal: () => void;
 	editId?: string;
-	reload?: boolean;
-	setReload?: Dispatch<SetStateAction<boolean>>;
 }
 
-export const AddPlaylistModal = ({
-	closeModal,
-	editId,
-	reload,
-	setReload,
-}: Props) => {
+export const AddPlaylistModal = ({ closeModal, editId }: Props) => {
 	const {
 		handleSubmit,
 		register,
+		reset,
 		// formState: { errors },
 	} = useForm<PlaylistInputs>({
 		defaultValues: async () => {
@@ -43,6 +38,8 @@ export const AddPlaylistModal = ({
 			};
 		},
 	});
+
+	const { playlistReloading } = useContext(FavSongContext);
 
 	const formRef = useRef<HTMLFormElement>(null);
 
@@ -93,9 +90,8 @@ export const AddPlaylistModal = ({
 			console.log(error);
 		}
 
-		if (setReload) {
-			setReload(!reload);
-		}
+		reset();
+		playlistReloading();
 		closeModal();
 	};
 

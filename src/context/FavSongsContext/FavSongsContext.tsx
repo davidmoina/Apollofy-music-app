@@ -7,7 +7,11 @@ export type ContextTypeFav = {
 	setToggle: Dispatch<SetStateAction<boolean>>;
 	toggle: boolean;
 	data: Track[];
-	getLikedSongs: (userId : string) => Promise<void>;
+	getLikedSongs: (userId: string) => Promise<void>;
+	playlistReloading: () => void;
+	reloadPlaylist: boolean;
 };
 
-export const FavSongContext = createContext<ContextTypeFav | null>(null);
+export const FavSongContext = createContext<ContextTypeFav>(
+	{} as ContextTypeFav
+);
