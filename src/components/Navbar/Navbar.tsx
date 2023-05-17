@@ -20,6 +20,7 @@ export const Navbar = () => {
 	}
 
 	function handleLogout() {
+		localStorage.removeItem('User')
 		logout();
 		navigate('/login');
 	}
