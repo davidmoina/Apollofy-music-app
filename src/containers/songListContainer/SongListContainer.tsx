@@ -8,9 +8,15 @@ import { Track } from '../../interfaces/songs';
 
 interface Props {
 	tracks: Track[] | undefined;
+	isPlaylist: boolean;
+	reloadData?: () => void;
 }
 
-export const SongListContainer = ({ tracks }: Props) => {
+export const SongListContainer = ({
+	tracks,
+	isPlaylist = false,
+	reloadData,
+}: Props) => {
 	const { isOpen, openModal, closeModal } = useModal();
 	const [menu, setMenu] = useState(false);
 	const {
@@ -38,6 +44,8 @@ export const SongListContainer = ({ tracks }: Props) => {
 					menu={menu}
 					setMenu={setMenu}
 					track={song}
+					isPlaylist={isPlaylist}
+					reloadData={reloadData}
 				/>
 			))}
 			<Modal isOpen={isOpen} closeModal={closeModal}>

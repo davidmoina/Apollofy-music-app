@@ -27,3 +27,9 @@ export interface Tracks {
 	thumbnail: string;
 	position: number;
 }
+
+export interface PlaylistInputs {
+	playlistName: string;
+	playlistDescription: string;
+	thumbnail?: string;
+}

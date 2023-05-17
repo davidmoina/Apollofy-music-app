@@ -1,22 +1,25 @@
 import styles from './card.module.scss';
-import { Playlist } from '../../interfaces/songs';
 // import { useState, useContext } from 'react';
 import { useState } from 'react';
 import { MdPlayCircleFilled } from 'react-icons/md';
+import { useNavigate } from 'react-router-dom';
 // import { PlayerContext } from '../../context/PlayerContext/PlayerContext';
 
 interface PlaylistRecommendationProps {
-	key: number;
-	playlists: Playlist;
 	isPlayable: boolean;
+	name: string;
+	thumbnail: string;
+	artists?: string;
+	id: string;
 }
 
 export const CardPlaylist = ({
-	playlists,
+	name,
 	isPlayable,
+	thumbnail,
+	artists = '',
+	id,
 }: PlaylistRecommendationProps) => {
-	const { thumbnail, artists, name } = playlists;
-
 	// const { songsSet, setCurrent } = useContext(PlayerContext);
 
 	const [showPlay, setShowPlay] = useState(false);
@@ -27,12 +30,14 @@ export const CardPlaylist = ({
 	// 		setCurrent(0, playlists);
 	// 	}
 	// };
+	const navigate = useNavigate();
 
 	return (
 		<div
 			className={`flex flex-col w-28 md:w-32 lg:w-48 transition-all duration-200 ${styles.card} cursor-pointer hover:bg`}
 			onMouseEnter={() => setShowPlay(true)}
 			onMouseLeave={() => setShowPlay(false)}
+			onClick={() => navigate(`/playlist/${id}`)}
 		>
 			<div className={`${styles.divPlay} relative`}>
 				<img
@@ -48,9 +53,7 @@ export const CardPlaylist = ({
 				/>
 			</div>
 			<h3 className={styles.songTitle}>{name}</h3>
-			<h5 className={styles.songArtist}>
-				{artists?.map(item => item.name).join(' , ')}
-			</h5>
+			<h5 className={styles.songArtist}>{artists}</h5>
 		</div>
 	);
 };

@@ -1,17 +1,18 @@
 import { CardPlaylist } from '../../components/Cards/CardPlaylist';
-import { Playlist, Track } from '../../interfaces/songs';
+import { Playlist } from '../../interfaces/playlist';
+import { Track } from '../../interfaces/songs';
 import styles from './cardsContainer.module.scss';
 
 interface PlaylistRecommendationsContainerProps {
 	title: string;
-	playlists: Playlist[] | Track[] | undefined;
+	playlists: Playlist<string>[] | Track[] | undefined | null;
 	isPlayable?: boolean;
 }
 
 export const CardsContainer = ({
 	title,
 	playlists,
-	isPlayable,
+	isPlayable = false,
 }: PlaylistRecommendationsContainerProps) => {
 	return (
 		<section className={`mb-8 ${styles.cardsContainer}`}>
@@ -20,7 +21,13 @@ export const CardsContainer = ({
 			</h2>
 			<div className={`flex overflow-x-auto gap-6 ${styles.containerCard}`}>
 				{playlists?.map((playlist, index) => (
-					<CardPlaylist key={index} playlists={playlist} isPlayable />
+					<CardPlaylist
+						key={index}
+						name={playlist?.name}
+						thumbnail={playlist?.thumbnail}
+						isPlayable={isPlayable}
+						id={playlist._id}
+					/>
 				))}
 			</div>
 		</section>

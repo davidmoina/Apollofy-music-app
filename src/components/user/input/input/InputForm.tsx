@@ -1,5 +1,5 @@
 import { UseFormRegister, Path, RegisterOptions } from 'react-hook-form';
-import { FormInputs } from '../../../../interfaces';
+import { FormInputs, PlaylistInputs } from '../../../../interfaces';
 import styles from './input.module.scss';
 import { HTMLInputTypeAttribute, ReactElement } from 'react';
 
@@ -8,7 +8,7 @@ type InputProps = {
 	inputType: HTMLInputTypeAttribute;
 	id: Path<FormInputs>;
 	placeholder: string;
-	register: UseFormRegister<FormInputs>;
+	register: UseFormRegister<FormInputs | PlaylistInputs>;
 	validations: RegisterOptions;
 	validate?: () => boolean;
 	defaultValue?: string;

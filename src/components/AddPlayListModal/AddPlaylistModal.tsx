@@ -1,26 +1,52 @@
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { InputForm } from '../user/input/input/InputForm';
 import styles from './addPlaylistModal.module.scss';
-import { FormInputs } from '../../interfaces';
+import { PlaylistInputs } from '../../interfaces';
 import { ButtonForm } from '../user/input/button/ButtonForm';
-import { useRef } from 'react';
+import { Dispatch, SetStateAction, useRef } from 'react';
 import { toast } from 'react-hot-toast';
 import { Playlist } from '../../interfaces/playlist';
 
 interface Props {
 	closeModal: () => void;
+	editId?: string;
+	reload?: boolean;
+	setReload?: Dispatch<SetStateAction<boolean>>;
 }
 
-export const AddPlaylistModal = ({ closeModal }: Props) => {
+export const AddPlaylistModal = ({
+	closeModal,
+	editId,
+	reload,
+	setReload,
+}: Props) => {
 	const {
 		handleSubmit,
 		register,
 		// formState: { errors },
-	} = useForm<FormInputs>();
+	} = useForm<PlaylistInputs>({
+		defaultValues: async () => {
+			if (!editId) {
+				return {
+					playlistName: '',
+					playlistDescription: '',
+				};
+			}
+
+			const response = await fetch(
+				`${import.meta.env.VITE_APP_SERVICE_URL}/playlist/${editId}`
+			);
+			const result = await response.json();
+			return {
+				playlistName: result.data.name || '',
+				playlistDescription: result.data.description || '',
+			};
+		},
+	});
 
 	const formRef = useRef<HTMLFormElement>(null);
 
-	const onSubmit: SubmitHandler<FormInputs> = async data => {
+	const onSubmit: SubmitHandler<PlaylistInputs> = async data => {
 		const user = localStorage.getItem('User');
 
 		if (!user) {
@@ -39,19 +65,27 @@ export const AddPlaylistModal = ({ closeModal }: Props) => {
 		const toastId = toast.loading(`Creating ${data.playlistName} playlist`);
 
 		try {
-			const response = await fetch(
-				`${import.meta.env.VITE_APP_SERVICE_URL}/playlist`,
-				{
-					method: 'POST',
-					body: newFormData,
-				}
-			);
+			const response = editId
+				? await fetch(
+						`${import.meta.env.VITE_APP_SERVICE_URL}/playlist/${editId}`,
+						{
+							method: 'PATCH',
+							body: newFormData,
+						}
+				  )
+				: await fetch(`${import.meta.env.VITE_APP_SERVICE_URL}/playlist`, {
+						method: 'POST',
+						body: newFormData,
+				  });
 
 			const result: Playlist<string> = await response.json();
 
-			toast.success(`Playlist ${result.name} created`, {
-				id: toastId,
-			});
+			toast.success(
+				`Playlist ${result.name} ${editId ? 'edited' : 'created'}`,
+				{
+					id: toastId,
+				}
+			);
 		} catch (error) {
 			toast.error((error as Error).message, {
 				id: toastId,
@@ -59,6 +93,9 @@ export const AddPlaylistModal = ({ closeModal }: Props) => {
 			console.log(error);
 		}
 
+		if (setReload) {
+			setReload(!reload);
+		}
 		closeModal();
 	};
 
@@ -93,13 +130,13 @@ export const AddPlaylistModal = ({ closeModal }: Props) => {
 
 				<div className={styles.inputWrapper}>
 					<input
-						{...register('thumbnail', { required: true })}
+						{...register('thumbnail', { required: editId ? false : true })}
 						className={styles.formInput}
 						type='file'
 					/>
 					<label className={styles.formLabel}>Upload a song</label>
 				</div>
-				<ButtonForm name='Create playlist' />
+				<ButtonForm name={editId ? 'Edit playlist' : 'Create playlist'} />
 			</form>
 		</>
 	);

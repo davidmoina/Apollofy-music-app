@@ -4,28 +4,40 @@ import PlaylistInfoBar from '../../components/infoBarPlaylists/InfoBarPlaylists'
 import { useFetch } from '../../api/useFetch';
 import { useParams } from 'react-router-dom';
 import { Playlist } from '../../interfaces/playlist';
-import { Track } from '../../interfaces/songs';
 import { useEffect } from 'react';
+import { PlaylistMenuSection } from '../../components/PlaylistMenuSection/PlaylistMenuSection';
 
 export const PlaylistContentView = () => {
-	// const [infoData, setInfoData] = useState<Playlist<Track[]> | null>(null);
-
 	const { id } = useParams();
 
-	const { data, reload, setReload } = useFetch<Playlist<Track[]>>(
+	const { data, reload, setReload } = useFetch<Playlist<string>>(
 		`${import.meta.env.VITE_APP_SERVICE_URL}/playlist/${id}`
 	);
 	console.log(data);
 
 	useEffect(() => {
-		setReload(!reload);
+		reloadData();
 	}, [id]);
+
+	const reloadData = () => {
+		setReload(!reload);
+	};
 
 	return (
 		<>
 			<PlaylistHeader data={data} />
-			<PlaylistInfoBar />
-			<SongListContainer tracks={data?.tracks} />
+			<PlaylistMenuSection
+				reload={reload}
+				setReload={setReload}
+				id={data?._id}
+				tracks={data?.tracks}
+			/>
+			<PlaylistInfoBar isPlaylist={true} />
+			<SongListContainer
+				tracks={data?.tracks}
+				isPlaylist={true}
+				reloadData={reloadData}
+			/>
 		</>
 	);
 };

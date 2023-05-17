@@ -20,6 +20,8 @@ import {
 import { PlayerContext } from '../../context/PlayerContext/PlayerContext';
 import { TrackMenu } from '../trackMenu/TrackMenu';
 import { useTrack } from '../../hooks/useTrack';
+import { toast } from 'react-hot-toast';
+import { useParams } from 'react-router-dom';
 
 export interface Props {
 	thumbnail: string;
@@ -30,6 +32,8 @@ export interface Props {
 	menu: boolean;
 	setMenu: Dispatch<React.SetStateAction<boolean>>;
 	track: Track;
+	isPlaylist: boolean;
+	reloadData?: () => void;
 }
 
 export const MusicRow = ({
@@ -41,11 +45,11 @@ export const MusicRow = ({
 	menu,
 	setMenu,
 	track,
+	isPlaylist,
+	reloadData,
 }: Props) => {
-
-	const { addToFavorite, removeFromFavorite, setToggle, toggle, data } = useContext(
-		FavSongContext
-	) as ContextTypeFav;
+	const { addToFavorite, removeFromFavorite, setToggle, toggle, data } =
+		useContext(FavSongContext) as ContextTypeFav;
 
 	const {
 		audio,
@@ -60,7 +64,11 @@ export const MusicRow = ({
 	const [play, setPlay] = useState(false);
 	const [isPlaying, setIsPlaying] = useState(false);
 
-	const [isLiked, setIsLiked] = useState(data.find(song => song._id === actualSong._id) && true);
+	const [isLiked, setIsLiked] = useState(
+		data.find(song => song._id === actualSong._id) && true
+	);
+
+	const { id } = useParams();
 
 	const { deleteTrack } = useTrack();
 
@@ -86,11 +94,11 @@ export const MusicRow = ({
 	const handleLike = (song: Track) => {
 		if (isLiked) {
 			setIsLiked(!isLiked);
-			setToggle(!toggle)
+			setToggle(!toggle);
 			removeFromFavorite(song);
 		} else {
 			setIsLiked(!isLiked);
-			setToggle(!toggle)
+			setToggle(!toggle);
 			addToFavorite(song);
 		}
 	};
@@ -104,6 +112,29 @@ export const MusicRow = ({
 		}
 
 		setSelectedTrack(actualSong);
+	};
+
+	const handleRemoveFromPlaylist = async () => {
+		toast.success('Removed from this playlist');
+
+		const songId = actualSong._id;
+		console.log(id);
+
+		const response = await fetch(
+			`${import.meta.env.VITE_APP_SERVICE_URL}/playlist/track/${id}`,
+			{
+				method: 'DELETE',
+				headers: {
+					'Content-Type': 'application/json',
+				},
+				body: JSON.stringify({ songId }),
+			}
+		);
+		const data = await response.json();
+		if (reloadData) {
+			reloadData();
+		}
+		console.log(data);
 	};
 
 	return (
@@ -157,6 +188,8 @@ export const MusicRow = ({
 								addSongToQueue={addSongToQueue}
 								actualSong={actualSong}
 								openModal={openModal}
+								isPlaylist={isPlaylist}
+								handleRemoveFromPlaylist={handleRemoveFromPlaylist}
 							/>
 						</>
 					)}

@@ -1,10 +1,6 @@
-import { SongListContainer } from '../../containers/songListContainer/SongListContainer';
-import PlaylistHeader from '../../components/playlistHeader/PlaylistHeader';
-import PlaylistInfoBar from '../../components/infoBarPlaylists/InfoBarPlaylists';
 import { useFetch } from '../../api/useFetch';
-import { useParams } from 'react-router-dom';
 import { Playlist } from '../../interfaces/playlist';
-import { Track } from '../../interfaces/songs';
+import { CardsContainer } from '../../containers/cardsContainer/CardsContainer';
 
 export const samplePlaylists = {
 	id: 1,
@@ -19,18 +15,16 @@ export const samplePlaylists = {
 };
 
 export const PlaylistsView = () => {
-	const { id } = useParams();
+	const user = JSON.parse(localStorage.getItem('User')!);
 
-	const { data } = useFetch<Playlist<Track[]>>(
-		`${import.meta.env.VITE_APP_SERVICE_URL}/playlist/${id}`
+	const { data } = useFetch<Playlist<string>[]>(
+		`${import.meta.env.VITE_APP_SERVICE_URL}/playlist/all/${user.id}`
 	);
 	console.log(data);
 
 	return (
 		<>
-			<PlaylistHeader data={data} />
-			<PlaylistInfoBar />
-			<SongListContainer tracks={data?.tracks} />
+			<CardsContainer title='All your playlists' playlists={data} />
 		</>
 	);
 };

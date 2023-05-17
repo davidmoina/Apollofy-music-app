@@ -3,7 +3,7 @@ import styles from './modal.module.scss';
 import { AiFillCloseCircle } from 'react-icons/ai';
 
 interface Props {
-	children: ReactElement | ReactElement[];
+	children: ReactElement | ReactElement[] | boolean;
 	isOpen: boolean;
 	closeModal: () => void;
 }

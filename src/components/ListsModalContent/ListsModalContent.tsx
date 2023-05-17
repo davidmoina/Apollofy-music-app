@@ -31,7 +31,7 @@ export const ListsModalContent = ({ changeModal, closeModal }: Props) => {
 			if (!trackId) throw new Error('No track id');
 
 			const response = await fetch(
-				`${import.meta.env.VITE_APP_SERVICE_URL}/playlist/${id}`,
+				`${import.meta.env.VITE_APP_SERVICE_URL}/playlist/track/${id}`,
 				{
 					method: 'PATCH',
 					headers: {

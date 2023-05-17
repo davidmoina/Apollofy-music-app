@@ -24,7 +24,7 @@ const Aside = () => {
 
 	const user = JSON.parse(localStorage.getItem('User')!);
 
-	const { data } = useFetch<Playlist<string>[]>(
+	const { data, reload, setReload } = useFetch<Playlist<string>[]>(
 		`${import.meta.env.VITE_APP_SERVICE_URL}/playlist/all/${user.id}`
 	);
 
@@ -180,7 +180,11 @@ const Aside = () => {
 				</ul>
 			</div>
 			<Modal isOpen={isOpen} closeModal={closeModal}>
-				<AddPlaylistModal closeModal={closeModal} />
+				<AddPlaylistModal
+					closeModal={closeModal}
+					reload={reload}
+					setReload={setReload}
+				/>
 			</Modal>
 		</div>
 	);
