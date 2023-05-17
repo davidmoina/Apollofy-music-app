@@ -5,6 +5,7 @@ import styles from '../LoginPage/loginPage.module.scss';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { FormInputs } from '../../interfaces';
 import useUserAuth from '../../hooks/useUserAuth';
+import { Link } from 'react-router-dom';
 
 export const RegisterPage = () => {
 	const {
@@ -25,7 +26,7 @@ export const RegisterPage = () => {
 				<form onSubmit={handleSubmit(onSubmit)} className={styles.form}>
 					<h3>Welcome!</h3>
 					<h1>Create your new account</h1>
-					<div className={`${styles.inputsContainer}`}>
+					<div className={`${styles.inputsContainer} w-full p-0`}>
 						<InputForm
 							id='firstName'
 							placeholder='First Name'
@@ -79,9 +80,9 @@ export const RegisterPage = () => {
 						<ButtonForm name='Sign Up' />
 					</div>
 				</form>
-				<p className={styles.noAccountText}>
+				<Link to='/login' className={`${styles.noAccountText} z-10 cursor-pointer hover:underline`}>
 					Already have an account? Access here!
-				</p>
+				</Link>
 			</main>
 			<BackgroundAnimated />
 		</>

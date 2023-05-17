@@ -4,6 +4,7 @@ import { ButtonForm } from '../../components/User/Button/ButtonForm';
 import { InputForm } from '../../components/User/Input/InputForm';
 import { FormInputs } from '../../interfaces';
 import styles from '../LoginPage/loginPage.module.scss';
+import { Link } from 'react-router-dom';
 
 export const ForgotPassword = () => {
 	const { VITE_APP_SERVICE_URL } = import.meta.env;
@@ -54,9 +55,9 @@ export const ForgotPassword = () => {
 						<ButtonForm name='Request New Password' />
 					</div>
 				</form>
-				<p className={styles.noAccountText}>
-					Already have an account? Access here!
-				</p>
+				<Link to='/login' className={`${styles.noAccountText} z-10 cursor-pointer hover:underline`}>
+					You suddenly remembered? Click here!
+				</Link>
 			</main>
 			<BackgroundAnimated />
 		</>

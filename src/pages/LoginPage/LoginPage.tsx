@@ -5,6 +5,7 @@ import { SubmitHandler, useForm } from 'react-hook-form';
 import { FormInputs } from '../../interfaces';
 import { BackgroundAnimated } from '../../components/BackgroundAnimated/BackgroundAnimated';
 import useUserAuth from '../../hooks/useUserAuth';
+import { Link } from 'react-router-dom';
 
 export const LoginPage = () => {
 	const { useLogin } = useUserAuth();
@@ -42,7 +43,7 @@ export const LoginPage = () => {
 						required
 					/>
 					<div className={styles.rememberContainer}>
-						<div className={styles.checkContainer}>
+						{/* <div className={styles.checkContainer}>
 							<input
 								type='checkbox'
 								id='cbx2'
@@ -56,14 +57,14 @@ export const LoginPage = () => {
 								</svg>
 							</label>
 							<span>Remember me</span>
-						</div>
-						<span>Forgot Password</span>
+						</div> */}
+						<Link to='/forgot-pass' className='hover:underline'>Forgot Password</Link>
 					</div>
 					<ButtonForm name='Sign In' />
 				</form>
-				<p className={styles.noAccountText}>
-					Don't have an account? Join free today
-				</p>
+					<Link to='/register' className={`${styles.noAccountText} hover:underline z-10`}>
+						Don't have an account? Join free today
+					</Link>
 			</main>
 			<BackgroundAnimated />
 		</>
