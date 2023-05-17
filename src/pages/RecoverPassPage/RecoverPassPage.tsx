@@ -4,7 +4,6 @@ import { ButtonForm } from '../../components/User/Button/ButtonForm';
 import { InputForm } from '../../components/User/Input/InputForm';
 import { FormInputs } from '../../interfaces';
 import styles from '../LoginPage/loginPage.module.scss';
-import { Link } from 'react-router-dom';
 
 export const RecoverPassPage = () => {
 	const {
