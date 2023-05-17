@@ -1,6 +1,6 @@
 import { useFetch } from '../../api/useFetch';
 import { Playlist } from '../../interfaces/playlist';
-import { CardsContainer } from '../../containers/cardsContainer/CardsContainer';
+import { CardsContainer } from '../../containers/CardsContainer/CardsContainer';
 
 export const samplePlaylists = {
 	id: 1,

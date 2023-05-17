@@ -1,20 +1,19 @@
 import { useState, useContext } from 'react';
 import { useNavigate } from 'react-router';
 import { MdArrowBackIosNew, MdArrowForwardIos } from 'react-icons/md';
-import { users } from '../../data/users';
 import styles from './navBar.module.scss';
 import {
 	AuthContext,
 	ContextType,
-} from '../../context/authContext/AuthContext';
+} from '../../context/AuthContext/AuthContext';
+
+import image from '../../assets/images/monkey.jpg';
 
 export const Navbar = () => {
 	const navigate = useNavigate();
 	const [showModal, setShowModal] = useState(false);
 
 	const { logout } = useContext(AuthContext) as ContextType;
-
-	const { name, accountType, thumbnail } = users[0];
 
 	function handleClick() {
 		setShowModal(!showModal);
@@ -27,7 +26,7 @@ export const Navbar = () => {
 
 	return (
 		<nav
-			className={`flex justify-end lg:justify-between p-5 ${styles.containerNav}`}
+			className={`flex justify-end lg:justify-between p-5 z-30 ${styles.containerNav}`}
 		>
 			<div className={`hidden lg:flex ${styles.arrowNav}`}>
 				<button onClick={() => navigate(-1)}>
@@ -42,8 +41,8 @@ export const Navbar = () => {
 					className={`flex items-center p-1 lg:pr-4  mr-0 lg:min-w-fit lg:mr-2 ${styles.buttonProfile}`}
 					onClick={handleClick}
 				>
-					<img src={thumbnail} alt='' />
-					<span className='hidden lg:flex'>{name}</span>
+					<img src={image} alt='' />
+					<span className='hidden lg:flex'>David</span>
 				</button>
 				{showModal ? (
 					<ul className='right-4 z-10'>
@@ -51,7 +50,7 @@ export const Navbar = () => {
 							<a href='/edit-profile'> Edit Profile </a>
 						</li>
 						<li>
-							<a href=''>{accountType}</a>
+							<a href=''>Admin</a>
 						</li>
 						<li>
 							<button onClick={handleLogout}> Logout </button>

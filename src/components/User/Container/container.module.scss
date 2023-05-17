@@ -1,0 +1,25 @@
+@use '../../../sass/globals/variables' as var;
+
+body {
+	min-height: 100vh;
+	display: grid;
+	place-items: center;
+	background-color: var.$bg-dark-color;
+	color: var.$primary-color;
+}
+
+.container {
+	display: grid;
+	gap: 2vmax;
+	text-align: center;
+	width: 15vw;
+}
+
+::selection {
+	background: var.$primary-color-70;
+	color: var.$bg-dark-color;
+}
+
+h1 {
+	font-size: var.$size;
+}

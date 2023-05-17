@@ -8,22 +8,14 @@ export interface Musics {
 }
 
 export interface Album {
-	id: number;
+	_id: string;
 	name: string;
-	imageUrl?: string;
+	thumbnail: string;
 	artist: string;
 }
 
-// export interface Artist {
-//   id: number;
-//   name: string;
-//   genres: string[];
-//   popularity: number;
-//   photoUrl: string;
-// }
-
 export interface Genre {
-	id: number;
+	_id: number;
 	name: string;
 }
 

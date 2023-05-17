@@ -1,11 +1,11 @@
 import {
 	ContextTypeFav,
 	FavSongContext,
-} from '../../context/favSongsContext/FavSongsContext';
+} from '../../context/FavSongsContext/FavSongsContext';
 import { useContext } from 'react';
-import PlaylistInfoBar from '../../components/infoBarPlaylists/InfoBarPlaylists';
-import PlaylistHeader from '../../components/playlistHeader/PlaylistHeader';
-import { SongListContainer } from '../../containers/songListContainer/SongListContainer';
+import PlaylistInfoBar from '../../components/InfoBarPlaylists/InfoBarPlaylists';
+import PlaylistHeader from '../../components/PlaylistHeader/PlaylistHeader';
+import { SongListContainer } from '../../containers/SongListContainer/SongListContainer';
 
 export const FavView = () => {
 	const { data } = useContext(FavSongContext) as ContextTypeFav;
@@ -30,7 +30,11 @@ export const FavView = () => {
 
 	return (
 		<>
-			<PlaylistHeader data={samplePlaylists} />
+			<PlaylistHeader
+				description={samplePlaylists.description}
+				name={samplePlaylists.name}
+				thumbnail={samplePlaylists.thumbnail}
+			/>
 			<PlaylistInfoBar />
 			{data ? (
 				<SongListContainer tracks={data} />

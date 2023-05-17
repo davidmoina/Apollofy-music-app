@@ -1,0 +1,49 @@
+@use '../../sass/globals/variables' as var;
+
+.playlistHeader {
+	display: flex;
+	align-items: center;
+	// justify-content: space-between;
+	height: 22vh;
+	margin-bottom: 1em;
+
+	.playlistImage {
+		height: 17vh;
+		margin-left: 2vh;
+		border-radius: 0.5rem;
+		-webkit-border-radius: 0.5rem;
+		-moz-border-radius: 0.5rem;
+		-ms-border-radius: 0.5rem;
+		-o-border-radius: 0.5rem;
+}
+
+	.playlistInfo {
+		width: 75%;
+		padding-left: 2vh;
+
+		.publicPlaylist {
+			font-size: 1.1em;
+			color: white;
+		}
+
+		.playlistName {
+			font-size: 3.5vh;
+			font-weight: bold;
+			margin-top: 0.5vh;
+			margin-bottom: 10px;
+			color: white;
+		}
+
+		.playlistDescription {
+			font-size: 0.9em;
+			display: flex;
+			margin-top: 1vh;
+			align-items: center;
+			color: white;
+
+			.bullet {
+				margin: 0 8px;
+			}
+		}
+	}
+}

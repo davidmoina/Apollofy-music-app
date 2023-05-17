@@ -1,11 +1,11 @@
 import { SubmitHandler, useForm } from 'react-hook-form';
-import { InputForm } from '../user/input/input/InputForm';
 import styles from './addPlaylistModal.module.scss';
 import { PlaylistInputs } from '../../interfaces';
-import { ButtonForm } from '../user/input/button/ButtonForm';
+import { ButtonForm } from '../User/Button/ButtonForm';
 import { Dispatch, SetStateAction, useRef } from 'react';
 import { toast } from 'react-hot-toast';
 import { Playlist } from '../../interfaces/playlist';
+import { InputForm } from '../User/Input/InputForm';
 
 interface Props {
 	closeModal: () => void;
@@ -111,6 +111,7 @@ export const AddPlaylistModal = ({
 					inputType='text'
 					register={register}
 					placeholder='Playlist name'
+					required
 					validations={{
 						required: true,
 					}}

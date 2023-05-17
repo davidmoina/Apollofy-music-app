@@ -2,13 +2,17 @@ import { useEffect, useRef, useState } from 'react';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { FormInputs } from '../../interfaces/index';
 import { useTrack } from '../../hooks/useTrack';
-import { InputForm } from '../user/input/input/InputForm';
-import { ButtonForm } from '../user/input/button/ButtonForm';
-import stylesInput from '../user/input/input/input.module.scss';
+import { InputForm } from '../User/Input/InputForm';
+import { ButtonForm } from '../User/Button/ButtonForm';
+import stylesInput from '../User/Input/input.module.scss';
 import { Genre } from '../../interfaces/songs';
 import { useGenre } from '../../hooks/useGenre';
 
-export const CreateTrack = () => {
+interface Props {
+	closeModal: () => void;
+}
+
+export const CreateTrack = ({ closeModal }: Props) => {
 	const { addTrack } = useTrack();
 	const [genres, setGenres] = useState<Genre[]>([]);
 	const { getAllGenres } = useGenre();
@@ -41,6 +45,7 @@ export const CreateTrack = () => {
 		const formData = new FormData(formRef.current!);
 		await addTrack(formData);
 		reset();
+		closeModal();
 	};
 
 	return (
@@ -56,6 +61,7 @@ export const CreateTrack = () => {
 					placeholder='name'
 					inputType='text'
 					register={register}
+					required
 					validations={{
 						required: true,
 					}}
@@ -69,6 +75,7 @@ export const CreateTrack = () => {
 					placeholder='artists'
 					inputType='text'
 					register={register}
+					required
 					validations={{
 						required: true,
 					}}
@@ -77,20 +84,40 @@ export const CreateTrack = () => {
 						<span className='errorMessage'>Field required</span>
 					)}
 				</InputForm>
-
-				<select id='genre' {...register2('genre')}>
-					{genres.map(genre => (
-						<option key={genre.name} value={genre.name}>
-							{genre.name}
-						</option>
-					))}
-				</select>
+				<div style={{ marginTop: '-2rem' }}>
+					<label
+						style={{ color: 'rgba(123, 88, 228, 0.7)', fontWeight: 'bold' }}
+					>
+						Genre
+					</label>
+					<br />
+					<select
+						id='genre'
+						{...register2('genre')}
+						style={{
+							backgroundColor: 'rgb(34, 31, 46)',
+							width: '50%',
+							marginTop: '0.5rem',
+							marginBottom: '2rem',
+							padding: '0.5rem',
+							border: '1px solid #8f85ad',
+							borderRadius: '5px',
+						}}
+					>
+						{genres.map(genre => (
+							<option key={genre.name} value={genre.name}>
+								{genre.name}
+							</option>
+						))}
+					</select>
+				</div>
 
 				<InputForm
 					id='albums'
 					placeholder='Name Album'
 					inputType='text'
 					register={register}
+					required
 					validations={{
 						required: false,
 					}}
@@ -104,6 +131,7 @@ export const CreateTrack = () => {
 					placeholder='duration'
 					inputType='time'
 					register={register}
+					required
 					validations={{
 						required: true,
 					}}
@@ -117,6 +145,7 @@ export const CreateTrack = () => {
 					placeholder='image'
 					inputType='file'
 					register={register}
+					required
 					validations={{
 						required: true,
 					}}
@@ -129,6 +158,7 @@ export const CreateTrack = () => {
 				<InputForm
 					id='url'
 					placeholder='Song'
+					required
 					inputType='file'
 					register={register}
 					validations={{

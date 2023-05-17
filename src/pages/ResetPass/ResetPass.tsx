@@ -1,20 +1,20 @@
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { BackgroundAnimated } from '../../components/BackgroundAnimated/BackgroundAnimated';
-import { ButtonForm } from '../../components/user/input/button/ButtonForm';
-import { InputForm } from '../../components/user/input/input/InputForm';
+import { ButtonForm } from '../../components/User/Button/ButtonForm';
+import { InputForm } from '../../components/User/Input/InputForm';
 import { FormInputs } from '../../interfaces';
 import styles from '../LoginPage/loginPage.module.scss';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useContext } from 'react';
-import { AuthContext, ContextType } from '../../context/authContext/AuthContext';
+import {
+	AuthContext,
+	ContextType,
+} from '../../context/AuthContext/AuthContext';
 
 export const ResetPass = () => {
-
 	const { VITE_APP_SERVICE_URL } = import.meta.env;
 
-	const {
-		loginSuccess,
-	} = useContext(AuthContext) as ContextType;
+	const { loginSuccess } = useContext(AuthContext) as ContextType;
 	const navigate = useNavigate();
 
 	const {
@@ -23,21 +23,22 @@ export const ResetPass = () => {
 		formState: { errors },
 	} = useForm<FormInputs>();
 
-	const {id} = useParams()
-	
+	const { id } = useParams();
 
-	const onSubmit: SubmitHandler<FormInputs> = async (data) => {
-
-		const { password, repeatPassword} = data;
+	const onSubmit: SubmitHandler<FormInputs> = async data => {
+		const { password, repeatPassword } = data;
 
 		try {
-			const response = await fetch(`${VITE_APP_SERVICE_URL}/users/update-password-reset`, {
-				method: 'PATCH',
-				headers: {
-					'Content-Type': 'application/json',
-				},
-				body: JSON.stringify({id, password, repeatPassword}),
-			})
+			const response = await fetch(
+				`${VITE_APP_SERVICE_URL}/users/update-password-reset`,
+				{
+					method: 'PATCH',
+					headers: {
+						'Content-Type': 'application/json',
+					},
+					body: JSON.stringify({ id, password, repeatPassword }),
+				}
+			);
 			const json = await response.json();
 			if (!response.ok) {
 				return;
@@ -47,7 +48,7 @@ export const ResetPass = () => {
 			window.localStorage.setItem('User', JSON.stringify({ email, id, token }));
 			loginSuccess(email, id!, token);
 			navigate('/');
-		} catch(error) {
+		} catch (error) {
 			console.log(error);
 		}
 	};

@@ -12,12 +12,13 @@ import { TracksView } from '../views/TracksView/TracksView';
 import { ArtistsView } from '../views/ArtistsView/ArtistsView';
 import { RecoverPassPage } from '../pages/RecoverPassPage/RecoverPassPage';
 import { FavView } from '../views/FavView/FavView';
-import { EditProfile } from '../pages/editProf/Editprofile';
+import { EditProfile } from '../pages/EditProf/Editprofile';
 import { ChangePassView } from '../views/ChangePassView/ChangePassView';
 import { ForgotPassword } from '../pages/ForgotPassword/ForgotPassword';
 import { ResetPass } from '../pages/ResetPass/ResetPass';
 import { GenreView } from '../views/GenreView/GenreView';
 import { PlaylistContentView } from '../views/PlaylistContentView/PlaylistContentView';
+import { GenreContentView } from '../views/GenreContentView/GenreContentView';
 
 export const Routing = () => {
 	return (
@@ -34,6 +35,7 @@ export const Routing = () => {
 						<Route path='tracks' element={<TracksView />} />
 						<Route path='artists' element={<ArtistsView />} />
 						<Route path='genre' element={<GenreView />} />
+						<Route path='genre/:id' element={<GenreContentView />} />
 						<Route path='fav' element={<FavView />} />
 						<Route path='edit-profile' element={<EditProfile />} />
 						<Route path='change-password' element={<ChangePassView />} />

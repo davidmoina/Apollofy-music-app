@@ -1,11 +1,11 @@
-import { SongListContainer } from '../../containers/songListContainer/SongListContainer';
-import PlaylistHeader from '../../components/playlistHeader/PlaylistHeader';
-import PlaylistInfoBar from '../../components/infoBarPlaylists/InfoBarPlaylists';
+import { SongListContainer } from '../../containers/SongListContainer/SongListContainer';
 import { useFetch } from '../../api/useFetch';
 import { useParams } from 'react-router-dom';
 import { Playlist } from '../../interfaces/playlist';
 import { useEffect } from 'react';
 import { PlaylistMenuSection } from '../../components/PlaylistMenuSection/PlaylistMenuSection';
+import PlaylistHeader from '../../components/PlaylistHeader/PlaylistHeader';
+import PlaylistInfoBar from '../../components/InfoBarPlaylists/InfoBarPlaylists';
 
 export const PlaylistContentView = () => {
 	const { id } = useParams();
@@ -25,7 +25,12 @@ export const PlaylistContentView = () => {
 
 	return (
 		<>
-			<PlaylistHeader data={data} />
+			<PlaylistHeader
+				name={data?.name}
+				thumbnail={data?.thumbnail}
+				description={data?.description}
+				publicAccessible={data?.publicAccessible}
+			/>
 			<PlaylistMenuSection
 				reload={reload}
 				setReload={setReload}

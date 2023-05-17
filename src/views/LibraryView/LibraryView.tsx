@@ -1,7 +1,7 @@
 import { CreateTrack } from '../../components/CreateTrack/CreateTrack';
 import { useModal } from '../../hooks/useModal';
 import { Modal } from '../../components/Modal/Modal';
-import { SongListContainer } from '../../containers/songListContainer/SongListContainer';
+import { SongListContainer } from '../../containers/SongListContainer/SongListContainer';
 import { IoMdAdd } from 'react-icons/io';
 import styles from '../../components/ListsModalContent/listsModalContent.module.scss';
 import { useTrack } from '../../hooks/useTrack';
@@ -18,7 +18,7 @@ export const LibraryView = () => {
 			const userTrack = await getTrackOfUser();
 			setTracks(userTrack);
 		})();
-	}, []);
+	}, [isOpen]);
 
 	return (
 		<>
@@ -28,7 +28,7 @@ export const LibraryView = () => {
 					<IoMdAdd style={{ display: 'inline-block', marginBottom: '5px' }} />
 				</button>
 				<Modal isOpen={isOpen} closeModal={closeModal}>
-					<CreateTrack />
+					<CreateTrack closeModal={closeModal} />
 				</Modal>
 			</div>
 			<div>

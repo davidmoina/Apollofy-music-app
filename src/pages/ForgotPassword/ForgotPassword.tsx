@@ -1,12 +1,11 @@
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { BackgroundAnimated } from '../../components/BackgroundAnimated/BackgroundAnimated';
-import { ButtonForm } from '../../components/user/input/button/ButtonForm';
-import { InputForm } from '../../components/user/input/input/InputForm';
+import { ButtonForm } from '../../components/User/Button/ButtonForm';
+import { InputForm } from '../../components/User/Input/InputForm';
 import { FormInputs } from '../../interfaces';
 import styles from '../LoginPage/loginPage.module.scss';
 
 export const ForgotPassword = () => {
-
 	const { VITE_APP_SERVICE_URL } = import.meta.env;
 
 	const {
@@ -14,27 +13,27 @@ export const ForgotPassword = () => {
 		handleSubmit,
 		formState: { errors },
 	} = useForm<FormInputs>();
-	
-	const url = `${window.location.protocol}//${window.location.host}`
 
-	const onSubmit: SubmitHandler<FormInputs> = async (data) => {
+	const url = `${window.location.protocol}//${window.location.host}`;
 
-		const {email} = data;
+	const onSubmit: SubmitHandler<FormInputs> = async data => {
+		const { email } = data;
 
 		try {
-			const response = await fetch(`${VITE_APP_SERVICE_URL}/users/password-reset`, {
-				method: 'POST',
-				headers: {
-					'Content-Type': 'application/json',
-				},
-				body: JSON.stringify({email, url}),
-			})
+			const response = await fetch(
+				`${VITE_APP_SERVICE_URL}/users/password-reset`,
+				{
+					method: 'POST',
+					headers: {
+						'Content-Type': 'application/json',
+					},
+					body: JSON.stringify({ email, url }),
+				}
+			);
 			const json = await response.json();
 			console.log(json);
-			
-
-		} catch(error) {
-			console.log(error as Error)
+		} catch (error) {
+			console.log(error as Error);
 		}
 	};
 

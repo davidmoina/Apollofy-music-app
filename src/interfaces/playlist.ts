@@ -1,10 +1,5 @@
 import { Track } from './songs';
 
-// interface Tracks {
-// 	trackId: string;
-// 	order: number;
-// }
-
 interface Followed {
 	userId: string;
 }

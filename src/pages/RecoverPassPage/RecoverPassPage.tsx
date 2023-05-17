@@ -1,7 +1,7 @@
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { BackgroundAnimated } from '../../components/BackgroundAnimated/BackgroundAnimated';
-import { ButtonForm } from '../../components/user/input/button/ButtonForm';
-import { InputForm } from '../../components/user/input/input/InputForm';
+import { ButtonForm } from '../../components/User/Button/ButtonForm';
+import { InputForm } from '../../components/User/Input/InputForm';
 import { FormInputs } from '../../interfaces';
 import styles from '../LoginPage/loginPage.module.scss';
 

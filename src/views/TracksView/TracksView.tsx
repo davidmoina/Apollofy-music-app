@@ -1,28 +1,19 @@
 import { useFetch } from '../../api/useFetch';
-import { SongListContainer } from '../../containers/songListContainer/SongListContainer';
-import PlaylistHeader from '../../components/playlistHeader/PlaylistHeader';
+import { SongListContainer } from '../../containers/SongListContainer/SongListContainer';
+import PlaylistHeader from '../../components/PlaylistHeader/PlaylistHeader';
 import { Track } from '../../interfaces/songs';
 
-const samplePlaylists = {
-	id: 1,
-	name: 'All the tracks',
-	isFollowed: true,
-	thumbnail:
-		'https://res.cloudinary.com/dmkdsujzh/image/upload/v1644625060/tracks-thumbnails-dev/car_yx6ld1.jpg',
-	description:
-		'Get your mic on with this beats. You are going to sing all the way down',
-	publicAccessible: true,
-	primaryColor: '#fbdc00',
-};
-
 export const TracksView = () => {
-
 	const { VITE_APP_SERVICE_URL } = import.meta.env;
-	const { data:  tracks } = useFetch<Track>(`${VITE_APP_SERVICE_URL}/track`);
+	const { data: tracks } = useFetch<Track[]>(`${VITE_APP_SERVICE_URL}/track`);
 
 	return (
 		<div>
-			<PlaylistHeader {...samplePlaylists} />
+			<PlaylistHeader
+				name='All the tracks'
+				description='Get your mic on with this beats. You are going to sing all the way down'
+				thumbnail='https://images.unsplash.com/photo-1614680376573-df3480f0c6ff?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8bXVzaWMlMjBsb2dvfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60'
+			/>
 			<SongListContainer tracks={tracks} />
 		</div>
 	);

@@ -1,11 +1,10 @@
 import styles from './card.module.scss';
-// import { useState, useContext } from 'react';
 import { useState } from 'react';
 import { MdPlayCircleFilled } from 'react-icons/md';
 import { useNavigate } from 'react-router-dom';
-// import { PlayerContext } from '../../context/PlayerContext/PlayerContext';
 
 interface PlaylistRecommendationProps {
+	key: number;
 	isPlayable: boolean;
 	name: string;
 	thumbnail: string;
