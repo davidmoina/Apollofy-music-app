@@ -1,12 +1,13 @@
+import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useGenre } from '../../hooks/useGenre';
-import { useState, useEffect } from 'react';
 import styles from './GenreView.module.scss';
 
 interface Genre {
 	_id: string;
 	name: string;
 	color: string;
+	image: string;
 }
 
 export const GenreView = () => {
@@ -45,7 +46,6 @@ export const GenreView = () => {
 						>
 							{genre.name}
 							<br />
-							{/* <span>imagen</span> */}
 						</button>
 					))}
 				</div>

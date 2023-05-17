@@ -87,6 +87,23 @@ function useUserAuth() {
 			console.log(error);
 		}
 	};
+
+	const getAllUsers = async () => {
+		try {
+			const response = await fetch(`${VITE_APP_SERVICE_URL}/users`, {
+				method: 'GET',
+			});
+
+			if (!response.ok) {
+				throw new Error('Something went wrong');
+			}
+
+			const json = await response.json();
+			return json.data;
+		} catch (error) {
+			throw new Error((error as Error).message);
+		}
+	};
 	const useUpdateUser = async (data: FormInputs, id: string) => {
 		try {
 			const { firstName, lastName, email, password, birthday } = data;
@@ -118,6 +135,7 @@ function useUserAuth() {
 		useLogin,
 		useRegister,
 		authState,
+		getAllUsers,
 	};
 }
 export default useUserAuth;

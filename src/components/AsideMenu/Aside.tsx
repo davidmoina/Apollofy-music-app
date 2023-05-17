@@ -144,11 +144,11 @@ const Aside = () => {
 					<li>
 						<Link
 							className={`${
-								location.pathname == '/artists'
+								location.pathname == '/users'
 									? styles.activeLink
 									: styles.inactiveLink
 							}`}
-							to='/artists'
+							to='/users'
 						>
 							<span>
 								<TbMicrophone2 />

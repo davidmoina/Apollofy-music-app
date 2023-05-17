@@ -1,12 +1,14 @@
+import { useEffect, useState } from 'react';
 import { CreateTrack } from '../../components/CreateTrack/CreateTrack';
 import { useModal } from '../../hooks/useModal';
 import { Modal } from '../../components/Modal/Modal';
 import { SongListContainer } from '../../containers/SongListContainer/SongListContainer';
-import { IoMdAdd } from 'react-icons/io';
-import styles from '../../components/ListsModalContent/listsModalContent.module.scss';
 import { useTrack } from '../../hooks/useTrack';
-import { useEffect, useState } from 'react';
 import { Track } from '../../interfaces/songs';
+import { IoMdAdd } from 'react-icons/io';
+import PlaylistHeader from '../../components/PlaylistHeader/PlaylistHeader';
+import styles from '../../components/ListsModalContent/listsModalContent.module.scss';
+import style from './libraryView.module.scss';
 
 export const LibraryView = () => {
 	const { isOpen, openModal, closeModal } = useModal();
@@ -22,7 +24,10 @@ export const LibraryView = () => {
 
 	return (
 		<>
-			<div className={styles.modalContent}>
+			<div className={style.headerNoImage} style={{ paddingTop: '5rem' }}>
+				<PlaylistHeader name='My Songs' />
+			</div>
+			<div className={`${styles.modalContent + ' ' + style.contentButton}`}>
 				<button onClick={openModal} className={styles.addPlaylistBtn}>
 					Create new Song{' '}
 					<IoMdAdd style={{ display: 'inline-block', marginBottom: '5px' }} />

@@ -19,6 +19,7 @@ import { ResetPass } from '../pages/ResetPass/ResetPass';
 import { GenreView } from '../views/GenreView/GenreView';
 import { PlaylistContentView } from '../views/PlaylistContentView/PlaylistContentView';
 import { GenreContentView } from '../views/GenreContentView/GenreContentView';
+import { ArtistContentView } from '../views/ArtistContentView/ArtistContentView';
 
 export const Routing = () => {
 	return (
@@ -33,7 +34,8 @@ export const Routing = () => {
 						<Route path='playlist/:id' element={<PlaylistContentView />} />
 						<Route path='albums' element={<AlbumsView />} />
 						<Route path='tracks' element={<TracksView />} />
-						<Route path='artists' element={<ArtistsView />} />
+						<Route path='users' element={<ArtistsView />} />
+						<Route path='users/:id' element={<ArtistContentView />} />
 						<Route path='genre' element={<GenreView />} />
 						<Route path='genre/:id' element={<GenreContentView />} />
 						<Route path='fav' element={<FavView />} />
