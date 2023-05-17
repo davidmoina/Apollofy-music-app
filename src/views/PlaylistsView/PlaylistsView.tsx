@@ -20,7 +20,6 @@ export const PlaylistsView = () => {
 	const { data } = useFetch<Playlist<string>[]>(
 		`${import.meta.env.VITE_APP_SERVICE_URL}/playlist/all/${user.id}`
 	);
-	console.log(data);
 
 	return (
 		<>
