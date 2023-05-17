@@ -1,6 +1,7 @@
 import { useFetch } from '../../api/useFetch';
 import { CardsContainer } from '../../containers/cardsContainer/CardsContainer';
 import { Track } from '../../interfaces/songs';
+import { AlbumsView } from '../AlbumsView/AlbumsView';
 import { GenreView } from '../GenreView/GenreView';
 
 export const HomeView = () => {
@@ -24,6 +25,7 @@ export const HomeView = () => {
         title="Recently albums"
         albums={albums.slice(0, 7)}
       /> */}
+			<AlbumsView />
 			<GenreView />
 		</>
 	);
