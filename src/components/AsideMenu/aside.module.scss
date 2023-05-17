@@ -1,0 +1,83 @@
+@use '../../sass/globals/variables' as var;
+
+.container {
+	width: 232px;
+	padding: 2em 1em;
+	display: flex;
+	flex-direction: column;
+	gap: 1em;
+
+	.navbar {
+		h4 {
+			color: var.$muted-color;
+			margin-bottom: 0.5em;
+			font-size: 14px;
+			text-transform: uppercase;
+		}
+
+		ul {
+			display: flex;
+			flex-direction: column;
+			gap: 0.5em;
+			list-style: none;
+			color: var.$secondary-color;
+
+			li,
+			li a {
+				display: flex;
+				align-items: center;
+				font-size: 1rem;
+				gap: 0.8em;
+			}
+
+			a:hover {
+				text-decoration: underline;
+			}
+
+			.activeLink {
+				color: #ffff66;
+				opacity: 0.9;
+				font-weight: 700;
+			}
+
+			.playlistImage img{
+				border-radius: 0.3rem;
+				-webkit-border-radius: 0.3rem;
+				-moz-border-radius: 0.3rem;
+				-ms-border-radius: 0.3rem;
+				-o-border-radius: 0.3rem;
+}
+		}
+	}
+
+	.ulCollections {
+		.activeLink {
+			color: #ffff66;
+			opacity: 0.8;
+			font-weight: 700;
+		}
+		.inactiveLink {
+			color: var.$light-grey;
+		}
+		.inactiveLink:hover {
+			color: var.$secondary-color;
+		}
+		
+	}
+
+	.addPlaylistBtn {
+		display: flex;
+		color: white;
+		gap: 0.8rem;
+		align-items: center;
+		margin: 0.5em 0;
+		color: var.$secondary-color;
+
+		&:hover {
+			color: var.$active-color;
+		}
+	}
+	
+}
+
+

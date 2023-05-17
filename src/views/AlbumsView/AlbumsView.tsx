@@ -1,18 +1,17 @@
-import { useEffect } from 'react';
 import { useFetch } from '../../api/useFetch';
-import { CardAlbumsContainer } from '../../containers/cardsContainer/CardAlbumsContainer/CardAlbumsContainer';
-
+import { CardAlbumsContainer } from '../../containers/CardsContainer/CardAlbumsContainer/CardAlbumsContainer';
+import { AlbumCard } from '../../components/Cards/CardAlbum';
 
 export const AlbumsView = () => {
-  const { data: albums } = useFetch("http://localhost:4000/albums");
+	const { VITE_APP_SERVICE_URL } = import.meta.env;
 
-  useEffect(() => {
-    console.log('HomeView rendered');
-  }, []);
+	const { data: albums } = useFetch<AlbumCard[]>(
+		`${VITE_APP_SERVICE_URL}/album`
+	);
 
-  return (
-    <div>
-      <CardAlbumsContainer title='All albums' albums={ albums } />
-    </div>
-  )
-}
+	return (
+		<div>
+			<CardAlbumsContainer title='All albums' albums={albums} isPlayable />
+		</div>
+	);
+};

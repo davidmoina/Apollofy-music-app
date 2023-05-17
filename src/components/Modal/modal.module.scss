@@ -1,0 +1,38 @@
+@use '../../sass/globals/variables' as var;
+
+.modalContainer {
+	position: fixed;
+	z-index: 999;
+	top: 0;
+	left: 0;
+	width: 100%;
+	min-height: 100vh;
+	background-color: rgba(0, 0, 0, 0.5);
+	display: none;
+	justify-content: center;
+	align-items: center;
+
+	.modalContent {
+		position: relative;
+		min-width: 200px;
+		min-height: 200px;
+		background-color: var.$bg-dark-color;
+		border-radius: 16px;
+		padding: 2.5em 2em;
+
+		.modalClose {
+			position: absolute;
+			top: 1em;
+			right: 1em;
+			color: var.$secondary-color;
+		}
+	}
+}
+.inputModal{
+	input{
+		padding: 5px !important;
+	}
+}
+.modalOpen {
+	display: flex;
+}

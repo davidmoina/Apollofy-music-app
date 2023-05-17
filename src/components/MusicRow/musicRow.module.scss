@@ -1,0 +1,67 @@
+@use '../../sass/globals/variables' as var;
+
+.rowContainer {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	width: 100%;
+	color: var.$secondary-color;
+	padding: 0.5em;
+	transition: ease-in-out 200ms;
+	cursor: default;
+
+	::selection {
+		user-select: none;
+	}
+
+	.spanLike {
+		cursor: pointer;
+	}
+
+	&:hover {
+		background-color: var.$bg-player-color;
+	}
+
+	.songLeftContainer {
+		display: flex;
+		align-items: center;
+		gap: 1em;
+		min-width: 25%;
+
+		.spanPlay {
+			cursor: pointer;
+			min-width: 2rem;
+		}
+
+		img {
+			width: 52px;
+			height: 52px;
+			border-radius: 6px;
+		}
+
+		.songInfo {
+			display: flex;
+			flex-direction: column;
+
+			span:last-child {
+				color: var.$muted-color;
+			}
+		}
+	}
+
+	.albumTitle {
+		color: var.$muted-color;
+		min-width: 25%;
+		font-weight: 300;
+		letter-spacing: 0.05rem;
+		text-align: center;
+	}
+
+	.songRightContainer {
+		min-width: 25%;
+		display: flex;
+		justify-content: flex-end;
+		align-items: center;
+		gap: 1em;
+	}
+}

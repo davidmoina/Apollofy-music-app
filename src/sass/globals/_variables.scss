@@ -18,10 +18,30 @@ $light-grey: #a7a3a3;
 
 $bg-dark-color: hsl($_hue 15% 10%); // main app bg morado oscuro
 // $gradient-sidebar-color: linear-gradient(0deg, rgba(25,11,35,1) 0%, rgba(58,24,82,1) 100%);
-$gradient-sidebar-color: linear-gradient(0deg, rgb(4 2 6) 0%, rgb(34 31 46) 100%);
-$gradient-menu-color: linear-gradient(180deg, rgba(123,87,228,1) 0%, rgba(57,42,101,1) 100%);
-$gardient-footer-color: linear-gradient(0deg, rgb(4 2 6) 0%, rgb(34 31 46) 100%);
+$gradient-sidebar-color: linear-gradient(
+	0deg,
+	rgb(4 2 6) 0%,
+	rgb(34 31 46) 100%
+);
+$gradient-menu-color: linear-gradient(
+	180deg,
+	rgba(123, 87, 228, 1) 0%,
+	rgba(57, 42, 101, 1) 100%
+);
+$gardient-footer-color: linear-gradient(
+	0deg,
+	rgb(4 2 6) 0%,
+	rgb(34 31 46) 100%
+);
 
+//base colors
+$gray-700: #0d0d0d;
+$gray-600: #1a1a1a;
+$gray-500: #262626;
+$gray-400: #333333;
+$gray-300: #808080;
+$gray-200: #d9d9d9;
+$gray-100: #f2f2f2;
 
 // Form Variables
 $size: 5rem;
@@ -29,5 +49,5 @@ $radius: 0.3em;
 $tspeed_fast: 150ms;
 $tspeed_slow: 400ms;
 $ttype_squish: cubic-bezier(0.86, -0.1, 0.27, 1.15);
-$primary-color-70: rgba($primary-color , 0.7);
-$primary-color-30: rgba($primary-color , 0.3);
+$primary-color-70: rgba($primary-color, 0.7);
+$primary-color-30: rgba($primary-color, 0.3);
