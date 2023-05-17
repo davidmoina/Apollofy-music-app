@@ -12,6 +12,7 @@ export const FavSongProvider = ({ children }: ChildrenProps) => {
 	const user = localStorage.getItem('User');
 	const userId = user ? JSON.parse(user).id : '';
 	const [data, setData] = useState<Track[]>([]);
+	const [reloadPlaylist, setReloadPlaylist] = useState(false);
 
 	const addToFavorite = async (song: Track) => {
 		const songId = song._id;
@@ -29,6 +30,10 @@ export const FavSongProvider = ({ children }: ChildrenProps) => {
 		const data = await response.json();
 		console.log(data);
 		setToggle(!toggle);
+	};
+
+	const playlistReloading = () => {
+		setReloadPlaylist(!reloadPlaylist);
 	};
 
 	useEffect(() => {
@@ -76,6 +81,8 @@ export const FavSongProvider = ({ children }: ChildrenProps) => {
 				toggle,
 				data,
 				getLikedSongs,
+				playlistReloading,
+				reloadPlaylist,
 			}}
 		>
 			{children}

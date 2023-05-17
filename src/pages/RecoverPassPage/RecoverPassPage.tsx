@@ -41,9 +41,6 @@ export const RecoverPassPage = () => {
 						<ButtonForm name='Change Password' />
 					</div>
 				</form>
-				<p className={styles.noAccountText}>
-					Already have an account? Access here!
-				</p>
 			</main>
 			<BackgroundAnimated />
 		</>

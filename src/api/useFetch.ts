@@ -1,10 +1,13 @@
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
+import { FavSongContext } from '../context/FavSongsContext/FavSongsContext';
 
 export const useFetch = <T>(url: string) => {
 	const [loading, setLoading] = useState<boolean>(false);
 	const [data, setData] = useState<T | null>(null);
 	const [error, setError] = useState<string>('');
 	const [reload, setReload] = useState<boolean>(false);
+
+	const { reloadPlaylist } = useContext(FavSongContext);
 
 	useEffect(() => {
 		(async () => {
@@ -20,7 +23,7 @@ export const useFetch = <T>(url: string) => {
 			setLoading(false);
 			console.log('UseFetch executed');
 		})();
-	}, [reload]);
+	}, [reload, reloadPlaylist]);
 
 	return { loading, data, error, reload, setReload };
 };

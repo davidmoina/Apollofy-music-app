@@ -7,7 +7,7 @@ import { Track } from '../../interfaces/songs';
 import { MusicRow } from '../../components/MusicRow/MusicRow';
 
 interface Props {
-	tracks: Track[] | null;
+	tracks: Track[] | null | undefined;
 	isPlaylist?: boolean;
 	reloadData?: () => void;
 }

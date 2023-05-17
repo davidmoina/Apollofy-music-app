@@ -1,4 +1,4 @@
-import { Dispatch, SetStateAction, useContext } from 'react';
+import { useContext } from 'react';
 import { MdDeleteSweep, MdPlayCircleFilled, MdEditNote } from 'react-icons/md';
 import { PlayerContext } from '../../context/PlayerContext/PlayerContext';
 import { Track } from '../../interfaces/songs';
@@ -7,21 +7,16 @@ import { toast } from 'react-hot-toast';
 import { Modal } from '../Modal/Modal';
 import { AddPlaylistModal } from '../AddPlayListModal/AddPlaylistModal';
 import { useModal } from '../../hooks/useModal';
+import { FavSongContext } from '../../context/FavSongsContext/FavSongsContext';
 
 interface Props {
 	tracks: Track[] | undefined;
 	id?: string;
-	reload: boolean;
-	setReload: Dispatch<SetStateAction<boolean>>;
 }
 
-export const PlaylistMenuSection = ({
-	tracks,
-	id,
-	reload,
-	setReload,
-}: Props) => {
+export const PlaylistMenuSection = ({ tracks, id }: Props) => {
 	const { songsSet, setCurrent } = useContext(PlayerContext);
+	const { playlistReloading } = useContext(FavSongContext);
 	const { closeModal, isOpen, openModal } = useModal();
 
 	const navigate = useNavigate();
@@ -62,6 +57,7 @@ export const PlaylistMenuSection = ({
 						onClick={() => {
 							toast.dismiss(t.id);
 							deletePlaylist();
+							playlistReloading();
 						}}
 						className='focus:outline-none text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800'
 					>
@@ -102,14 +98,7 @@ export const PlaylistMenuSection = ({
 			/>
 
 			<Modal closeModal={closeModal} isOpen={isOpen}>
-				{isOpen && (
-					<AddPlaylistModal
-						setReload={setReload}
-						reload={reload}
-						closeModal={closeModal}
-						editId={id}
-					/>
-				)}
+				{isOpen && <AddPlaylistModal closeModal={closeModal} editId={id} />}
 			</Modal>
 		</div>
 	);
