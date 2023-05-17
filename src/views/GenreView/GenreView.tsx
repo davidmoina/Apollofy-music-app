@@ -29,11 +29,12 @@ export const GenreView = () => {
 
 	return (
 		<div>
-			<div className={` ${styles.containerGenre}`}>
-				<h1>Explore Genres</h1>
+			<div className={`${styles.containerGenre}`}>
+				<h1 className=''>Explore Genres</h1>
 				<div className={`flex justify-center flex-wrap ${styles.divGenre}`}>
 					{genres.map(genre => (
 						<button
+						className={`hover:underline hover:scale-105 hover:opacity-90 transition-allxº`}
 							key={genre.name}
 							onClick={() => navigate(`/genre/${genre._id}`)}
 							style={{
