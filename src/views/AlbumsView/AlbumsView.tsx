@@ -1,6 +1,5 @@
 import { useFetch } from '../../api/useFetch';
 import { CardAlbumsContainer } from '../../containers/cardsContainer/CardAlbumsContainer/CardAlbumsContainer';
-// import { Album } from '../../interfaces/songs';
 import { AlbumCard } from '../../components/Cards/CardAlbum';
 
 export const AlbumsView = () => {

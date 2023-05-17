@@ -2,8 +2,8 @@ import { useEffect, useRef, useState } from 'react';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { FormInputs } from '../../interfaces/index';
 import { useTrack } from '../../hooks/useTrack';
-import { InputForm } from '../user/input/input/InputForm';
-import { ButtonForm } from '../user/input/button/ButtonForm';
+import { InputForm } from '../User/input/input/InputForm';
+import { ButtonForm } from '../User/input/button/ButtonForm';
 import stylesInput from '../user/input/input/input.module.scss';
 import { Genre } from '../../interfaces/songs';
 import { useGenre } from '../../hooks/useGenre';
@@ -56,6 +56,7 @@ export const CreateTrack = () => {
 					placeholder='name'
 					inputType='text'
 					register={register}
+					required
 					validations={{
 						required: true,
 					}}
@@ -69,6 +70,7 @@ export const CreateTrack = () => {
 					placeholder='artists'
 					inputType='text'
 					register={register}
+					required
 					validations={{
 						required: true,
 					}}
@@ -110,6 +112,7 @@ export const CreateTrack = () => {
 					placeholder='Name Album'
 					inputType='text'
 					register={register}
+					required
 					validations={{
 						required: false,
 					}}
@@ -123,6 +126,7 @@ export const CreateTrack = () => {
 					placeholder='duration'
 					inputType='time'
 					register={register}
+					required
 					validations={{
 						required: true,
 					}}
@@ -136,6 +140,7 @@ export const CreateTrack = () => {
 					placeholder='image'
 					inputType='file'
 					register={register}
+					required
 					validations={{
 						required: true,
 					}}
@@ -148,6 +153,7 @@ export const CreateTrack = () => {
 				<InputForm
 					id='url'
 					placeholder='Song'
+					required
 					inputType='file'
 					register={register}
 					validations={{

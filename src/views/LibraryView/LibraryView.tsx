@@ -9,6 +9,7 @@ import { useEffect, useState } from 'react';
 import { Track } from '../../interfaces/songs';
 
 export const LibraryView = () => {
+	
 	const { isOpen, openModal, closeModal } = useModal();
 	const [tracks, setTracks] = useState<Track[]>([]);
 	const { getTrackOfUser } = useTrack();

@@ -18,7 +18,7 @@ import {
 	FavSongContext,
 } from '../../context/favSongsContext/FavSongsContext';
 import { PlayerContext } from '../../context/PlayerContext/PlayerContext';
-import { TrackMenu } from '../trackMenu/TrackMenu';
+import { TrackMenu } from '../TrackMenu/TrackMenu';
 import { useTrack } from '../../hooks/useTrack';
 
 export interface Props {

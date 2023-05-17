@@ -1,8 +1,8 @@
 import { SubmitHandler, useForm } from 'react-hook-form';
-import { InputForm } from '../user/input/input/InputForm';
+import { InputForm } from '../User/input/input/InputForm';
 import styles from './addPlaylistModal.module.scss';
 import { FormInputs } from '../../interfaces';
-import { ButtonForm } from '../user/input/button/ButtonForm';
+import { ButtonForm } from '../User/input/button/ButtonForm';
 import { useRef } from 'react';
 import { toast } from 'react-hot-toast';
 import { Playlist } from '../../interfaces/playlist';
@@ -74,9 +74,11 @@ export const AddPlaylistModal = ({ closeModal }: Props) => {
 					inputType='text'
 					register={register}
 					placeholder='Playlist name'
+					required
 					validations={{
 						required: true,
-					}}
+					}
+				}
 				></InputForm>
 				<div className={styles.inputWrapper}>
 					<textarea

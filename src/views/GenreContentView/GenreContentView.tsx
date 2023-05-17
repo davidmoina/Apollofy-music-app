@@ -1,6 +1,6 @@
 import { SongListContainer } from '../../containers/songListContainer/SongListContainer';
-import PlaylistHeader from '../../components/playlistHeader/PlaylistHeader';
-import PlaylistInfoBar from '../../components/infoBarPlaylists/InfoBarPlaylists';
+import PlaylistHeader from '../../components/PlaylistHeader/PlaylistHeader';
+import PlaylistInfoBar from '../../components/InfoBarPlaylists/InfoBarPlaylists';
 import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { useGenre } from '../../hooks/useGenre';

@@ -14,14 +14,6 @@ export interface Album {
 	artist: string;
 }
 
-// export interface Artist {
-//   id: number;
-//   name: string;
-//   genres: string[];
-//   popularity: number;
-//   photoUrl: string;
-// }
-
 export interface Genre {
 	id: number;
 	name: string;

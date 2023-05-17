@@ -68,7 +68,7 @@ export const PlayerMusic = () => {
 	const startTimer = () => {
 		clearInterval(intervalRef.current);
 
-		intervalRef.current = setInterval(() => {
+		intervalRef.current = +setInterval(() => {
 			if (audioRef.current.ended) {
 				handleEnd();
 			} else {

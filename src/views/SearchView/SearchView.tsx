@@ -1,4 +1,4 @@
-import { SearchBar } from '../../components/searchBar/SearchBar';
+import { SearchBar } from '../../components/SearchBar/SearchBar';
 import { GenreView } from '../GenreView/GenreView';
 
 const SearchView = () => {

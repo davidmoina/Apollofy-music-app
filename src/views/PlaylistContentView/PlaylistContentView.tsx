@@ -1,6 +1,6 @@
 import { SongListContainer } from '../../containers/songListContainer/SongListContainer';
-import PlaylistHeader from '../../components/playlistHeader/PlaylistHeader';
-import PlaylistInfoBar from '../../components/infoBarPlaylists/InfoBarPlaylists';
+import PlaylistHeader from '../../components/PlaylistHeader/PlaylistHeader';
+import PlaylistInfoBar from '../../components/InfoBarPlaylists/InfoBarPlaylists';
 import { useFetch } from '../../api/useFetch';
 import { useParams } from 'react-router-dom';
 import { Playlist } from '../../interfaces/playlist';

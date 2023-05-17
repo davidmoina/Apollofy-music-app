@@ -5,7 +5,7 @@ import {
 	TbPlayerPauseFilled,
 	TbRepeat,
 	TbArrowsShuffle,
-	TbRepeatOff,
+	// TbRepeatOff,
 } from 'react-icons/tb';
 import styles from './controls.module.scss';
 

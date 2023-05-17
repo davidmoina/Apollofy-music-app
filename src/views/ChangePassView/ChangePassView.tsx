@@ -1,8 +1,8 @@
 import { SubmitHandler, useForm } from 'react-hook-form';
 import styles from '../../pages/LoginPage/loginPage.module.scss';
-import { InputForm } from '../../components/user/input/input/InputForm';
+import { InputForm } from '../../components/User/input/input/InputForm';
 import { FormInputs } from '../../interfaces';
-import { ButtonForm } from '../../components/user/input/button/ButtonForm';
+import { ButtonForm } from '../../components/User/input/button/ButtonForm';
 import { toast } from 'react-toastify';
 
 export const ChangePassView = () => {
@@ -86,6 +86,7 @@ export const ChangePassView = () => {
 					placeholder='Old Password'
 					inputType='password'
 					register={register}
+					required
 					validations={{
 						required: true,
 					}}
@@ -99,6 +100,7 @@ export const ChangePassView = () => {
 					placeholder='New Password'
 					inputType='password'
 					register={register}
+					required
 					validations={{
 						required: true,
 						pattern:
@@ -122,6 +124,7 @@ export const ChangePassView = () => {
 					placeholder='Repeat New Password'
 					inputType='password'
 					register={register}
+					required
 					validations={{
 						required: true,
 						validate: validatePass,

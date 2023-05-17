@@ -1,11 +1,10 @@
 import styles from '../LoginPage/loginPage.module.scss';
-import { InputForm } from '../../components/user/input/input/InputForm';
+import { InputForm } from '../../components/User/input/input/InputForm';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { FormInputs } from '../../interfaces';
-import { ButtonForm } from '../../components/user/input/button/ButtonForm';
+import { ButtonForm } from '../../components/User/input/button/ButtonForm';
 import useUserAuth from '../../hooks/useUserAuth';
 import { useEffect, useState } from 'react';
-import { users } from '../../data/users';
 
 export interface UserData {
 	birthday: Date;
@@ -60,6 +59,7 @@ export const EditProfile = () => {
 						register={register}
 						errors={errors}
 						defaultValue={datos?.firstName}
+						required
 					/>
 					<InputForm
 						id='lastName'
@@ -68,6 +68,7 @@ export const EditProfile = () => {
 						register={register}
 						errors={errors}
 						defaultValue={datos?.lastName}
+						required
 					/>
 					<InputForm
 						id='email'
@@ -76,6 +77,7 @@ export const EditProfile = () => {
 						register={register}
 						errors={errors}
 						defaultValue={datos?.email}
+						required
 					/>
 					<InputForm
 						id='birthday'
@@ -83,6 +85,7 @@ export const EditProfile = () => {
 						inputType='date'
 						register={register}
 						errors={errors}
+						required
 					/>
 				</div>
 

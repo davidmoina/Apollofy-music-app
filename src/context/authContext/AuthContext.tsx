@@ -17,6 +17,7 @@ export type ContextType = {
 		token: string
 	) => void;
 	registerError: (error: string) => void;
+	updatePassword: (password: string) => void;
 };
 
 export const AuthContext = createContext<ContextType | null>(null);

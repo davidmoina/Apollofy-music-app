@@ -1,6 +1,6 @@
 import { useFetch } from '../../api/useFetch';
 import { SongListContainer } from '../../containers/songListContainer/SongListContainer';
-import PlaylistHeader from '../../components/playlistHeader/PlaylistHeader';
+import PlaylistHeader from '../../components/PlaylistHeader/PlaylistHeader';
 import { Track } from '../../interfaces/songs';
 
 const samplePlaylists = {
@@ -18,7 +18,7 @@ const samplePlaylists = {
 export const TracksView = () => {
 
 	const { VITE_APP_SERVICE_URL } = import.meta.env;
-	const { data:  tracks } = useFetch<Track>(`${VITE_APP_SERVICE_URL}/track`);
+	const { data:  tracks } = useFetch<Track[]>(`${VITE_APP_SERVICE_URL}/track`);
 
 	return (
 		<div>

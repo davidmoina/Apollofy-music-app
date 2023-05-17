@@ -1,4 +1,4 @@
-import { Children, useMemo, useReducer } from 'react';
+import { useReducer } from 'react';
 import { toast } from 'react-toastify';
 import { AuthContext } from './AuthContext';
 
@@ -193,6 +193,7 @@ export const AuthProvider = ({ children }: Props) => {
 				authState,
 				registerSuccess,
 				registerError,
+				updatePassword,
 			}}
 		>
 			{children}

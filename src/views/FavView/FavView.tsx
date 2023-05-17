@@ -3,8 +3,8 @@ import {
 	FavSongContext,
 } from '../../context/favSongsContext/FavSongsContext';
 import { useContext } from 'react';
-import PlaylistInfoBar from '../../components/infoBarPlaylists/InfoBarPlaylists';
-import PlaylistHeader from '../../components/playlistHeader/PlaylistHeader';
+import PlaylistInfoBar from '../../components/InfoBarPlaylists/InfoBarPlaylists';
+import PlaylistHeader from '../../components/PlaylistHeader/PlaylistHeader';
 import { SongListContainer } from '../../containers/songListContainer/SongListContainer';
 
 export const FavView = () => {

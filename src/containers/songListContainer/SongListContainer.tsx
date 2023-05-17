@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { AddPlaylistModal } from '../../components/AddPlayListModal/AddPlaylistModal';
 import { ListsModalContent } from '../../components/ListsModalContent/ListsModalContent';
 import { Modal } from '../../components/Modal/Modal';
-import { MusicRow } from '../../components/musicRow/MusicRow';
+import { MusicRow } from '../../components/MusicRow/MusicRow';
 import { useModal } from '../../hooks/useModal';
 import { Track } from '../../interfaces/songs';
 
