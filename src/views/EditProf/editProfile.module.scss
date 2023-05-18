@@ -1,0 +1,23 @@
+@use '../../sass/globals/variables' as var;
+
+.container {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	background-color: var.$bg-dark-color;
+
+	.form {
+		max-width: 500px;
+		padding: 1em;
+		z-index: 999;
+		margin: auto;
+
+		h1 {
+			text-align: center;
+			font-weight: 900;
+			font-size: calc(var.$size * 0.5);
+			color: var.$primary-color;
+			margin-bottom: 1em;
+		}
+	}
+}

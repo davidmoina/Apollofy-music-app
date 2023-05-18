@@ -3,7 +3,7 @@ import styles from '../../pages/LoginPage/loginPage.module.scss';
 import { InputForm } from '../../components/User/Input/InputForm';
 import { FormInputs } from '../../interfaces';
 import { ButtonForm } from '../../components/User/Button/ButtonForm';
-import { toast } from 'react-toastify';
+import { toast } from 'react-hot-toast';
 
 export const ChangePassView = () => {
 	const {
@@ -51,21 +51,13 @@ export const ChangePassView = () => {
 			const result = await response.json();
 
 			if (response.status === 400) {
-				return toast.update(toastId, {
-					render: result.message,
-					type: 'error',
-					isLoading: false,
-					hideProgressBar: false,
-					autoClose: 2000,
+				return toast(result.message, {
+					id: toastId,
 				});
 			}
 
-			toast.update(toastId, {
-				render: 'All is good',
-				type: 'success',
-				isLoading: false,
-				autoClose: 2000,
-				hideProgressBar: false,
+			toast.success('All is good', {
+				id: toastId,
 			});
 			console.log(result);
 			return;

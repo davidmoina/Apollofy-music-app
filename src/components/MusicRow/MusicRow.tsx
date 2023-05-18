@@ -65,7 +65,7 @@ export const MusicRow = ({
 	const [isPlaying, setIsPlaying] = useState(false);
 
 	const [isLiked, setIsLiked] = useState(
-		data.find(song => song._id === actualSong._id) && true
+		data?.find(song => song._id === actualSong._id) && true
 	);
 
 	const { id } = useParams();

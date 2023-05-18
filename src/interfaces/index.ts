@@ -17,6 +17,7 @@ export interface FormInputs {
 	thumbnail?: string;
 	url?: string;
 	albums?: string[];
+	publicAccessible?: string;
 }
 
 export interface Tracks {

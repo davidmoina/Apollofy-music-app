@@ -1,6 +1,6 @@
 import { useReducer } from 'react';
-import { toast } from 'react-toastify';
 import { AuthContext } from './AuthContext';
+import { toast } from 'react-hot-toast';
 
 type Props = {
 	children: JSX.Element | JSX.Element[];
@@ -159,7 +159,7 @@ export const AuthProvider = ({ children }: Props) => {
 				token,
 			},
 		});
-		toast.success('Registered successfully ', { icon: '✅' });
+		toast.success('Registered successfully ');
 	};
 
 	const registerError = (error: string): void => {
@@ -175,7 +175,7 @@ export const AuthProvider = ({ children }: Props) => {
 		dispatch({
 			type: ACTIONS.LOGOUT,
 		});
-		toast.info('Logged out, we will miss you', { icon: '😢' });
+		toast('Logged out, we will miss you', { icon: '😢' });
 	};
 
 	const updatePassword = (password: string): void => {

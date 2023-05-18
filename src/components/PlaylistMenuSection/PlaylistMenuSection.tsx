@@ -50,7 +50,7 @@ export const PlaylistMenuSection = ({ tracks, id }: Props) => {
 
 	const handleDelete = () => {
 		toast(t => (
-			<span className='flex flex-col items-center gap-2'>
+			<span className='flex flex-col p-4 items-center gap-4'>
 				Do you want to delete the playlist?
 				<div>
 					<button
@@ -59,21 +59,19 @@ export const PlaylistMenuSection = ({ tracks, id }: Props) => {
 							deletePlaylist();
 							playlistReloading();
 						}}
-						className='focus:outline-none text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800'
+						className='text-white bg-green-700 hover:bg-green-800 focus:outline-none focus:ring-4 focus:ring-green-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800'
 					>
 						Yes
 					</button>
-
 					<button
 						onClick={() => {
 							{
 								toast.dismiss(t.id);
 							}
 						}}
-						type='button'
-						className='focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900'
+						className='text-white bg-red-700 hover:bg-red-800 focus:outline-none focus:ring-4 focus:ring-red-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900'
 					>
-						Cancel
+						No
 					</button>
 				</div>
 			</span>
@@ -84,8 +82,7 @@ export const PlaylistMenuSection = ({ tracks, id }: Props) => {
 		<div className='flex gap-5 items-center mb-4 mx-10'>
 			<MdPlayCircleFilled
 				onClick={handleClickSong}
-				className={`cursor-pointer text-5xl rounded-lg text-[#ffff66] '
-					} transition-all duration-200`}
+				className={`cursor-pointer text-5xl rounded-lg text-[#ffff66] hover:text-[#6966ff] transition-all`}
 			/>
 			<MdDeleteSweep
 				onClick={handleDelete}

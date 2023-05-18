@@ -8,6 +8,7 @@ import {
 } from '../../context/AuthContext/AuthContext';
 
 import image from '../../assets/images/monkey.jpg';
+import { Link } from 'react-router-dom';
 
 export const Navbar = () => {
 	const navigate = useNavigate();
@@ -20,9 +21,9 @@ export const Navbar = () => {
 	}
 
 	function handleLogout() {
-		localStorage.removeItem('User')
+		localStorage.removeItem('User');
 		logout();
-		navigate('/login');
+		navigate('/welcome');
 	}
 
 	return (
@@ -48,7 +49,7 @@ export const Navbar = () => {
 				{showModal ? (
 					<ul className='right-4 z-10'>
 						<li>
-							<a href='/edit-profile'> Edit Profile </a>
+							<Link to='/edit-profile'> Edit Profile </Link>
 						</li>
 						<li>
 							<a href=''>Admin</a>
