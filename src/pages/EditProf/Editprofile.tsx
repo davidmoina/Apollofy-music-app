@@ -5,6 +5,8 @@ import { FormInputs } from '../../interfaces';
 import { ButtonForm } from '../../components/User/Button/ButtonForm';
 import useUserAuth from '../../hooks/useUserAuth';
 import { useEffect, useState } from 'react';
+import { InfoUser } from '../../components/InfoUser/InfoUser';
+//import { ImagenUpload } from '../../components/ImageUpload/ImagenUpload';
 
 export interface UserData {
 	birthday: Date;
@@ -35,6 +37,7 @@ export const EditProfile = () => {
 			email: datos.email,
 		},
 	});
+
 	useEffect(() => {
 		(async () => {
 			const userInfo = await useGetUser(userData.id);
@@ -43,54 +46,60 @@ export const EditProfile = () => {
 		})();
 	}, [reset]);
 
-	const onSubmit: SubmitHandler<FormInputs> = data => {
+	const onSubmit: SubmitHandler<FormInputs> = async data => {
 		useUpdateUser(data, datos._id);
 	};
 
 	return (
-		<div className={styles.container}>
-			<form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
-				<h1>Edit profile</h1>
-				<div>
-					<InputForm
-						id='firstName'
-						placeholder='Name'
-						inputType='text'
-						register={register}
-						errors={errors}
-						defaultValue={datos?.firstName}
-						required
-					/>
-					<InputForm
-						id='lastName'
-						placeholder='Last Name'
-						inputType='text'
-						register={register}
-						errors={errors}
-						defaultValue={datos?.lastName}
-						required
-					/>
-					<InputForm
-						id='email'
-						placeholder='Email'
-						inputType='email'
-						register={register}
-						errors={errors}
-						defaultValue={datos?.email}
-						required
-					/>
-					<InputForm
-						id='birthday'
-						placeholder='Date of birth'
-						inputType='date'
-						register={register}
-						errors={errors}
-						required
-					/>
-				</div>
+		<>
+			<section>
+				<InfoUser />
+				{/* <ImagenUpload /> */}
+			</section>
+			<div className={styles.container}>
+				<form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
+					<h1>Edit profile</h1>
+					<div>
+						<InputForm
+							id='firstName'
+							placeholder='Name'
+							inputType='text'
+							register={register}
+							errors={errors}
+							defaultValue={datos?.firstName}
+							required
+						/>
+						<InputForm
+							id='lastName'
+							placeholder='Last Name'
+							inputType='text'
+							register={register}
+							errors={errors}
+							defaultValue={datos?.lastName}
+							required
+						/>
+						<InputForm
+							id='email'
+							placeholder='Email'
+							inputType='email'
+							register={register}
+							errors={errors}
+							defaultValue={datos?.email}
+							required
+						/>
+						<InputForm
+							id='birthday'
+							placeholder='Date of birth'
+							inputType='date'
+							register={register}
+							errors={errors}
+							required
+						/>
+					</div>
 
-				<ButtonForm name='Save' />
-			</form>
-		</div>
+					<ButtonForm name='Save' />
+				</form>
+			</div>
+		</>
 	);
 };
