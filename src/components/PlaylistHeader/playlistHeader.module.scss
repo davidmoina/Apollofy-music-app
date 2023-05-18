@@ -3,9 +3,13 @@
 .playlistHeader {
 	display: flex;
 	align-items: center;
-	// justify-content: space-between;
 	height: 22vh;
 	margin-bottom: 1em;
+
+	@media (max-width: 500px) {
+		height: 15vh;
+		margin-bottom: 0;
+	}
 
 	.playlistImage {
 		height: 17vh;
@@ -15,11 +19,19 @@
 		-moz-border-radius: 0.5rem;
 		-ms-border-radius: 0.5rem;
 		-o-border-radius: 0.5rem;
-}
+
+		@media (max-width: 500px) {
+			height: 12vh;
+		}
+	}
 
 	.playlistInfo {
 		width: 75%;
 		padding-left: 2vh;
+
+		@media (max-width: 500px) {
+			height: 12vh;
+		}
 
 		.publicPlaylist {
 			font-size: 1.1em;
@@ -43,6 +55,22 @@
 
 			.bullet {
 				margin: 0 8px;
+			}
+		}
+
+		@media (max-width: 500px) {
+			width: 50%;
+
+			.publicPlaylist {
+				font-size: 0.9em;
+			}
+
+			.playlistName {
+				font-size: 1.3em;
+			}
+
+			.playlistDescription {
+				display: none;
 			}
 		}
 	}

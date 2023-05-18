@@ -12,9 +12,10 @@ import { FavSongContext } from '../../context/FavSongsContext/FavSongsContext';
 interface Props {
 	tracks: Track[] | undefined;
 	id?: string;
+	likedSongs?: boolean;
 }
 
-export const PlaylistMenuSection = ({ tracks, id }: Props) => {
+export const PlaylistMenuSection = ({ tracks, id, likedSongs }: Props) => {
 	const { songsSet, setCurrent } = useContext(PlayerContext);
 	const { playlistReloading } = useContext(FavSongContext);
 	const { closeModal, isOpen, openModal } = useModal();
@@ -50,7 +51,7 @@ export const PlaylistMenuSection = ({ tracks, id }: Props) => {
 
 	const handleDelete = () => {
 		toast(t => (
-			<span className='flex flex-col p-4 items-center gap-4'>
+			<span className={`flex flex-col p-4 items-center gap-4`}>
 				Do you want to delete the playlist?
 				<div>
 					<button
@@ -79,20 +80,29 @@ export const PlaylistMenuSection = ({ tracks, id }: Props) => {
 	};
 
 	return (
-		<div className='flex gap-5 items-center mb-4 mx-10'>
+		<div
+			className={`flex gap-5 items-center ${
+				likedSongs && 'justify-center'
+			}  mb-4 mx-10`}
+		>
 			<MdPlayCircleFilled
 				onClick={handleClickSong}
 				className={`cursor-pointer text-5xl rounded-lg text-[#ffff66] hover:text-[#6966ff] transition-all`}
 			/>
-			<MdDeleteSweep
-				onClick={handleDelete}
-				className='cursor-pointer  text-3xl text-[#aaaa83] hover:text-[#e44949] transition-all'
-			/>
 
-			<MdEditNote
-				onClick={openModal}
-				className='cursor-pointer text-3xl text-[#aaaa83] hover:text-[#ffff66] transition-all'
-			/>
+			{!likedSongs && (
+				<>
+					<MdDeleteSweep
+						onClick={handleDelete}
+						className='cursor-pointer  text-3xl text-[#aaaa83] hover:text-[#e44949] transition-all'
+					/>
+
+					<MdEditNote
+						onClick={openModal}
+						className='cursor-pointer text-3xl text-[#aaaa83] hover:text-[#ffff66] transition-all'
+					/>
+				</>
+			)}
 
 			<Modal closeModal={closeModal} isOpen={isOpen}>
 				{isOpen && <AddPlaylistModal closeModal={closeModal} editId={id} />}

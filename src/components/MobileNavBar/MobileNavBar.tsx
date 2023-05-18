@@ -18,10 +18,6 @@ export const MobileNavButton = ({ icon, text, path }: Props) => {
 
 	const navigate = useNavigate();
 
-	// const toggleExpanded = () => {
-	// 	setIsExpanded(prevState => !prevState);
-	// };
-
 	const handleMenu = (path: string) => {
 		setIsExpanded(prevState => !prevState);
 		navigate(path);

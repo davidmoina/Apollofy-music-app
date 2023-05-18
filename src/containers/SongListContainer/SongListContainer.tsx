@@ -32,7 +32,7 @@ export const SongListContainer = ({
 	};
 
 	return (
-		<div className='flex flex-col p-4 gap-3'>
+		<div className='flex flex-col p-4 gap-2'>
 			{tracks?.map(song => (
 				<MusicRow
 					thumbnail={song.thumbnail}
