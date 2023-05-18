@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Track } from '../../interfaces/songs';
 import { FavSongContext } from './FavSongsContext';
-import { toast } from 'react-toastify';
+import { toast } from 'react-hot-toast';
 
 type ChildrenProps = {
 	children: JSX.Element | JSX.Element[];
