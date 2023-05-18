@@ -32,17 +32,15 @@ export const GenreView = () => {
 		<div>
 			<div className={`${styles.containerGenre} pb-16`}>
 				<h1 className=''>Explore Genres</h1>
-				<div className={`flex justify-center flex-wrap ${styles.divGenre}`}>
+				<div className={`flex justify-center flex-wrap  ${styles.divGenre}`}>
 					{genres.map(genre => (
 						<button
-						className={`hover:underline hover:scale-105 hover:opacity-90 transition-allxº`}
+							className={`py-10 text-sm sm:text-lg lg:text-2xl w-28 sm:w-32 sm:h-32 lg:w-48 lg:h-48 hover:underline hover:scale-105 hover:opacity-90 transition-allxº`}
 							key={genre.name}
 							onClick={() => navigate(`/genre/${genre._id}`)}
 							style={{
 								backgroundColor: genre.color,
 								color: 'white',
-								border: `4px solid ${genre.color}`,
-								backdropFilter: 'blur(2px)',
 							}}
 						>
 							{genre.name}

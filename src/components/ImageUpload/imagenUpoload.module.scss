@@ -1,0 +1,46 @@
+@use '../../sass/globals/variables' as var;
+
+.divInput{
+   position: relative;
+   display: inline-block;
+   cursor: pointer;
+
+   ::before{
+      cursor: pointer;
+      background-color: #18161d;
+      color: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-radius: 3px;
+      content: url('../../assets/icons/upload-icon.png');
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      padding-top: 10px;
+      height: 40px;
+      margin-left: -20px;
+   }
+
+   input[type="file"]{
+      width: 50px;
+      height: 32px;
+      display: inline-block;
+   }
+}
+
+.buttonUp{
+   border:1px solid #8f85ad;
+   color:#8f85ad;
+   padding: 5px;
+   border-radius: 5px;
+   -webkit-border-radius: 5px;
+   -moz-border-radius: 5px;
+   -ms-border-radius: 5px;
+   -o-border-radius: 5px;
+
+   :hover{
+      background-color: white;
+   }
+}

@@ -2,6 +2,7 @@ import { useContext } from 'react';
 import { FormInputs } from '../interfaces';
 import { AuthContext, ContextType } from '../context/AuthContext/AuthContext';
 import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-hot-toast';
 
 function useUserAuth() {
 	const { VITE_APP_SERVICE_URL } = import.meta.env;
@@ -79,7 +80,38 @@ function useUserAuth() {
 			registerError('Invalid Registration');
 		}
 	};
-	const useGetUser = async (id: string) => {
+
+	const uploadImageUser = async (data: any) => {
+		console.log(data);
+		const toastId = toast.loading('Saving image');
+		const { id } = JSON.parse(localStorage.getItem('User')!);
+		try {
+			const response = await fetch(
+				`${VITE_APP_SERVICE_URL}/users/upload-image/${id}`,
+				{
+					method: 'PATCH',
+					body: data,
+				}
+			);
+
+			await response.json();
+
+			if (!response.ok) {
+				return;
+			}
+			toast.success(`Image saved!`, {
+				id: toastId,
+			});
+			navigate('/edit-profile');
+		} catch (error) {
+			toast.error((error as Error).message, {
+				id: toastId,
+			});
+			console.log(error);
+		}
+	};
+
+	const useGetUser = async (id: string | undefined) => {
 		try {
 			const response = await fetch(`${VITE_APP_SERVICE_URL}/users/${id}`);
 			const result = await response.json();
@@ -137,6 +169,7 @@ function useUserAuth() {
 		useRegister,
 		authState,
 		getAllUsers,
+		uploadImageUser,
 	};
 }
 export default useUserAuth;

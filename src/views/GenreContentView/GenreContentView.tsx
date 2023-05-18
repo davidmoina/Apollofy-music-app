@@ -38,6 +38,7 @@ export const GenreContentView = () => {
 		fetchGenres();
 	}, []);
 
+	console.log(genreName);
 	return (
 		<>
 			<div

@@ -44,7 +44,7 @@ export const ArtistsView = () => {
 					<CardArtist
 						key={index}
 						name={artist.firstName}
-						thumbnail='https://res.cloudinary.com/dvsab2hi0/image/upload/v1684352672/icons-genre/monkey_higjsm.jpg'
+						thumbnail={artist.thumbnail}
 						id={artist._id}
 					/>
 				))}

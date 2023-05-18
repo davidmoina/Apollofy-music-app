@@ -9,7 +9,6 @@ import {
 	MdOutlineLibraryMusic,
 	MdAlbum,
 	MdOutlineAudiotrack,
-	// MdFeaturedPlayList,
 } from 'react-icons//md';
 import { IoMdAdd } from 'react-icons/io';
 import { VscLibrary } from 'react-icons/vsc';
