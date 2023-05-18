@@ -4,6 +4,7 @@ export interface FormInputs {
 	lastName?: string;
 	email?: string;
 	password?: string;
+	rol?: string;
 	confirmPassword?: string;
 	birthday?: Date;
 	oldPassword?: string;
@@ -17,6 +18,7 @@ export interface FormInputs {
 	thumbnail?: string;
 	url?: string;
 	albums?: string[];
+	publicAccessible?: string;
 }
 
 export interface Tracks {

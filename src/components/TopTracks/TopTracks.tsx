@@ -37,14 +37,4 @@ const TopTracks: React.FC<Props> = ({ songs }) => (
 export default TopTracks;
 
 
-// function TopGenres({
-// 	// thumbnail,
-// 	// publicAccessible,
-// 	// description,
-// 	// name,
-//     <{}>
-// }: Props) {
-// 	return (
-		
-// 	);
-// }
+

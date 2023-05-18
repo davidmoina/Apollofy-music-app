@@ -5,7 +5,6 @@ import {
 	TbPlayerPauseFilled,
 	TbRepeat,
 	TbArrowsShuffle,
-	// TbRepeatOff,
 } from 'react-icons/tb';
 import styles from './controls.module.scss';
 
@@ -16,6 +15,8 @@ type TrackControls = {
 	onNextClick: () => void;
 	onLoopClick: () => void;
 	loop: boolean;
+	toggleRandom: () => void;
+	random: boolean;
 };
 
 export const Controls = ({
@@ -25,13 +26,15 @@ export const Controls = ({
 	onNextClick,
 	onLoopClick,
 	loop,
+	toggleRandom,
+	random,
 }: TrackControls) => {
 	return (
 		<div
 			className={`${styles.buttonsPlayer} flex justify-end md:justify-center`}
 		>
-			<button className='hidden m-2 icon md:block' onClick={onLoopClick}>
-				{loop ? <TbArrowsShuffle /> : <TbArrowsShuffle />}
+			<button className='hidden m-2 icon md:block' onClick={toggleRandom}>
+				{random ? <TbArrowsShuffle color={'#f9f999'} /> : <TbArrowsShuffle />}
 			</button>
 			<button
 				type='button'

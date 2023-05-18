@@ -12,7 +12,7 @@ import { TracksView } from '../views/TracksView/TracksView';
 import { ArtistsView } from '../views/ArtistsView/ArtistsView';
 import { RecoverPassPage } from '../pages/RecoverPassPage/RecoverPassPage';
 import { FavView } from '../views/FavView/FavView';
-import { EditProfile } from '../pages/EditProf/Editprofile';
+import { EditProfile } from '../views/EditProf/Editprofile';
 import { ChangePassView } from '../views/ChangePassView/ChangePassView';
 import { ForgotPassword } from '../pages/ForgotPassword/ForgotPassword';
 import { ResetPass } from '../pages/ResetPass/ResetPass';
@@ -22,6 +22,9 @@ import { GenreContentView } from '../views/GenreContentView/GenreContentView';
 import { ArtistContentView } from '../views/ArtistContentView/ArtistContentView';
 import { StatisticsView } from '../views/StatisticsView/StatisticsView';
 import { WelcomePage } from '../pages/WelcomePage/WelcomePage';
+import { AlbumContentView } from '../views/AlbumContentView/AlbumContentView';
+import { PublicRoutes } from '../components/PublicRoutes/PublicRoutes';
+import { MobileLibraryView } from '../views/MobileLibraryView/MobileLibraryView';
 
 export const Routing = () => {
 	return (
@@ -35,6 +38,7 @@ export const Routing = () => {
 						<Route path='playlists' element={<PlaylistsView />} />
 						<Route path='playlist/:id' element={<PlaylistContentView />} />
 						<Route path='albums' element={<AlbumsView />} />
+						<Route path='albums/:id' element={<AlbumContentView />} />
 						<Route path='tracks' element={<TracksView />} />
 						<Route path='users' element={<ArtistsView />} />
 						<Route path='users/:id' element={<ArtistContentView />} />
@@ -44,14 +48,17 @@ export const Routing = () => {
 						<Route path='fav' element={<FavView />} />
 						<Route path='edit-profile' element={<EditProfile />} />
 						<Route path='change-password' element={<ChangePassView />} />
+						<Route path='library-mobile' element={<MobileLibraryView />} />
 					</Route>
 				</Route>
-				<Route path='/welcome' element={<WelcomePage />} />
-				<Route path='/login' element={<LoginPage />} />
-				<Route path='/recovery-pass' element={<RecoverPassPage />} />
-				<Route path='/forgot-pass' element={<ForgotPassword />} />
-				<Route path='/register' element={<RegisterPage />} />
-				<Route path='/reset/:id/:resetString' element={<ResetPass />} />
+				<Route element={<PublicRoutes />}>
+					<Route path='/welcome' element={<WelcomePage />} />
+					<Route path='/login' element={<LoginPage />} />
+					<Route path='/recovery-pass' element={<RecoverPassPage />} />
+					<Route path='/forgot-pass' element={<ForgotPassword />} />
+					<Route path='/register' element={<RegisterPage />} />
+					<Route path='/reset/:id/:resetString' element={<ResetPass />} />
+				</Route>
 			</Routes>
 		</BrowserRouter>
 	);

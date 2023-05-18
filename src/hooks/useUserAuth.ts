@@ -40,8 +40,9 @@ function useUserAuth() {
 	};
 
 	const useRegister = async (data: FormInputs) => {
-		const { firstName, lastName, email, password, confirmPassword, birthday } =
+		const { firstName, lastName, email, password, confirmPassword, birthday, rol } =
 			data;
+
 		try {
 			const response = await fetch(`${VITE_APP_SERVICE_URL}/users/register/`, {
 				method: 'POST',
@@ -55,14 +56,14 @@ function useUserAuth() {
 					password,
 					confirmPassword,
 					birthday,
+					rol
 				}),
 			});
 			const json = await response.json();
 			const { id, token } = json;
-			if (!response.ok) {
-				localStorage.setItem('actualUser', id);
-				return;
-			}
+			
+			window.localStorage.setItem('User', JSON.stringify({ email, id, token, rol }));
+
 			registerSuccess(
 				firstName!,
 				lastName!,
