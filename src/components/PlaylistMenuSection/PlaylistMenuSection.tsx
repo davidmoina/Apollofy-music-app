@@ -80,33 +80,34 @@ export const PlaylistMenuSection = ({ tracks, id, likedSongs }: Props) => {
 	};
 
 	return (
-		<div
-			className={`flex gap-5 items-center ${
-				likedSongs && 'justify-center'
-			}  mb-4 mx-10`}
-		>
-			<MdPlayCircleFilled
-				onClick={handleClickSong}
-				className={`cursor-pointer text-5xl rounded-lg text-[#ffff66] hover:text-[#6966ff] transition-all`}
-			/>
+		<>
+			<div
+				className={`flex gap-5 items-center ${
+					likedSongs ? 'justify-center' : 'justify-between'
+				} sm:justify-start mb-4 mx-4`}
+			>
+				<MdPlayCircleFilled
+					onClick={handleClickSong}
+					className={`cursor-pointer text-5xl rounded-lg text-[#ffff66] hover:text-[#6966ff] transition-all`}
+				/>
 
-			{!likedSongs && (
-				<>
-					<MdDeleteSweep
-						onClick={handleDelete}
-						className='cursor-pointer  text-3xl text-[#aaaa83] hover:text-[#e44949] transition-all'
-					/>
+				{!likedSongs && (
+					<div className='flex flex-row gap-2'>
+						<MdDeleteSweep
+							onClick={handleDelete}
+							className='cursor-pointer  text-3xl text-[#aaaa83] hover:text-[#e44949] transition-all'
+						/>
 
-					<MdEditNote
-						onClick={openModal}
-						className='cursor-pointer text-3xl text-[#aaaa83] hover:text-[#ffff66] transition-all'
-					/>
-				</>
-			)}
-
+						<MdEditNote
+							onClick={openModal}
+							className='cursor-pointer text-3xl text-[#aaaa83] hover:text-[#ffff66] transition-all'
+						/>
+					</div>
+				)}
+			</div>
 			<Modal closeModal={closeModal} isOpen={isOpen}>
 				{isOpen && <AddPlaylistModal closeModal={closeModal} editId={id} />}
 			</Modal>
-		</div>
+		</>
 	);
 };

@@ -21,7 +21,7 @@ export const InputSelect = ({
 		<div className={styles.select}>
 			<select {...register(id, validations)}>
 				{options.map(item => (
-					<option value={item}>
+					<option key={item} value={item}>
 						{item.charAt(0).toUpperCase() + item.slice(1)}
 					</option>
 				))}
