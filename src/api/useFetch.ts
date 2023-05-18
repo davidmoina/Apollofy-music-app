@@ -18,7 +18,6 @@ export const useFetch = <T>(url: string) => {
 				setError((error as Error).message);
 			}
 			setLoading(false);
-			console.log('UseFetch executed');
 		})();
 	}, [reload]);
 

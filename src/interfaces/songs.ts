@@ -10,8 +10,11 @@ export interface Musics {
 export interface Album {
 	_id: string;
 	name: string;
+	title?: string;
+	year: string;
 	thumbnail: string;
 	artist: string;
+	tracks?: Track[];
 }
 
 export interface Genre {
