@@ -1,15 +1,12 @@
 import { useState, useEffect } from 'react';
-// import { useFetch } from '../../api/useFetch';
 import TopGenres from '../../components/TopGenres/TopGenres';
 import TopTracks from '../../components/TopTracks/TopTracks';
 import InfoBarPlaylists2 from '../../components/InfoBarPlaylists2/InfoBarPlaylists2';
-import InfoBarPlaylistsGenreStats from '../../components/InfoBarPlaylistsGenreStats/InfoBarPlaylistsGenreStats';
 import TitleStatistics from '../../components/TitleStatistics/TitleStatistics';
-// import { Track } from '../../interfaces/songs';
+import styles from './StatisticsView.module.scss';
 
 export const StatisticsView = () => {
-	// const { VITE_APP_SERVICE_URL } = import.meta.env;
-	// const { data: tracks } = useFetch<Track[]>(`${VITE_APP_SERVICE_URL}/track`);
+	
 
     const [propsTracks, setPropsTracks] = useState([]);
     const [propsGenres, setPropsGenres] = useState([]);
@@ -53,19 +50,17 @@ export const StatisticsView = () => {
 
 	return (
             <div style={{ display: 'flex', flexDirection: 'column', height: '100vh' }}>
-                <div style={{ height: '50%', overflowY: 'auto', marginBottom: "3vh" }}>
+                
                     <TitleStatistics text="Top Genres"></TitleStatistics>
-                    <InfoBarPlaylistsGenreStats></InfoBarPlaylistsGenreStats>
-                    <TopGenres genres={propsGenres} key={propsGenres.length}/>
-                </div>
-                <div style={{ height: '50%', overflowY: 'auto' }}>
+                    <div style={{ display: 'flex', justifyContent: 'center', alignContent: "center" }}>
+                        <TopGenres genres={propsGenres} key={propsGenres.length}/>
+                    </div>    
+            
+                <div className={styles.container}>
                     <TitleStatistics text="Top 30 songs"></TitleStatistics>
                     <InfoBarPlaylists2></InfoBarPlaylists2>
                     <TopTracks songs={propsTracks} />
                 </div>
              </div>
-    
-
-		// </div>
 	);
 };
