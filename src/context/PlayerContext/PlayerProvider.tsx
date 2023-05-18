@@ -154,6 +154,8 @@ export const PlayerProvider = ({ children }: Props) => {
 		});
 	};
 
+	console.log(playerState.playing);
+
 	//set playing state
 	const togglePlaying = (play: boolean | null = null) => {
 		dispatch({

@@ -29,7 +29,6 @@ export const PlayerMusic = () => {
 	const [showModal, setShowModal] = useState(false);
 
 	useEffect(() => {
-		console.log('useEffect 3 ejecutado');
 		return () => {
 			audioRef.current.pause();
 			clearInterval(intervalRef.current);
@@ -43,7 +42,6 @@ export const PlayerMusic = () => {
 	const { duration } = audioRef.current;
 
 	useEffect(() => {
-		console.log('useEffect 2 ejecutado');
 		if (playing) {
 			audioRef.current.play();
 			startTimer();
@@ -54,7 +52,6 @@ export const PlayerMusic = () => {
 	}, [playing]);
 
 	useEffect(() => {
-		console.log('useEffect 1 ejecutado');
 		audioRef.current.pause();
 		audioRef.current = new Audio(songsList[currentSongNum]?.url);
 		// setTrackProgress(audioRef.current.currentTime);
@@ -69,7 +66,6 @@ export const PlayerMusic = () => {
 		}
 
 		setTrackProgress(audioRef.current.currentTime);
-		startTimer();
 	}, [audio, currentSongNum]);
 
 	const startTimer = () => {
@@ -77,12 +73,8 @@ export const PlayerMusic = () => {
 
 		intervalRef.current = +setInterval(() => {
 			if (audioRef.current.ended) {
-				console.log('hola');
-
 				handleEnd();
 			} else {
-				console.log('hola 2');
-
 				setTrackProgress(audioRef.current.currentTime + 1);
 			}
 		}, 1000);

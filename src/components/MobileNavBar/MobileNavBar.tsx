@@ -72,7 +72,7 @@ export const MobileNavBar: FC = () => {
 			<MobileNavButton
 				icon={<BiLibrary size='30' style={{ color: 'white' }} />}
 				text='Library'
-				path='/library-mobile'
+				path='/playlists'
 			/>
 		</nav>
 	);
