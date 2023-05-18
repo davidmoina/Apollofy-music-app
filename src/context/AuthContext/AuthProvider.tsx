@@ -1,6 +1,6 @@
 import { useReducer } from 'react';
-import { AuthContext } from './AuthContext';
 import { toast } from 'react-hot-toast';
+import { AuthContext } from './AuthContext';
 
 type Props = {
 	children: JSX.Element | JSX.Element[];

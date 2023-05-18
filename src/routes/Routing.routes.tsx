@@ -19,7 +19,9 @@ import { ResetPass } from '../pages/ResetPass/ResetPass';
 import { GenreView } from '../views/GenreView/GenreView';
 import { PlaylistContentView } from '../views/PlaylistContentView/PlaylistContentView';
 import { GenreContentView } from '../views/GenreContentView/GenreContentView';
+import { ArtistContentView } from '../views/ArtistContentView/ArtistContentView';
 import { WelcomePage } from '../pages/WelcomePage/WelcomePage';
+import { AlbumContentView } from '../views/AlbumContentView/AlbumContentView';
 import { PublicRoutes } from '../components/PublicRoutes/PublicRoutes';
 import { MobileLibraryView } from '../views/MobileLibraryView/MobileLibraryView';
 
@@ -35,8 +37,10 @@ export const Routing = () => {
 						<Route path='playlists' element={<PlaylistsView />} />
 						<Route path='playlist/:id' element={<PlaylistContentView />} />
 						<Route path='albums' element={<AlbumsView />} />
+						<Route path='albums/:id' element={<AlbumContentView />} />
 						<Route path='tracks' element={<TracksView />} />
-						<Route path='artists' element={<ArtistsView />} />
+						<Route path='users' element={<ArtistsView />} />
+						<Route path='users/:id' element={<ArtistContentView />} />
 						<Route path='genre' element={<GenreView />} />
 						<Route path='genre/:id' element={<GenreContentView />} />
 						<Route path='fav' element={<FavView />} />
