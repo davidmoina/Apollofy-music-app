@@ -16,12 +16,7 @@ interface Props {
 }
 
 export const AddPlaylistModal = ({ closeModal, editId }: Props) => {
-	const {
-		handleSubmit,
-		register,
-		reset,
-		// formState: { errors },
-	} = useForm<PlaylistInputs>({
+	const { handleSubmit, register, reset } = useForm<PlaylistInputs>({
 		defaultValues: async () => {
 			if (!editId) {
 				return {
