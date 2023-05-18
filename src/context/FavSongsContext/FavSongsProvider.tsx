@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Track } from '../../interfaces/songs';
 import { FavSongContext } from './FavSongsContext';
+import { toast } from 'react-toastify';
 
 type ChildrenProps = {
 	children: JSX.Element | JSX.Element[];
@@ -28,6 +29,7 @@ export const FavSongProvider = ({ children }: ChildrenProps) => {
 		);
 		const data = await response.json();
 		console.log(data);
+		toast.success('Song added to favorites');
 		setToggle(!toggle);
 	};
 
@@ -50,6 +52,7 @@ export const FavSongProvider = ({ children }: ChildrenProps) => {
 		);
 		const data = await response.json();
 		console.log(data);
+		toast.error('Song removed from favorites');
 		setToggle(!toggle);
 	};
 
