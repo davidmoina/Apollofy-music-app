@@ -1,0 +1,18 @@
+@use '../../sass/globals/variables' as var;
+
+
+
+.container {
+	
+    
+    height: 8%;
+    margin-bottom: 5vh;
+	
+
+	.title {
+        display: flex;
+		font-size: 3vw;
+		align-items: center;
+        justify-content: center;
+        color: white;
+	}}

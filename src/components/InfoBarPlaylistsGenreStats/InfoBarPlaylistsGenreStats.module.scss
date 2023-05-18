@@ -1,0 +1,25 @@
+@use '../../sass/globals/variables' as var;
+
+.container {
+	display: flex;
+    grid-template-columns: 3fr 3fr 3fr;
+    justify-content: space-evenly; 
+    height: 4.5vh;
+    align-items: center;
+    border-bottom: 1px solid #FFFFFF;
+
+	// &:hover {
+	//   background-color: var.$bg-player-color;
+	// }
+
+	.genre, .plays, .minutes {
+		width: 100%; 
+        color: white;
+        margin-left: 10vw;
+	}
+
+
+    
+
+	
+}
