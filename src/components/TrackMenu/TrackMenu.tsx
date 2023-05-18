@@ -8,6 +8,7 @@ interface Props {
 	isPlaylist: boolean;
 	handleRemoveFromPlaylist: () => void;
 	openInfoModal: () => void;
+	handleDelete: () => void;
 }
 
 export const TrackMenu = ({
@@ -17,6 +18,7 @@ export const TrackMenu = ({
 	isPlaylist,
 	handleRemoveFromPlaylist,
 	openInfoModal,
+	handleDelete,
 }: Props) => {
 	return (
 		<div className={styles.menuContainer}>
@@ -27,6 +29,7 @@ export const TrackMenu = ({
 					<li onClick={handleRemoveFromPlaylist}>Remove from this playlist</li>
 				)}
 				<li onClick={openInfoModal}>Song Info</li>
+				<li onClick={handleDelete}>Delete song</li>
 			</ul>
 		</div>
 	);

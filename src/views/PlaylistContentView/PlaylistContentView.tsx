@@ -31,12 +31,7 @@ export const PlaylistContentView = () => {
 				description={data?.description}
 				publicAccessible={data?.publicAccessible}
 			/>
-			<PlaylistMenuSection
-				reload={reload}
-				setReload={setReload}
-				id={data?._id}
-				tracks={data?.tracks}
-			/>
+			<PlaylistMenuSection id={data?._id} tracks={data?.tracks} />
 			<PlaylistInfoBar isPlaylist={true} />
 			<SongListContainer
 				tracks={data?.tracks}

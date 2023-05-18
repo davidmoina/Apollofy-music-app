@@ -6,11 +6,7 @@ import {
 	AiOutlineHeart,
 	AiOutlineCaretRight,
 } from 'react-icons/ai';
-import {
-	MdPlayCircleFilled,
-	MdPauseCircleFilled,
-	MdDangerous,
-} from 'react-icons/md';
+import { MdPlayCircleFilled, MdPauseCircleFilled } from 'react-icons/md';
 import { BsThreeDotsVertical } from 'react-icons/bs';
 import { Artist, Track } from '../../interfaces/songs';
 import {
@@ -67,7 +63,7 @@ export const MusicRow = ({
 	const [isPlaying, setIsPlaying] = useState(false);
 
 	const [isLiked, setIsLiked] = useState(
-		data.find(song => song._id === actualSong._id) && true
+		data?.find(song => song._id === actualSong._id) && true
 	);
 
 	const { id } = useParams();
@@ -165,8 +161,10 @@ export const MusicRow = ({
 				</span>
 				<img src={thumbnail} alt={title} />
 				<div className={styles.songInfo}>
-					<span>{title}</span>
-					<span>{artist?.map(({ name }) => name).join(' - ')}</span>
+					<span className={styles.title}>{title}</span>
+					<span className={styles.artists}>
+						{artist?.map(({ name }) => name).join(' , ')}
+					</span>
 				</div>
 			</div>
 			<p className={`hidden lg:block ${styles.albumTitle}`}>{title}</p>
@@ -181,7 +179,7 @@ export const MusicRow = ({
 						<AiOutlineHeart className='text-lg' />
 					)}
 				</span>
-				<span>3:00</span>
+				<span className={styles.timeSpan}>3:00</span>
 				<span className='relative'>
 					<BsThreeDotsVertical onClick={handleMenu} />
 					{selectedTrack?._id === actualSong._id && (
@@ -192,13 +190,11 @@ export const MusicRow = ({
 								openModal={openModal}
 								isPlaylist={isPlaylist}
 								handleRemoveFromPlaylist={handleRemoveFromPlaylist}
+								handleDelete={handleDelete}
 								openInfoModal={openInfoModal}
 							/>
 						</>
 					)}
-				</span>
-				<span onClick={handleDelete}>
-					<MdDangerous />
 				</span>
 			</div>
 		</div>

@@ -40,8 +40,9 @@ function useUserAuth() {
 	};
 
 	const useRegister = async (data: FormInputs) => {
-		const { firstName, lastName, email, password, confirmPassword, birthday } =
+		const { firstName, lastName, email, password, confirmPassword, birthday, rol } =
 			data;
+
 		try {
 			const response = await fetch(`${VITE_APP_SERVICE_URL}/users/register/`, {
 				method: 'POST',
@@ -55,14 +56,14 @@ function useUserAuth() {
 					password,
 					confirmPassword,
 					birthday,
+					rol
 				}),
 			});
 			const json = await response.json();
 			const { id, token } = json;
-			if (!response.ok) {
-				localStorage.setItem('actualUser', id);
-				return;
-			}
+			
+			window.localStorage.setItem('User', JSON.stringify({ email, id, token, rol }));
+
 			registerSuccess(
 				firstName!,
 				lastName!,
@@ -85,6 +86,23 @@ function useUserAuth() {
 			return result;
 		} catch (error) {
 			console.log(error);
+		}
+	};
+
+	const getAllUsers = async () => {
+		try {
+			const response = await fetch(`${VITE_APP_SERVICE_URL}/users`, {
+				method: 'GET',
+			});
+
+			if (!response.ok) {
+				throw new Error('Something went wrong');
+			}
+
+			const json = await response.json();
+			return json.data;
+		} catch (error) {
+			throw new Error((error as Error).message);
 		}
 	};
 	const useUpdateUser = async (data: FormInputs, id: string) => {
@@ -118,6 +136,7 @@ function useUserAuth() {
 		useLogin,
 		useRegister,
 		authState,
+		getAllUsers,
 	};
 }
 export default useUserAuth;

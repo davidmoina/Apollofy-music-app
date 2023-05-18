@@ -2,27 +2,24 @@ import { SubmitHandler, useForm } from 'react-hook-form';
 import styles from './addPlaylistModal.module.scss';
 import { PlaylistInputs } from '../../interfaces';
 import { ButtonForm } from '../User/Button/ButtonForm';
-import { Dispatch, SetStateAction, useRef } from 'react';
+import { useContext, useRef } from 'react';
 import { toast } from 'react-hot-toast';
 import { Playlist } from '../../interfaces/playlist';
 import { InputForm } from '../User/Input/InputForm';
+import { FavSongContext } from '../../context/FavSongsContext/FavSongsContext';
+import { InputSelect } from '../InputSelect/InputSelect';
+import { InputFile } from '../InputFile/InputFile';
 
 interface Props {
 	closeModal: () => void;
 	editId?: string;
-	reload?: boolean;
-	setReload?: Dispatch<SetStateAction<boolean>>;
 }
 
-export const AddPlaylistModal = ({
-	closeModal,
-	editId,
-	reload,
-	setReload,
-}: Props) => {
+export const AddPlaylistModal = ({ closeModal, editId }: Props) => {
 	const {
 		handleSubmit,
 		register,
+		reset,
 		// formState: { errors },
 	} = useForm<PlaylistInputs>({
 		defaultValues: async () => {
@@ -40,13 +37,18 @@ export const AddPlaylistModal = ({
 			return {
 				playlistName: result.data.name || '',
 				playlistDescription: result.data.description || '',
+				publicAccessible: result.data.publicAccessible ? 'public' : 'private',
 			};
 		},
 	});
 
+	const { playlistReloading } = useContext(FavSongContext);
+
 	const formRef = useRef<HTMLFormElement>(null);
 
 	const onSubmit: SubmitHandler<PlaylistInputs> = async data => {
+		console.log(data);
+
 		const user = localStorage.getItem('User');
 
 		if (!user) {
@@ -93,9 +95,8 @@ export const AddPlaylistModal = ({
 			console.log(error);
 		}
 
-		if (setReload) {
-			setReload(!reload);
-		}
+		reset();
+		playlistReloading();
 		closeModal();
 	};
 
@@ -128,15 +129,23 @@ export const AddPlaylistModal = ({
 						Description
 					</label>
 				</div>
-
-				<div className={styles.inputWrapper}>
-					<input
-						{...register('thumbnail', { required: editId ? false : true })}
-						className={styles.formInput}
-						type='file'
-					/>
-					<label className={styles.formLabel}>Upload a song</label>
-				</div>
+				<InputFile
+					id='thumbnail'
+					placeholder='Select a image'
+					register={register}
+					validations={{
+						required: editId ? false : true,
+					}}
+				/>
+				<InputSelect
+					id='publicAccessible'
+					placeholder='Select a option'
+					register={register}
+					validations={{
+						required: true,
+					}}
+					options={['private', 'public']}
+				/>
 				<ButtonForm name={editId ? 'Edit playlist' : 'Create playlist'} />
 			</form>
 		</>

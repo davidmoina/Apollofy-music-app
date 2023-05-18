@@ -13,6 +13,7 @@ type InputProps = {
 	inputType: HTMLInputTypeAttribute;
 	id: Path<FormInputs>;
 	placeholder: string;
+	rol?: string;
 	errors?: FieldErrors<FormInputs>;
 	register: UseFormRegister<FormInputs | PlaylistInputs>;
 	validations?: RegisterOptions;

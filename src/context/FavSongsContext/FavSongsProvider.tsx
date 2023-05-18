@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Track } from '../../interfaces/songs';
 import { FavSongContext } from './FavSongsContext';
+import { toast } from 'react-hot-toast';
 
 type ChildrenProps = {
 	children: JSX.Element | JSX.Element[];
@@ -12,6 +13,7 @@ export const FavSongProvider = ({ children }: ChildrenProps) => {
 	const user = localStorage.getItem('User');
 	const userId = user ? JSON.parse(user).id : '';
 	const [data, setData] = useState<Track[]>([]);
+	const [reloadPlaylist, setReloadPlaylist] = useState(false);
 
 	const addToFavorite = async (song: Track) => {
 		const songId = song._id;
@@ -28,12 +30,19 @@ export const FavSongProvider = ({ children }: ChildrenProps) => {
 		);
 		const data = await response.json();
 		console.log(data);
+		toast.success('Song added to favorites');
 		setToggle(!toggle);
 	};
 
-	useEffect(() => {
-		getLikedSongs(userId);
-	}, [toggle]);
+	const playlistReloading = () => {
+		setReloadPlaylist(!reloadPlaylist);
+	};
+
+	if(user){
+		useEffect(() => {
+			getLikedSongs(userId);
+		}, [toggle]);
+	}
 
 	const removeFromFavorite = async (song: Track) => {
 		const songId = song._id;
@@ -50,6 +59,7 @@ export const FavSongProvider = ({ children }: ChildrenProps) => {
 		);
 		const data = await response.json();
 		console.log(data);
+		toast.error('Song removed from favorites');
 		setToggle(!toggle);
 	};
 
@@ -76,6 +86,8 @@ export const FavSongProvider = ({ children }: ChildrenProps) => {
 				toggle,
 				data,
 				getLikedSongs,
+				playlistReloading,
+				reloadPlaylist,
 			}}
 		>
 			{children}

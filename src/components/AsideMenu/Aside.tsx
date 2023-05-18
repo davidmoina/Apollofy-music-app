@@ -19,25 +19,17 @@ import { Modal } from '../Modal/Modal';
 import { useModal } from '../../hooks/useModal';
 import { AddPlaylistModal } from '../AddPlayListModal/AddPlaylistModal';
 import { useFetch } from '../../api/useFetch';
-import { useEffect, useState } from 'react';
 import { Playlist } from '../../interfaces/playlist';
 
 const Aside = () => {
 	const { isOpen, openModal, closeModal } = useModal();
 	const location = useLocation();
-	const [playlists, setPlaylists] = useState<Playlist<string>[]>([]);
 
 	const user = JSON.parse(localStorage.getItem('User')!);
 
-	const { data, reload, setReload } = useFetch<Playlist<string>[]>(
+	const { data } = useFetch<Playlist<string>[]>(
 		`${import.meta.env.VITE_APP_SERVICE_URL}/playlist/all/${user.id}`
 	);
-
-	useEffect(() => {
-		if (data) {
-			setPlaylists(data);
-		}
-	}, [data]);
 
 	return (
 		<div className={styles.container}>
@@ -67,7 +59,11 @@ const Aside = () => {
 							Search
 						</Link>
 					</li>
-					<li>
+						
+					{
+						user.rol == 'Artist' &&
+						<li>
+						
 						<Link
 							className={`${
 								location.pathname == '/library' && styles.activeLink
@@ -79,7 +75,8 @@ const Aside = () => {
 							</span>{' '}
 							Library
 						</Link>
-					</li>
+						
+					</li>}
 					<li>
 						<Link
 							className={`${location.pathname == '/fav' && styles.activeLink}`}
@@ -144,11 +141,11 @@ const Aside = () => {
 					<li>
 						<Link
 							className={`${
-								location.pathname == '/artists'
+								location.pathname == '/users'
 									? styles.activeLink
 									: styles.inactiveLink
 							}`}
-							to='/artists'
+							to='/users'
 						>
 							<span>
 								<TbMicrophone2 />
@@ -180,7 +177,7 @@ const Aside = () => {
 					<p>Create playlist</p>
 				</button>
 				<ul>
-					{playlists?.map(item => (
+					{data?.map(item => (
 						<li key={item._id}>
 							<Link
 								className={`${
@@ -206,11 +203,7 @@ const Aside = () => {
 				</ul>
 			</div>
 			<Modal isOpen={isOpen} closeModal={closeModal}>
-				<AddPlaylistModal
-					closeModal={closeModal}
-					reload={reload}
-					setReload={setReload}
-				/>
+				<AddPlaylistModal closeModal={closeModal} />
 			</Modal>
 		</div>
 	);

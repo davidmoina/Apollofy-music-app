@@ -26,14 +26,14 @@ export const CardAlbumsContainer = ({ title, albums }: AlbumContainerProps) => {
 						
 					<div></div>
 					:
-					<NavLink to='/search'>View All</NavLink>
+					<NavLink to='/albums'>View All</NavLink>
 				}
 			</div>
 			<div
 				className={`flex jutify-center items-center overflow-x-auto lg:flex-wrap gap-6 ${styles.containerCard}`}
 			>
 				{albums?.map((album, index) => (
-					<CardAlbum key={index} albums={album} />
+					<CardAlbum key={index} albums={album}/>
 				))}
 			</div>
 		</section>
