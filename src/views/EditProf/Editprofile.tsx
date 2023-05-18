@@ -56,45 +56,49 @@ export const EditProfile = () => {
 				<InfoUser />
 				{/* <ImagenUpload /> */}
 			</section>
-			<div className={styles.container}>
+			<div className={`mt-32 mb-32 ${styles.container}`}>
 				<form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
 					<h1>Edit profile</h1>
-					<div>
-						<InputForm
-							id='firstName'
-							placeholder='Name'
-							inputType='text'
-							register={register}
-							errors={errors}
-							defaultValue={datos?.firstName}
-							required
-						/>
-						<InputForm
-							id='lastName'
-							placeholder='Last Name'
-							inputType='text'
-							register={register}
-							errors={errors}
-							defaultValue={datos?.lastName}
-							required
-						/>
-						<InputForm
-							id='email'
-							placeholder='Email'
-							inputType='email'
-							register={register}
-							errors={errors}
-							defaultValue={datos?.email}
-							required
-						/>
-						<InputForm
-							id='birthday'
-							placeholder='Date of birth'
-							inputType='date'
-							register={register}
-							errors={errors}
-							required
-						/>
+					<div className='flex flex-col md:flex-row items-center gap-8 justify-start'>
+						<div>
+							<InputForm
+								id='firstName'
+								placeholder='Name'
+								inputType='text'
+								register={register}
+								errors={errors}
+								defaultValue={datos?.firstName}
+								required
+							/>
+							<InputForm
+								id='lastName'
+								placeholder='Last Name'
+								inputType='text'
+								register={register}
+								errors={errors}
+								defaultValue={datos?.lastName}
+								required
+							/>
+						</div>
+						<div>
+							<InputForm
+								id='email'
+								placeholder='Email'
+								inputType='email'
+								register={register}
+								errors={errors}
+								defaultValue={datos?.email}
+								required
+							/>
+							<InputForm
+								id='birthday'
+								placeholder='Date of birth'
+								inputType='date'
+								register={register}
+								errors={errors}
+								required
+							/>
+						</div>
 					</div>
 
 					<ButtonForm name='Save' />

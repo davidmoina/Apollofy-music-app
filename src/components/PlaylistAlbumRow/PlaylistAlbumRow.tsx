@@ -1,5 +1,4 @@
 import { useNavigate } from 'react-router-dom';
-import styles from './playlistAlbumRow.module.scss';
 
 interface Props {
 	img: string;
