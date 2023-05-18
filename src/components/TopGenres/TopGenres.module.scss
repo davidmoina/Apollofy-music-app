@@ -1,0 +1,21 @@
+@use '../../sass/globals/variables' as var;
+
+
+  
+
+  .rowContainer {
+    display: flex;
+    grid-template-columns: 3fr 3fr 3fr;
+    justify-content: space-evenly; 
+    height: 4.5vh;
+    align-items: center;
+    border-bottom: 1px solid #8f85ad;
+    // border-bottom: 1px solid #ccc;
+
+  }
+  
+  .genre, .totalPlays, .totalDuration {
+    width: 100%; 
+    color: var.$light-grey;
+    margin-left: 10vw;
+  }

@@ -6,11 +6,7 @@ import {
 	AiOutlineHeart,
 	AiOutlineCaretRight,
 } from 'react-icons/ai';
-import {
-	MdPlayCircleFilled,
-	MdPauseCircleFilled,
-	MdDangerous,
-} from 'react-icons/md';
+import { MdPlayCircleFilled, MdPauseCircleFilled } from 'react-icons/md';
 import { BsThreeDotsVertical } from 'react-icons/bs';
 import { Artist, Track } from '../../interfaces/songs';
 import {
@@ -34,6 +30,7 @@ export interface Props {
 	track: Track;
 	isPlaylist: boolean;
 	reloadData?: () => void;
+	openInfoModal: () => void;
 }
 
 export const MusicRow = ({
@@ -47,6 +44,7 @@ export const MusicRow = ({
 	track,
 	isPlaylist,
 	reloadData,
+	openInfoModal,
 }: Props) => {
 	const { addToFavorite, removeFromFavorite, setToggle, toggle, data } =
 		useContext(FavSongContext) as ContextTypeFav;
@@ -65,7 +63,7 @@ export const MusicRow = ({
 	const [isPlaying, setIsPlaying] = useState(false);
 
 	const [isLiked, setIsLiked] = useState(
-		data.find(song => song._id === actualSong._id) && true
+		data?.find(song => song._id === actualSong._id) && true
 	);
 
 	const { id } = useParams();
@@ -80,12 +78,27 @@ export const MusicRow = ({
 		}
 	};
 
-	const handleClickSong = () => {
+	const handleClickSong = async () => {
 		setIsPlaying(!isPlaying);
+		const songId = actualSong._id;
 
 		if (actualSong?._id !== audio?._id) {
 			songsSet(actualSong);
 			setCurrent(0, actualSong);
+			try {
+				const response = await fetch(`${import.meta.env.VITE_APP_SERVICE_URL}/track/${songId}/plays`, {
+					method: 'POST',
+				});
+	
+				if (!response.ok) {
+					throw new Error('Network response was not ok');
+				}
+	
+				const data = await response.json();
+				console.log(data);
+			} catch (error) {
+				console.error('Error:', error);
+			}
 			return;
 		}
 		togglePlaying();
@@ -163,8 +176,10 @@ export const MusicRow = ({
 				</span>
 				<img src={thumbnail} alt={title} />
 				<div className={styles.songInfo}>
-					<span>{title}</span>
-					<span>{artist?.map(({ name }) => name).join(' - ')}</span>
+					<span className={styles.title}>{title}</span>
+					<span className={styles.artists}>
+						{artist?.map(({ name }) => name).join(' , ')}
+					</span>
 				</div>
 			</div>
 			<p className={`hidden lg:block ${styles.albumTitle}`}>{title}</p>
@@ -179,7 +194,7 @@ export const MusicRow = ({
 						<AiOutlineHeart className='text-lg' />
 					)}
 				</span>
-				<span>3:00</span>
+				<span className={styles.timeSpan}>3:00</span>
 				<span className='relative'>
 					<BsThreeDotsVertical onClick={handleMenu} />
 					{selectedTrack?._id === actualSong._id && (
@@ -190,12 +205,12 @@ export const MusicRow = ({
 								openModal={openModal}
 								isPlaylist={isPlaylist}
 								handleRemoveFromPlaylist={handleRemoveFromPlaylist}
+								handleDelete={handleDelete}
+								openInfoModal={openInfoModal}
+								setSelectedTrack={setSelectedTrack}
 							/>
 						</>
 					)}
-				</span>
-				<span onClick={handleDelete}>
-					<MdDangerous />
 				</span>
 			</div>
 		</div>

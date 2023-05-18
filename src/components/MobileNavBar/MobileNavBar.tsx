@@ -5,17 +5,22 @@ import { BiLibrary } from 'react-icons/bi';
 import { useMediaQuery } from '@react-hook/media-query';
 import { FC } from 'react';
 import styles from './mobileNav.module.scss';
+import { useNavigate } from 'react-router-dom';
 
 interface Props {
 	icon: React.ReactNode;
 	text: string;
+	path: string;
 }
 
-export const MobileNavButton = ({ icon, text }: Props) => {
+export const MobileNavButton = ({ icon, text, path }: Props) => {
 	const [isExpanded, setIsExpanded] = useState(false);
 
-	const toggleExpanded = () => {
+	const navigate = useNavigate();
+
+	const handleMenu = (path: string) => {
 		setIsExpanded(prevState => !prevState);
+		navigate(path);
 	};
 
 	const handleTransitionEnd = () => {
@@ -29,7 +34,7 @@ export const MobileNavButton = ({ icon, text }: Props) => {
 			className={`text-center flex flex-col items-center ${
 				isExpanded ? 'scale-90 transition duration-100 linear' : 'scale-100'
 			}`}
-			onClick={toggleExpanded}
+			onClick={() => handleMenu(path)}
 			onTransitionEnd={handleTransitionEnd}
 		>
 			<div className='sidebar-icon'>{icon}</div>
@@ -57,14 +62,17 @@ export const MobileNavBar: FC = () => {
 			<MobileNavButton
 				icon={<MdHomeFilled size='30' style={{ color: 'white' }} />}
 				text='Home'
+				path='/'
 			/>
 			<MobileNavButton
 				icon={<BiSearch size='30' style={{ color: 'white' }} />}
 				text='Search'
+				path='/search'
 			/>
 			<MobileNavButton
 				icon={<BiLibrary size='30' style={{ color: 'white' }} />}
-				text='Playlists'
+				text='Library'
+				path='/library-mobile'
 			/>
 		</nav>
 	);

@@ -7,6 +7,8 @@ import { toast } from 'react-hot-toast';
 import { Playlist } from '../../interfaces/playlist';
 import { InputForm } from '../User/Input/InputForm';
 import { FavSongContext } from '../../context/FavSongsContext/FavSongsContext';
+import { InputSelect } from '../InputSelect/InputSelect';
+import { InputFile } from '../InputFile/InputFile';
 
 interface Props {
 	closeModal: () => void;
@@ -30,6 +32,7 @@ export const AddPlaylistModal = ({ closeModal, editId }: Props) => {
 			return {
 				playlistName: result.data.name || '',
 				playlistDescription: result.data.description || '',
+				publicAccessible: result.data.publicAccessible ? 'public' : 'private',
 			};
 		},
 	});
@@ -39,6 +42,8 @@ export const AddPlaylistModal = ({ closeModal, editId }: Props) => {
 	const formRef = useRef<HTMLFormElement>(null);
 
 	const onSubmit: SubmitHandler<PlaylistInputs> = async data => {
+		console.log(data);
+
 		const user = localStorage.getItem('User');
 
 		if (!user) {
@@ -119,15 +124,23 @@ export const AddPlaylistModal = ({ closeModal, editId }: Props) => {
 						Description
 					</label>
 				</div>
-
-				<div className={styles.inputWrapper}>
-					<input
-						{...register('thumbnail', { required: editId ? false : true })}
-						className={styles.formInput}
-						type='file'
-					/>
-					<label className={styles.formLabel}>Upload a song</label>
-				</div>
+				<InputFile
+					id='thumbnail'
+					placeholder='Select a image'
+					register={register}
+					validations={{
+						required: editId ? false : true,
+					}}
+				/>
+				<InputSelect
+					id='publicAccessible'
+					placeholder='Select a option'
+					register={register}
+					validations={{
+						required: true,
+					}}
+					options={['private', 'public']}
+				/>
 				<ButtonForm name={editId ? 'Edit playlist' : 'Create playlist'} />
 			</form>
 		</>

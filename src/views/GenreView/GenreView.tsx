@@ -30,7 +30,7 @@ export const GenreView = () => {
 
 	return (
 		<div>
-			<div className={`${styles.containerGenre}`}>
+			<div className={`${styles.containerGenre} pb-16`}>
 				<h1 className=''>Explore Genres</h1>
 				<div className={`flex justify-center flex-wrap  ${styles.divGenre}`}>
 					{genres.map(genre => (

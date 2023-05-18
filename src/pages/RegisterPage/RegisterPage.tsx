@@ -68,7 +68,7 @@ export const RegisterPage = () => {
 						errors={errors}
 						required
 					/>
-					<InputForm
+					<InputForm 
 						id='birthday'
 						placeholder='Birthday'
 						inputType='date'
@@ -76,6 +76,39 @@ export const RegisterPage = () => {
 						errors={errors}
 						required
 					/>
+					
+						<div className='flex flex-col items-center justify-center -translate-y-4'>
+							<label
+								className='text-xl translate-y-3'
+								style={{ color: 'rgba(123, 88, 228, 0.7)', fontWeight: 'bold'}}
+							>
+								Rol
+							</label>
+							<br />
+							<select
+								className='text-white'
+								defaultValue={'User'}
+								id='genre'
+								{...register('rol')}
+								style={{
+									backgroundColor: 'rgba(76, 70, 101, 0)',
+									width: '50%',
+									marginBottom: '2rem',
+									padding: '0.5rem',
+									border: '1px solid #8f85ad',
+									borderRadius: '5px',
+								}}
+							>
+									<option key="User" value="User">
+										User
+									</option>
+									<option key="Artist" value="Artist">
+										Artist
+									</option>
+			
+							</select>
+						</div>
+					
 					<div className='flex justify-center'>
 						<ButtonForm name='Sign Up' />
 					</div>

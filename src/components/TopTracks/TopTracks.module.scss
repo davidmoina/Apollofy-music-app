@@ -1,0 +1,38 @@
+@use '../../sass/globals/variables' as var;
+
+// .rowContainer {
+//     display: flex;
+//     justify-content: space-between;
+//     align-items: center;
+//     padding: 10px;
+//     border-bottom: 1px solid #ccc;
+    
+//   }
+  
+  .thumbnail {
+    width: 50px;
+    height: 50px;
+  }
+  
+//   .songName, .artistName, .playCount, .totalMinutesPlayed {
+//     flex-grow: 1;
+//     text-align: center;
+//     color: white;
+//   }
+  
+
+  .rowContainer {
+    display: grid;
+    grid-template-columns: 1fr 2fr 3fr 1fr 1fr; 
+    align-items: center;
+    border-bottom: 1px solid #8f85ad;
+  }
+  
+  .songName, .artistName, .playCount, .totalMinutesPlayed {
+    width: 100%; 
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    color: var.$light-grey;
+  }
+  

@@ -58,7 +58,11 @@ const Aside = () => {
 							Search
 						</Link>
 					</li>
-					<li>
+						
+					{
+						user.rol == 'Artist' &&
+						<li>
+						
 						<Link
 							className={`${
 								location.pathname == '/library' && styles.activeLink
@@ -70,7 +74,8 @@ const Aside = () => {
 							</span>{' '}
 							Library
 						</Link>
-					</li>
+						
+					</li>}
 					<li>
 						<Link
 							className={`${location.pathname == '/fav' && styles.activeLink}`}

@@ -14,6 +14,11 @@
 		user-select: none;
 	}
 
+	@media (max-width: 500px) {
+		height: 80px;
+		padding: 0;
+	}
+
 	.spanLike {
 		cursor: pointer;
 	}
@@ -47,6 +52,26 @@
 				color: var.$muted-color;
 			}
 		}
+
+		@media (max-width: 500px) {
+			position: relative;
+
+			.spanPlay {
+				position: absolute;
+				left: 10px;
+				bottom: 10px;
+			}
+
+			.songInfo {
+				.title {
+					font-size: 0.9rem;
+				}
+
+				.artists {
+					font-size: 0.8rem;
+				}
+			}
+		}
 	}
 
 	.albumTitle {
@@ -63,5 +88,11 @@
 		justify-content: flex-end;
 		align-items: center;
 		gap: 1em;
+
+		.timeSpan {
+			@media (max-width: 500px) {
+				display: none;
+			}
+		}
 	}
 }

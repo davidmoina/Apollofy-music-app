@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { MdPlayCircleFilled } from 'react-icons/md';
 import styles from './card.module.scss';
+import { useNavigate } from 'react-router-dom';
 
 interface LikedByAlbum {
 	userId: string;
@@ -23,7 +24,9 @@ interface AlbumProps {
 }
 
 export const CardAlbum = ({ albums }: AlbumProps) => {
+
 	const [showPlay, setShowPlay] = useState(false);
+	const navigate = useNavigate()
 
 	return (
 		<div
@@ -31,6 +34,7 @@ export const CardAlbum = ({ albums }: AlbumProps) => {
 			className={`flex flex-col w-28 md:w-32 lg:w-48 transition-all duration-200 ${styles.card} cursor-pointer hover:bg`}
 			onMouseEnter={() => setShowPlay(true)}
 			onMouseLeave={() => setShowPlay(false)}
+			onClick={() => navigate(`/albums/${albums.id}`)}
 		>
 			<div className={`${styles.divPlay} relative`}>
 				<img
