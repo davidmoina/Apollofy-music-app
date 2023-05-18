@@ -34,6 +34,7 @@ export interface Props {
 	track: Track;
 	isPlaylist: boolean;
 	reloadData?: () => void;
+	openInfoModal: () => void;
 }
 
 export const MusicRow = ({
@@ -47,6 +48,7 @@ export const MusicRow = ({
 	track,
 	isPlaylist,
 	reloadData,
+	openInfoModal,
 }: Props) => {
 	const { addToFavorite, removeFromFavorite, setToggle, toggle, data } =
 		useContext(FavSongContext) as ContextTypeFav;
@@ -190,6 +192,7 @@ export const MusicRow = ({
 								openModal={openModal}
 								isPlaylist={isPlaylist}
 								handleRemoveFromPlaylist={handleRemoveFromPlaylist}
+								openInfoModal={openInfoModal}
 							/>
 						</>
 					)}

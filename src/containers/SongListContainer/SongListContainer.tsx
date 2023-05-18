@@ -5,6 +5,7 @@ import { Modal } from '../../components/Modal/Modal';
 import { useModal } from '../../hooks/useModal';
 import { Track } from '../../interfaces/songs';
 import { MusicRow } from '../../components/MusicRow/MusicRow';
+import { SongInfoModalContent } from '../../components/SongInfoModal/SongInfoModal';
 
 interface Props {
 	tracks: Track[] | null;
@@ -23,6 +24,11 @@ export const SongListContainer = ({
 		isOpen: activeAddModal,
 		openModal: openAddModal,
 		closeModal: closeAddModal,
+	} = useModal();
+	const {
+		isOpen: activeInfoModal,
+		openModal: openInfoModal,
+		closeModal: closeInfoModal,
 	} = useModal();
 
 	const changeModal = () => {
@@ -46,6 +52,7 @@ export const SongListContainer = ({
 					track={song}
 					isPlaylist={isPlaylist}
 					reloadData={reloadData}
+					openInfoModal={openInfoModal}
 				/>
 			))}
 			<Modal isOpen={isOpen} closeModal={closeModal}>
@@ -54,6 +61,9 @@ export const SongListContainer = ({
 
 			<Modal isOpen={activeAddModal} closeModal={closeAddModal}>
 				<AddPlaylistModal closeModal={closeAddModal} />
+			</Modal>
+			<Modal isOpen={activeInfoModal} closeModal={closeInfoModal}>
+				<SongInfoModalContent closeModal={closeInfoModal} />
 			</Modal>
 		</div>
 	);
