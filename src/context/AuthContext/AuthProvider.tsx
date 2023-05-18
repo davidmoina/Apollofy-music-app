@@ -1,5 +1,5 @@
 import { useReducer } from 'react';
-import { toast } from 'react-toastify';
+import { toast } from 'react-hot-toast';
 import { AuthContext } from './AuthContext';
 
 type Props = {
@@ -175,7 +175,7 @@ export const AuthProvider = ({ children }: Props) => {
 		dispatch({
 			type: ACTIONS.LOGOUT,
 		});
-		toast.info('Logged out, we will miss you', { icon: '😢' });
+		toast.error('Logged out, we will miss you', { icon: '😢' });
 	};
 
 	const updatePassword = (password: string): void => {

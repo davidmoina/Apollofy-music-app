@@ -4,6 +4,7 @@ export interface FormInputs {
 	lastName?: string;
 	email?: string;
 	password?: string;
+	rol?: string;
 	confirmPassword?: string;
 	birthday?: Date;
 	oldPassword?: string;

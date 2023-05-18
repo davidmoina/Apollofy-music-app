@@ -38,9 +38,11 @@ export const FavSongProvider = ({ children }: ChildrenProps) => {
 		setReloadPlaylist(!reloadPlaylist);
 	};
 
-	useEffect(() => {
-		getLikedSongs(userId);
-	}, [toggle]);
+	if(user){
+		useEffect(() => {
+			getLikedSongs(userId);
+		}, [toggle]);
+	}
 
 	const removeFromFavorite = async (song: Track) => {
 		const songId = song._id;
