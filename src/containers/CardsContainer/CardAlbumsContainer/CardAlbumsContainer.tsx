@@ -26,7 +26,7 @@ export const CardAlbumsContainer = ({ title, albums }: AlbumContainerProps) => {
 						
 					<div></div>
 					:
-					<NavLink to='/search'>View All</NavLink>
+					<NavLink to='/albums'>View All</NavLink>
 				}
 			</div>
 			<div

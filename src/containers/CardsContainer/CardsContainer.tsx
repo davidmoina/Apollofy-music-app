@@ -16,7 +16,7 @@ export const CardsContainer = ({
 }: PlaylistRecommendationsContainerProps) => {
 	return (
 		<section className={`mb-8 ${styles.cardsContainer}`}>
-			<h2 className={`text-xl md:text-2xl mb-2 ${styles.containerTitle}`}>
+			<h2 className={`text-xl md:text-2xl mb-6 ${styles.containerTitle}`}>
 				{title}
 			</h2>
 			<div className={`flex overflow-x-auto gap-6 ${styles.containerCard}`}>
