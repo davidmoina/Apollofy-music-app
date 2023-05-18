@@ -1,4 +1,4 @@
-import styles from '../LoginPage/loginPage.module.scss';
+import styles from './editProfile.module.scss';
 import { InputForm } from '../../components/User/Input/InputForm';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { FormInputs } from '../../interfaces';

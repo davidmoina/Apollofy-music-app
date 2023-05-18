@@ -59,7 +59,11 @@ const Aside = () => {
 							Search
 						</Link>
 					</li>
-					<li>
+						
+					{
+						user.rol == 'Artist' &&
+						<li>
+						
 						<Link
 							className={`${
 								location.pathname == '/library' && styles.activeLink
@@ -71,7 +75,8 @@ const Aside = () => {
 							</span>{' '}
 							Library
 						</Link>
-					</li>
+						
+					</li>}
 					<li>
 						<Link
 							className={`${location.pathname == '/fav' && styles.activeLink}`}
@@ -136,11 +141,11 @@ const Aside = () => {
 					<li>
 						<Link
 							className={`${
-								location.pathname == '/artists'
+								location.pathname == '/users'
 									? styles.activeLink
 									: styles.inactiveLink
 							}`}
-							to='/artists'
+							to='/users'
 						>
 							<span>
 								<TbMicrophone2 />

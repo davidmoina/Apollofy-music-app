@@ -75,9 +75,27 @@ export function useTrack() {
 		}
 	};
 
+	const getTrackByArtist = async (id: string | undefined) => {
+		try {
+			const response = await fetch(`${VITE_APP_SERVICE_URL}/track/${id}`, {
+				method: 'GET',
+			});
+
+			const json = await response.json();
+
+			if (!response.ok) {
+				throw new Error('Something went wrong');
+			}
+			return json.data;
+		} catch (error) {
+			console.log((error as Error).message);
+		}
+	};
+
 	return {
 		addTrack,
 		deleteTrack,
 		getTrackOfUser,
+		getTrackByArtist,
 	};
 }
