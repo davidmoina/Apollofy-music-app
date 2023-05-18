@@ -22,11 +22,14 @@ export const PlayerMusic = () => {
 		toggleRepeat,
 		togglePlaying,
 		handleEnd,
+		toggleRandom,
+		random,
 	} = useContext(PlayerContext);
 
 	const [showModal, setShowModal] = useState(false);
 
 	useEffect(() => {
+		console.log('useEffect 3 ejecutado');
 		return () => {
 			audioRef.current.pause();
 			clearInterval(intervalRef.current);
@@ -40,17 +43,21 @@ export const PlayerMusic = () => {
 	const { duration } = audioRef.current;
 
 	useEffect(() => {
+		console.log('useEffect 2 ejecutado');
 		if (playing) {
 			audioRef.current.play();
+			startTimer();
 		} else {
 			audioRef.current.pause();
+			clearInterval(intervalRef.current);
 		}
 	}, [playing]);
 
 	useEffect(() => {
+		console.log('useEffect 1 ejecutado');
 		audioRef.current.pause();
 		audioRef.current = new Audio(songsList[currentSongNum]?.url);
-		setTrackProgress(audioRef.current.currentTime);
+		// setTrackProgress(audioRef.current.currentTime);
 
 		audioRef.current.volume = volume;
 
@@ -70,9 +77,13 @@ export const PlayerMusic = () => {
 
 		intervalRef.current = +setInterval(() => {
 			if (audioRef.current.ended) {
+				console.log('hola');
+
 				handleEnd();
 			} else {
-				setTrackProgress(audioRef.current.currentTime);
+				console.log('hola 2');
+
+				setTrackProgress(audioRef.current.currentTime + 1);
 			}
 		}, 1000);
 	};
@@ -104,7 +115,7 @@ export const PlayerMusic = () => {
 					value={trackProgress}
 					step='1'
 					min='0'
-					max={duration ? duration : `${duration}`}
+					max={duration ? Math.round(duration) : `${Math.round(duration)}`}
 					className={`w-full md:hidden ${styles.progressBar}`}
 					onChange={e => onScrub(e.target.value)}
 					onMouseUp={onScrubEnd}
@@ -136,6 +147,8 @@ export const PlayerMusic = () => {
 								onPlayPauseClick={togglePlaying}
 								onLoopClick={toggleRepeat}
 								loop={repeat}
+								toggleRandom={toggleRandom}
+								random={random}
 							/>
 							<div className='hidden md:flex'>
 								<span>{formatTime(trackProgress)}</span>
@@ -144,7 +157,9 @@ export const PlayerMusic = () => {
 									value={trackProgress}
 									step='1'
 									min='0'
-									max={duration ? duration : `${duration}`}
+									max={
+										duration ? Math.round(duration) : `${Math.round(duration)}`
+									}
 									className={`w-60 lg:w-96 mx-2 ${styles.progressBar}`}
 									onChange={e => {
 										onScrub(e.target.value);

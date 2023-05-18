@@ -192,6 +192,7 @@ export const MusicRow = ({
 								handleRemoveFromPlaylist={handleRemoveFromPlaylist}
 								handleDelete={handleDelete}
 								openInfoModal={openInfoModal}
+								setSelectedTrack={setSelectedTrack}
 							/>
 						</>
 					)}

@@ -155,11 +155,11 @@ export const PlayerProvider = ({ children }: Props) => {
 	};
 
 	//set playing state
-	const togglePlaying = () => {
+	const togglePlaying = (play: boolean | null = null) => {
 		dispatch({
 			type: ACTIONS.TOGGLE_PLAYING,
 			payload: {
-				playing: !playerState.playing,
+				playing: play ? play : !playerState.playing,
 			},
 		});
 	};
@@ -181,9 +181,6 @@ export const PlayerProvider = ({ children }: Props) => {
 
 	//next song
 	const nextSong = () => {
-		if (playerState.random) {
-			return setCurrent(~~(Math.random() * playerState.songsList.length));
-		}
 		if (playerState.currentSongNum === playerState.songsList.length - 1) {
 			setCurrent(0);
 		} else {
@@ -211,20 +208,23 @@ export const PlayerProvider = ({ children }: Props) => {
 		});
 	};
 
+	console.log(playerState.playing);
+
 	const handleEnd = () => {
 		if (playerState.random) {
 			return setCurrent(~~(Math.random() * playerState.songsList.length));
+		}
+
+		if (playerState.repeat) {
+			nextSong();
+		} else if (
+			playerState.currentSongNum ===
+			playerState.songsList.length - 1
+		) {
+			togglePlaying(false);
+			return;
 		} else {
-			if (playerState.repeat) {
-				nextSong();
-			} else if (
-				playerState.currentSongNum ===
-				playerState.songsList.length - 1
-			) {
-				return;
-			} else {
-				nextSong();
-			}
+			nextSong();
 		}
 	};
 

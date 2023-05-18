@@ -1,5 +1,6 @@
 import styles from './trackMenu.module.scss';
 import { Track } from '../../interfaces/songs';
+import { toast } from 'react-hot-toast';
 
 interface Props {
 	addSongToQueue: (song: Track) => void;
@@ -9,6 +10,7 @@ interface Props {
 	handleRemoveFromPlaylist: () => void;
 	openInfoModal: () => void;
 	handleDelete: () => void;
+	setSelectedTrack: (track: Track | null) => void;
 }
 
 export const TrackMenu = ({
@@ -19,11 +21,18 @@ export const TrackMenu = ({
 	handleRemoveFromPlaylist,
 	openInfoModal,
 	handleDelete,
+	setSelectedTrack,
 }: Props) => {
+	const handleQueue = () => {
+		addSongToQueue(actualSong);
+		toast.success('Song added to queue');
+		setSelectedTrack(null);
+	};
+
 	return (
 		<div className={styles.menuContainer}>
 			<ul className={styles.menuList}>
-				<li onClick={() => addSongToQueue(actualSong)}>Add to queue</li>
+				<li onClick={handleQueue}>Add to queue</li>
 				<li onClick={openModal}>Add to playlist</li>
 				{isPlaylist && (
 					<li onClick={handleRemoveFromPlaylist}>Remove from this playlist</li>
