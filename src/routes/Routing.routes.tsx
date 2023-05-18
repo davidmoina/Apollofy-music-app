@@ -21,6 +21,7 @@ import { PlaylistContentView } from '../views/PlaylistContentView/PlaylistConten
 import { GenreContentView } from '../views/GenreContentView/GenreContentView';
 import { ArtistContentView } from '../views/ArtistContentView/ArtistContentView';
 import { WelcomePage } from '../pages/WelcomePage/WelcomePage';
+import { AlbumContentView } from '../views/AlbumContentView/AlbumContentView';
 
 export const Routing = () => {
 	return (
@@ -34,6 +35,7 @@ export const Routing = () => {
 						<Route path='playlists' element={<PlaylistsView />} />
 						<Route path='playlist/:id' element={<PlaylistContentView />} />
 						<Route path='albums' element={<AlbumsView />} />
+						<Route path='albums/:id' element={<AlbumContentView />} />
 						<Route path='tracks' element={<TracksView />} />
 						<Route path='users' element={<ArtistsView />} />
 						<Route path='users/:id' element={<ArtistContentView />} />
