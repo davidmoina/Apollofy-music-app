@@ -80,12 +80,27 @@ export const MusicRow = ({
 		}
 	};
 
-	const handleClickSong = () => {
+	const handleClickSong = async () => {
 		setIsPlaying(!isPlaying);
+		const songId = actualSong._id;
 
 		if (actualSong?._id !== audio?._id) {
 			songsSet(actualSong);
 			setCurrent(0, actualSong);
+			try {
+				const response = await fetch(`${import.meta.env.VITE_APP_SERVICE_URL}/track/${songId}/plays`, {
+					method: 'POST',
+				});
+	
+				if (!response.ok) {
+					throw new Error('Network response was not ok');
+				}
+	
+				const data = await response.json();
+				console.log(data);
+			} catch (error) {
+				console.error('Error:', error);
+			}
 			return;
 		}
 		togglePlaying();

@@ -20,6 +20,7 @@ import { GenreView } from '../views/GenreView/GenreView';
 import { PlaylistContentView } from '../views/PlaylistContentView/PlaylistContentView';
 import { GenreContentView } from '../views/GenreContentView/GenreContentView';
 import { ArtistContentView } from '../views/ArtistContentView/ArtistContentView';
+import { StatisticsView } from '../views/StatisticsView/StatisticsView';
 import { WelcomePage } from '../pages/WelcomePage/WelcomePage';
 
 export const Routing = () => {
@@ -38,6 +39,7 @@ export const Routing = () => {
 						<Route path='users' element={<ArtistsView />} />
 						<Route path='users/:id' element={<ArtistContentView />} />
 						<Route path='genre' element={<GenreView />} />
+						<Route path='statistics' element={<StatisticsView />} />
 						<Route path='genre/:id' element={<GenreContentView />} />
 						<Route path='fav' element={<FavView />} />
 						<Route path='edit-profile' element={<EditProfile />} />

@@ -51,6 +51,10 @@ export interface Track {
 	thumbnail: string;
 	genre: string;
 	liked: boolean;
+	isLiked?: boolean;
+	playCount?: number;
+	totalMinutesPlayed?: number;
+
 }
 
 export interface Artist {
