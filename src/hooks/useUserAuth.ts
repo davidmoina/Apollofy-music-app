@@ -1,6 +1,6 @@
 import { useContext } from 'react';
 import { FormInputs } from '../interfaces';
-import { AuthContext, ContextType } from '../context/AuthContext/AuthContext';
+import { AuthContext } from '../context/AuthContext/AuthContext';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-hot-toast';
 
@@ -14,7 +14,7 @@ function useUserAuth() {
 		authState,
 		registerSuccess,
 		registerError,
-	} = useContext(AuthContext) as ContextType;
+	} = useContext(AuthContext);
 	const navigate = useNavigate();
 
 	const useLogin = async (data: FormInputs) => {
@@ -31,8 +31,11 @@ function useUserAuth() {
 
 			if (!response.ok) return loginError(json.message as string);
 
-			const { id, token } = json;
-			window.localStorage.setItem('User', JSON.stringify({ email, id, token }));
+			const { id, token, rol } = json;
+			window.localStorage.setItem(
+				'User',
+				JSON.stringify({ email, id, token, rol })
+			);
 			loginSuccess(email!, id, token);
 			// registerUser(
 			// 	json.firstName,
