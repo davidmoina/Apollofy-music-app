@@ -22,7 +22,7 @@ export const MobileLibraryView = ({ openModal, playlists }: Props) => {
 
 	return (
 		<section>
-			<div className='flex justify-between items-center mb-3 mx-4'>
+			<div className='flex justify-between items-center mt-3 mb-3 mx-4'>
 				<h1 className='text-xl font-bold text-gray-300'>Your library</h1>
 				<button
 					onClick={openModal}
