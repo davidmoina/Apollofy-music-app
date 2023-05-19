@@ -44,6 +44,7 @@ export const MobileLibraryView = ({ openModal, playlists }: Props) => {
 			/>
 			{playlists?.map(({ _id, thumbnail, name, userId, tracks }) => (
 				<PlaylistAlbumRow
+					key={_id}
 					img={thumbnail}
 					name={name}
 					songs={tracks.length}
