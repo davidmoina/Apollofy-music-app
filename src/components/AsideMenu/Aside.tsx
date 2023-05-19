@@ -11,7 +11,7 @@ import {
 	MdOutlineAudiotrack,
 } from 'react-icons//md';
 import { IoMdAdd } from 'react-icons/io';
-import { FcStatistics } from 'react-icons/Fc';
+import { FcStatistics } from 'react-icons/fc';
 
 import { VscLibrary } from 'react-icons/vsc';
 import { TbMicrophone2 } from 'react-icons/tb';
@@ -60,24 +60,22 @@ const Aside = () => {
 							Search
 						</Link>
 					</li>
-						
-					{
-						user.rol == 'Artist' &&
+
+					{user.rol == 'Artist' && (
 						<li>
-						
-						<Link
-							className={`${
-								location.pathname == '/library' && styles.activeLink
-							}`}
-							to='/library'
-						>
-							<span>
-								<VscLibrary />
-							</span>{' '}
-							Library
-						</Link>
-						
-					</li>}
+							<Link
+								className={`${
+									location.pathname == '/library' && styles.activeLink
+								}`}
+								to='/library'
+							>
+								<span>
+									<VscLibrary />
+								</span>{' '}
+								Library
+							</Link>
+						</li>
+					)}
 					<li>
 						<Link
 							className={`${location.pathname == '/fav' && styles.activeLink}`}
@@ -89,20 +87,21 @@ const Aside = () => {
 							Favorite Songs
 						</Link>
 					</li>
-					{
-						user.rol == 'Admin' &&
-					<li>
-						<Link
-							className={`${location.pathname == '/statistics' && styles.activeLink}`}
-							to='/statistics'
-						>
-							<span>
-								<FcStatistics />
-							</span>{' '}
-							Statistics
-						</Link>
-					</li>
-					}
+					{user.rol == 'Admin' && (
+						<li>
+							<Link
+								className={`${
+									location.pathname == '/statistics' && styles.activeLink
+								}`}
+								to='/statistics'
+							>
+								<span>
+									<FcStatistics />
+								</span>{' '}
+								Statistics
+							</Link>
+						</li>
+					)}
 				</ul>
 			</nav>
 			<div className={styles.navbar}>

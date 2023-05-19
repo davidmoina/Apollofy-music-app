@@ -23,7 +23,7 @@ export const CardTrack = ({
 
 	const handlePlay = () => {
 		songsSet(track);
-		setCurrent(0);
+		setCurrent(0, track);
 	};
 
 	return (
