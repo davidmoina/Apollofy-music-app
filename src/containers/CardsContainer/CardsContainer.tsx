@@ -6,7 +6,13 @@ import styles from './cardsContainer.module.scss';
 
 interface PlaylistRecommendationsContainerProps {
 	title: string;
-	playlists: Playlist<User>[] | Track[] | Album[] | undefined | null;
+	playlists:
+		| Playlist<User>[]
+		| Track[]
+		| Album[]
+		| undefined
+		| null
+		| Playlist<string>[];
 	isPlayable?: boolean;
 }
 
