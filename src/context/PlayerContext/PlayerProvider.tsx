@@ -164,8 +164,6 @@ export const PlayerProvider = ({ children }: Props) => {
 		});
 	};
 
-	// console.log(playerState.selectedTrack);
-
 	//previous song
 	const prevSong = () => {
 		if (playerState.random) {

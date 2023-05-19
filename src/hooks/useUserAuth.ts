@@ -6,7 +6,7 @@ import { toast } from 'react-hot-toast';
 
 function useUserAuth() {
 	const { VITE_APP_SERVICE_URL } = import.meta.env;
-	const { registerUser } = useContext(AuthContext);
+	// const { registerUser } = useContext(AuthContext);
 
 	const {
 		loginSuccess,
@@ -34,13 +34,13 @@ function useUserAuth() {
 			const { id, token } = json;
 			window.localStorage.setItem('User', JSON.stringify({ email, id, token }));
 			loginSuccess(email!, id, token);
-			registerUser(
-				json.firstName,
-				json.lastName,
-				json.email,
-				json.id,
-				json.token
-			);
+			// registerUser(
+			// 	json.firstName,
+			// 	json.lastName,
+			// 	json.email,
+			// 	json.id,
+			// 	json.token
+			// );
 			navigate('/');
 		} catch (error) {
 			loginError('Invalid credentials');
