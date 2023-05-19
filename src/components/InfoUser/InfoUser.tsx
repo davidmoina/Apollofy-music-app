@@ -21,9 +21,9 @@ export const InfoUser = () => {
 
 	return (
 		<>
-			<h1 className={`mt-8 ${styles.titlePage}`}>Profile</h1>
+			<h1 className={` ${styles.titlePage}`}>Profile</h1>
 			<section
-				className={`lg:flex items-center gap-8 border-solid border-b-2 border-neutral-400 py-14 ${styles.sectionDataUser}`}
+				className={`lg:flex items-center gap-8 border-solid border-b-2 border-neutral-400 py-6 ${styles.sectionDataUser}`}
 			>
 				<div className='flex flex-col items-center gap-8 justify-start'>
 					<img

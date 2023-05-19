@@ -6,6 +6,13 @@ type Props = {
 	children: JSX.Element | JSX.Element[];
 };
 
+export interface UserState {
+	firstName: string;
+	lastName: string;
+	email: string;
+	token: string;
+	id: string;
+}
 export interface Values {
 	firstName?: string;
 	lastName?: string;
@@ -17,6 +24,7 @@ export interface Values {
 	error?: string;
 	id?: string;
 	token?: string;
+	user?: UserState | null | undefined;
 }
 
 enum ACTIONS {
@@ -28,6 +36,7 @@ enum ACTIONS {
 	UPDATE_PASSWORD = 'UPDATE_PASSWORD',
 	GET_USER_ERROR = 'GET_USER_ERROR',
 	USER_RECIEVED = 'USER_RECIEVED',
+	USER_REGISTERED = 'USER_REGISTERED',
 }
 
 interface LoginActions {
@@ -46,6 +55,7 @@ const initialValue = {
 	token: '',
 	isAuthenticated: false,
 	error: '',
+	user: null,
 };
 
 const reducer = (state: Values, action: LoginActions): Values => {
@@ -58,6 +68,7 @@ const reducer = (state: Values, action: LoginActions): Values => {
 				token: action.payload?.token,
 				isAuthenticated: true,
 				error: '',
+				user: null,
 			};
 		case ACTIONS.LOGIN_ERROR:
 			return {
@@ -76,6 +87,7 @@ const reducer = (state: Values, action: LoginActions): Values => {
 				token: action.payload?.token,
 				isAuthenticated: true,
 				error: '',
+				user: null,
 			};
 		case ACTIONS.REGISTER_ERROR:
 			return {
@@ -105,6 +117,11 @@ const reducer = (state: Values, action: LoginActions): Values => {
 				token: action.payload?.token,
 				isAuthenticated: true,
 				error: '',
+				user: null,
+			};
+		case ACTIONS.USER_REGISTERED:
+			return {
+				user: action.payload?.user,
 			};
 		default:
 			return state;
@@ -162,6 +179,21 @@ export const AuthProvider = ({ children }: Props) => {
 		toast.success('Registered successfully ');
 	};
 
+	const registerUser = (
+		firstName: string,
+		lastName: string,
+		email: string,
+		id: string,
+		token: string
+	): void => {
+		dispatch({
+			type: ACTIONS.USER_REGISTERED,
+			payload: {
+				user: { firstName, lastName, email, id, token },
+			},
+		});
+	};
+
 	const registerError = (error: string): void => {
 		dispatch({
 			type: ACTIONS.REGISTER_ERROR,
@@ -184,6 +216,8 @@ export const AuthProvider = ({ children }: Props) => {
 		});
 	};
 
+	console.log(authState.user);
+
 	return (
 		<AuthContext.Provider
 			value={{
@@ -194,6 +228,8 @@ export const AuthProvider = ({ children }: Props) => {
 				registerSuccess,
 				registerError,
 				updatePassword,
+				currentUser: authState.user,
+				registerUser,
 			}}
 		>
 			{children}

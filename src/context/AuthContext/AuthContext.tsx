@@ -1,5 +1,5 @@
 import { createContext } from 'react';
-import { Values } from './AuthProvider';
+import { UserState, Values } from './AuthProvider';
 
 export type ContextType = {
 	authState: Values;
@@ -18,6 +18,14 @@ export type ContextType = {
 	) => void;
 	registerError: (error: string) => void;
 	updatePassword: (password: string) => void;
+	currentUser: UserState | null | undefined;
+	registerUser: (
+		firstName: string,
+		lastName: string,
+		email: string,
+		id: string,
+		token: string
+	) => void;
 };
 
-export const AuthContext = createContext<ContextType | null>(null);
+export const AuthContext = createContext<ContextType>({} as ContextType);
