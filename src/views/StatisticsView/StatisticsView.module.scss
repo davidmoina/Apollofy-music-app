@@ -1,0 +1,15 @@
+@use '../../sass/globals/variables' as var;
+
+
+.container {
+    height: 50%;
+    overflow-y: auto;
+    margin-top: 10vh;
+  
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  
+    scrollbar-width: none; // For Firefox
+    -ms-overflow-style: none; // For Internet Explorer and Edge
+  }

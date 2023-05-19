@@ -11,6 +11,8 @@ import {
 	MdOutlineAudiotrack,
 } from 'react-icons//md';
 import { IoMdAdd } from 'react-icons/io';
+import { FcStatistics } from 'react-icons/Fc';
+
 import { VscLibrary } from 'react-icons/vsc';
 import { TbMicrophone2 } from 'react-icons/tb';
 import { Link, useLocation } from 'react-router-dom';
@@ -87,6 +89,20 @@ const Aside = () => {
 							Favorite Songs
 						</Link>
 					</li>
+					{
+						user.rol == 'Admin' &&
+					<li>
+						<Link
+							className={`${location.pathname == '/statistics' && styles.activeLink}`}
+							to='/statistics'
+						>
+							<span>
+								<FcStatistics />
+							</span>{' '}
+							Statistics
+						</Link>
+					</li>
+					}
 				</ul>
 			</nav>
 			<div className={styles.navbar}>
