@@ -1,6 +1,13 @@
 import { useFetch } from '../../api/useFetch';
 import { Playlist } from '../../interfaces/playlist';
 import { CardsContainer } from '../../containers/CardsContainer/CardsContainer';
+import { useMediaQuery } from '@react-hook/media-query';
+import { useEffect, useState } from 'react';
+import { MobileLibraryView } from '../MobileLibraryView/MobileLibraryView';
+import { Modal } from '../../components/Modal/Modal';
+import { AddPlaylistModal } from '../../components/AddPlayListModal/AddPlaylistModal';
+import { useModal } from '../../hooks/useModal';
+import { User } from '../../interfaces/user';
 
 export const samplePlaylists = {
 	id: 1,
@@ -15,15 +22,30 @@ export const samplePlaylists = {
 };
 
 export const PlaylistsView = () => {
+	const mediaQuery = useMediaQuery('(max-width: 768px)');
+	const [isPhoneScreen, setIsPhoneScreen] = useState<boolean>(mediaQuery);
+	const { isOpen, openModal, closeModal } = useModal();
+
+	useEffect(() => {
+		setIsPhoneScreen(mediaQuery);
+	}, [mediaQuery]);
+
 	const user = JSON.parse(localStorage.getItem('User')!);
 
-	const { data } = useFetch<Playlist<string>[]>(
+	const { data } = useFetch<Playlist<User>[]>(
 		`${import.meta.env.VITE_APP_SERVICE_URL}/playlist/all/${user.id}`
 	);
 
 	return (
 		<>
-			<CardsContainer title='All your playlists' playlists={data} />
+			{isPhoneScreen ? (
+				<MobileLibraryView openModal={openModal} playlists={data} />
+			) : (
+				<CardsContainer title='All your playlists' playlists={data} />
+			)}
+			<Modal isOpen={isOpen} closeModal={closeModal}>
+				<AddPlaylistModal closeModal={closeModal} />
+			</Modal>
 		</>
 	);
 };

@@ -58,13 +58,18 @@ export const LoginPage = () => {
 							</label>
 							<span>Remember me</span>
 						</div> */}
-						<Link to='/forgot-pass' className='hover:underline'>Forgot Password</Link>
+						<Link to='/forgot-pass' className='hover:underline'>
+							Forgot Password
+						</Link>
 					</div>
 					<ButtonForm name='Sign In' />
 				</form>
-					<Link to='/register' className={`${styles.noAccountText} hover:underline z-10`}>
-						Don't have an account? Join free today
-					</Link>
+				<Link
+					to='/register'
+					className={`${styles.noAccountText} hover:underline z-10`}
+				>
+					Don't have an account? Join free today
+				</Link>
 			</main>
 			<BackgroundAnimated />
 		</>

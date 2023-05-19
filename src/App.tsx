@@ -18,6 +18,9 @@ const App: FC = () => {
 								background: '#333',
 								color: '#fff',
 							},
+							success: {
+								duration: 3000,
+							},
 						}}
 					/>
 					<Routing />

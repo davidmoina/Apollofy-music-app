@@ -24,7 +24,6 @@ import { StatisticsView } from '../views/StatisticsView/StatisticsView';
 import { WelcomePage } from '../pages/WelcomePage/WelcomePage';
 import { AlbumContentView } from '../views/AlbumContentView/AlbumContentView';
 import { PublicRoutes } from '../components/PublicRoutes/PublicRoutes';
-import { MobileLibraryView } from '../views/MobileLibraryView/MobileLibraryView';
 
 export const Routing = () => {
 	return (
@@ -48,7 +47,6 @@ export const Routing = () => {
 						<Route path='fav' element={<FavView />} />
 						<Route path='edit-profile' element={<EditProfile />} />
 						<Route path='change-password' element={<ChangePassView />} />
-						<Route path='library-mobile' element={<MobileLibraryView />} />
 					</Route>
 				</Route>
 				<Route element={<PublicRoutes />}>

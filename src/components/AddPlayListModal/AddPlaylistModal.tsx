@@ -42,8 +42,6 @@ export const AddPlaylistModal = ({ closeModal, editId }: Props) => {
 	const formRef = useRef<HTMLFormElement>(null);
 
 	const onSubmit: SubmitHandler<PlaylistInputs> = async data => {
-		console.log(data);
-
 		const user = localStorage.getItem('User');
 
 		if (!user) {

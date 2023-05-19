@@ -86,16 +86,16 @@ export const MusicRow = ({
 			songsSet(actualSong);
 			setCurrent(0, actualSong);
 			try {
-				const response = await fetch(`${import.meta.env.VITE_APP_SERVICE_URL}/track/${songId}/plays`, {
-					method: 'POST',
-				});
-	
+				const response = await fetch(
+					`${import.meta.env.VITE_APP_SERVICE_URL}/track/${songId}/plays`,
+					{
+						method: 'POST',
+					}
+				);
+
 				if (!response.ok) {
 					throw new Error('Network response was not ok');
 				}
-	
-				const data = await response.json();
-				console.log(data);
 			} catch (error) {
 				console.error('Error:', error);
 			}
@@ -131,7 +131,6 @@ export const MusicRow = ({
 		toast.success('Removed from this playlist');
 
 		const songId = actualSong._id;
-		console.log(id);
 
 		const response = await fetch(
 			`${import.meta.env.VITE_APP_SERVICE_URL}/playlist/track/${id}`,
@@ -147,7 +146,7 @@ export const MusicRow = ({
 		if (reloadData) {
 			reloadData();
 		}
-		console.log(data);
+		return data;
 	};
 
 	return (

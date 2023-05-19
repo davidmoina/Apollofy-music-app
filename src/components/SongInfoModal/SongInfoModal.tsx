@@ -8,7 +8,6 @@ interface Props {
 
 export const SongInfoModalContent = ({ closeModal }: Props) => {
 	const { selectedTrack } = useContext(PlayerContext);
-	console.log(selectedTrack?.duration);
 	return (
 		<section className={styles.modalContent}>
 			<h1 className='font-semibold mb-2'>Song Info</h1>

@@ -26,10 +26,14 @@
 			right: 1em;
 			color: var.$secondary-color;
 		}
+
+		@media (max-width: 450px) {
+			width: 90%;
+		}
 	}
 }
-.inputModal{
-	input{
+.inputModal {
+	input {
 		padding: 5px !important;
 	}
 }

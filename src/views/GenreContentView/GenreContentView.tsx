@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import { useGenre } from '../../hooks/useGenre';
 import PlaylistHeader from '../../components/PlaylistHeader/PlaylistHeader';
 import PlaylistInfoBar from '../../components/InfoBarPlaylists/InfoBarPlaylists';
+import style from '../LibraryView/libraryView.module.scss';
 
 interface Genre {
 	_id: string;
@@ -52,7 +53,7 @@ export const GenreContentView = () => {
 					marginTop: '-5.2rem',
 				}}
 			>
-				<div style={{ paddingTop: '5rem' }}>
+				<div className={style.headerNoImage} style={{ paddingTop: '5rem' }}>
 					<PlaylistHeader name={genreName} />
 				</div>
 			</div>

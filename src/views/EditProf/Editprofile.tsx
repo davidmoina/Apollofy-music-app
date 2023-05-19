@@ -6,6 +6,7 @@ import { ButtonForm } from '../../components/User/Button/ButtonForm';
 import useUserAuth from '../../hooks/useUserAuth';
 import { useEffect, useState } from 'react';
 import { InfoUser } from '../../components/InfoUser/InfoUser';
+import { Link } from 'react-router-dom';
 //import { ImagenUpload } from '../../components/ImageUpload/ImagenUpload';
 
 export interface UserData {
@@ -56,7 +57,7 @@ export const EditProfile = () => {
 				<InfoUser />
 				{/* <ImagenUpload /> */}
 			</section>
-			<div className={`mt-32 mb-32 ${styles.container}`}>
+			<div className={`mt-7 ${styles.container}`}>
 				<form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
 					<h1>Edit profile</h1>
 					<div className='flex flex-col md:flex-row items-center gap-8 justify-start'>
@@ -102,6 +103,14 @@ export const EditProfile = () => {
 					</div>
 
 					<ButtonForm name='Save' />
+					<div className='text-center mt-3'>
+						<Link
+							className='text-gray-400 text-md hover:text-indigo-500'
+							to='/change-password'
+						>
+							Change password
+						</Link>
+					</div>
 				</form>
 			</div>
 		</>
